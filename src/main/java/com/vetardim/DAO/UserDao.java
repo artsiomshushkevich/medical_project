@@ -12,7 +12,7 @@ import java.util.List;
  * Created by artsiom on 07.03.2016.
  */
 
-public class UserService {
+public class UserDao {
 
 
     public static void addUser(User user) {

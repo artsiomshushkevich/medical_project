@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by artsiom on 06.03.2016.
  */
 @Entity
-@Table(name = "sppdb.user")
+@Table(name = "medical.users")
 public class User {
 
 
@@ -14,10 +14,12 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private int id;
-    @Column(name = "nickname")
+    @Column(name = "login")
     private String nickname;
     @Column(name = "password")
     private String password;
+    @Column(name = "role_id")
+    private int roleId;
 
     public User (){}
 
@@ -44,4 +46,13 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public int getRoleId() {
+        return id;
+    }
+
+    public void setRoleId(int id) {
+        this.id = id;
+    }
+
 }

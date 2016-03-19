@@ -3,7 +3,7 @@ package com.vetardim.controller;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 import com.vetardim.model.User;
-import com.vetardim.DAO.UserService;
+import com.vetardim.DAO.UserDao;
 
 import java.util.List;
 
@@ -44,22 +44,22 @@ public class UserController extends ActionSupport {
 
     @Override
     public String execute() throws Exception {
-        this.usersList =  UserService.getUsersList();
+        this.usersList =  UserDao.getUsersList();
         return Action.SUCCESS;
     }
 
     public String update() {
-        UserService.updateUser(getUser());
+        UserDao.updateUser(getUser());
         return Action.SUCCESS;
     }
 
     public String delete() {
-        UserService.deleteUser(getId());
+        UserDao.deleteUser(getId());
         return Action.SUCCESS;
     }
 
     public String add() {
-        UserService.addUser(getUser());
+        UserDao.addUser(getUser());
         return Action.SUCCESS;
     }
 
