@@ -40,11 +40,7 @@ public class UserController extends ActionSupport {
         this.user = user;
     }
 
-    @Override
-    public String doDefault() throws Exception {
-        this.usersList =  UserService.getUsersList();
-        return Action.SUCCESS;
-    }
+
 
     @Override
     public String execute() throws Exception {
