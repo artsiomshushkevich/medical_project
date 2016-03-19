@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+YOU DON't have to add this file to hibernate configuration!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! NEVER!
+YOU HAVE TO ADD IT TO !!!! hibernate.cfg.xml !!!
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">
+            com.mysql.jdbc.Driver
+        </property>
+        <property name="hibernate.connection.url">
+            add path to your DB!
+           Example -     jdbc:mysql://localhost:3306/sppdb
+        </property>
+        <property name="hibernate.connection.username">ADD login here!</property>
+        <property name="hibernate.connection.password">ADD password here</property>
+        <property name="hibernate.connection.pool_size">10</property>
+        <property name="show_sql">true</property>
+        <property name="dialect">
+            org.hibernate.dialect.MySQLDialect
+        </property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <mapping class="com.vetardim.model.User" />
+        here you have to add your models. example above.
+    </session-factory>
+</hibernate-configuration>

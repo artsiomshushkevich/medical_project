@@ -7,17 +7,24 @@
 
     <constant name="struts.enable.DynamicMethodInvocation" value="false"/>
 
-    <package name="myPackage" extends="struts-default">
+    <package name="default" extends="struts-default" namespace="/">
 
-        <default-action-ref name="index" />
+        <default-action-ref name="index"/>
 
-        <action name="index" class="com.vetardim.IndexAction">
-            <result>/WEB-INF/jsp/index.jsp</result>
+        <action name="add" class="com.vetardim.controller.UserController" method="add">
+            <result name="success" type="chain">index</result>
         </action>
 
-        <action name="helloWorld" class="helloWorldAction">
-            <result name="input">/jsp/index.jsp</result>
-            <result>/WEB-INF/jsp/helloWorld.jsp</result>
+        <action name="delete" class="com.vetardim.controller.UserController" method="delete">
+            <result name="success" type="chain">index</result>
+        </action>
+
+        <action name="update" class="com.vetardim.controller.UserController" method="update">
+            <result name="success" type="chain">index</result>
+        </action>
+
+        <action name="index" class="com.vetardim.controller.UserController">
+            <result name="success">/view/admin.jsp</result>
         </action>
 
     </package>

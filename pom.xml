@@ -23,16 +23,12 @@
 			<scope>test</scope>
 		</dependency>
 
+        <!--mysql-->
+
 		<!--  Struts 2 -->
 		<dependency>
             <groupId>org.apache.struts</groupId>
             <artifactId>struts2-core</artifactId>
-            <version>${struts2.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.struts</groupId>
-            <artifactId>struts2-sitemesh-plugin</artifactId>
             <version>${struts2.version}</version>
         </dependency>
 
@@ -48,7 +44,13 @@
             <version>${struts2.version}</version>
         </dependency>
 
-		<!-- Servlet & Jsp -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.38</version>
+        </dependency>
+
+        <!-- Servlet & Jsp -->
        <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>

@@ -2,3 +2,4 @@
 *.iml
 *.iws
 target
+main/resources/hibernate.cfg.xml
