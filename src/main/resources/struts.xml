@@ -24,7 +24,7 @@
         </action>
 
         <action name="index" class="com.vetardim.controller.UserController">
-            <result name="success">/view/admin.jsp</result>
+            <result name="success">/adminpanel/users.jsp</result>
         </action>
 
     </package>

@@ -47,7 +47,7 @@ CREATE TABLE `departments` (
 	PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `specialisations` (
+CREATE TABLE `specializations` (
 	`id` INT NOT NULL AUTO_INCREMENT,
 	`name` varchar(100) NOT NULL,
 	PRIMARY KEY (`id`)

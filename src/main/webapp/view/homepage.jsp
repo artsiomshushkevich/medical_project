@@ -17,7 +17,7 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="index.action">Admin panel</a></li>
+            <li><a class="btn btn-link" href="/adminpanel/index.jsp">Admin panel</a></li>
         </ul>
     </div>
 </nav>
