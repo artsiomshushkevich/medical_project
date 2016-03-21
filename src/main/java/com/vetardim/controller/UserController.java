@@ -10,6 +10,7 @@ import java.util.List;
 /**
  * Created by artsiom on 07.03.2016.
  */
+
 public class UserController extends ActionSupport {
 
     private User user;

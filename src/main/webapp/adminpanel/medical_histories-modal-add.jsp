@@ -1,20 +1,21 @@
-<div class="modal user_delete_modal fade" tabindex="-1" role="dialog">
+<div class="modal medical_histories_add_modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">.
 
-            <form method="post" action="/delete.action">
+            <form method="post" action="/add.action">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Delete record</h4>
+                    <h4 class="modal-title">Add new medical history</h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <p>Are you sure want delete this record?</p>
-                        <input id="user_delete_id" name="id" type="hidden">
+                        <div class="form-group">
+                            <label>Info: <input type="text" class="form-control" name="medicalHistory.info"></label>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-danger add-btn">Delete</button>
+                        <button type="submit" class="btn btn-primary add-btn">Save</button>
                     </div>
                 </div>
             </form>

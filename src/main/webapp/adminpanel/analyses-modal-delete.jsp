@@ -1,4 +1,4 @@
-<div class="modal user_delete_modal fade" tabindex="-1" role="dialog">
+<div class="modal analyses_delete_modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">.
 
@@ -10,7 +10,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <p>Are you sure want delete this record?</p>
-                        <input id="user_delete_id" name="id" type="hidden">
+                        <input id="analyses_delete_id" name="id" type="hidden">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -21,3 +21,4 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
