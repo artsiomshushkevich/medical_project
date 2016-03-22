@@ -59,7 +59,7 @@ public class ScheduleDao {
 
     }
 
-    public static List<Schedule> getUsersList() {
+    public static List<Schedule> getSchedulesList() {
         Session session = HibernateUtil.makeSession();
         session.beginTransaction();
         List<Schedule> schedulesList = null;
