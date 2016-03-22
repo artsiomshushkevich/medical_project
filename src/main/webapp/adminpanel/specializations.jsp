@@ -65,41 +65,42 @@
                     <a href="index.jsp"><i class="fa fa-dashboard"></i> Dashboard</a>
                 </li>
                 <li>
-                    <a href="index.action"><i class="fa fa-desktop"></i>Users</a>
+                    <a href="users-index.action"><i class="fa fa-desktop"></i>Users</a>
                 </li>
                 <li>
-                    <a href="index.action"><i class="fa fa-desktop"></i>Visits</a>
+                    <a href="visits-index.action"><i class="fa fa-desktop"></i>Visits</a>
                 </li>
                 <li>
-                    <a href="index.action"><i class="fa fa-desktop"></i>Treatments</a>
+                    <a href="treatments-index.action"><i class="fa fa-desktop"></i>Treatments</a>
                 </li>
                 <li>
-                    <a class="active-menu"  href="index.action"><i class="fa fa-desktop"></i>Specializations</a>
+                    <a class="active-menu" href="specializations-index.action"><i class="fa fa-desktop"></i>Specializations</a>
                 </li>
                 <li>
-                    <a href="index.action"><i class="fa fa-desktop"></i>Schedules</a>
+                    <a href="schedules-index.action"><i class="fa fa-desktop"></i>Schedules</a>
                 </li>
                 <li>
-                    <a href="index.action"><i class="fa fa-desktop"></i>Prescriptions</a>
+                    <a href="prescriptions-index.action"><i class="fa fa-desktop"></i>Prescriptions</a>
                 </li>
                 <li>
-                    <a href="index.action"><i class="fa fa-desktop"></i>Orders</a>
+                    <a href="orders-index.action"><i class="fa fa-desktop"></i>Orders</a>
                 </li>
                 <li>
-                    <a href="index.action"><i class="fa fa-desktop"></i>Medical histories</a>
+                    <a href="medical-histories-index.action"><i class="fa fa-desktop"></i>Medical histories</a>
                 </li>
                 <li>
-                    <a href="index.action"><i class="fa fa-desktop"></i>Doctors</a>
+                    <a href="doctors-index.action"><i class="fa fa-desktop"></i>Doctors</a>
                 </li>
                 <li>
-                    <a href="index.action"><i class="fa fa-desktop"></i>Departments</a>
+                    <a href="departments-index.action"><i class="fa fa-desktop"></i>Departments</a>
                 </li>
                 <li>
-                    <a href="index.action"><i class="fa fa-desktop"></i>Clients</a>
+                    <a href="clients-index.action"><i class="fa fa-desktop"></i>Clients</a>
                 </li>
                 <li>
-                    <a href="index.action"><i class="fa fa-desktop"></i>Analyses</a>
+                    <a href="analyses-index.action"><i class="fa fa-desktop"></i>Analyses</a>
                 </li>
+
 
             </ul>
 
