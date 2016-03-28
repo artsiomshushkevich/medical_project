@@ -63,7 +63,7 @@
                         <a class="active-menu" href="index.jsp"><i class="fa fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="index.action"><i class="fa fa-desktop"></i>Users</a>
+                        <a href="users-index.action"><i class="fa fa-desktop"></i>Users</a>
                     </li>
                     <li>
                         <a href="index.action"><i class="fa fa-desktop"></i>Visits</a>
@@ -90,7 +90,7 @@
                         <a href="index.action"><i class="fa fa-desktop"></i>Doctors</a>
                     </li>
                     <li>
-                        <a href="index.action"><i class="fa fa-desktop"></i>Departments</a>
+                        <a href="departments-index.action"><i class="fa fa-desktop"></i>Departments</a>
                     </li>
                     <li>
                         <a href="index.action"><i class="fa fa-desktop"></i>Clients</a>
