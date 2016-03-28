@@ -8,8 +8,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "medical.users")
 public class User {
-
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
@@ -48,11 +47,11 @@ public class User {
     }
 
     public int getRoleId() {
-        return id;
+        return roleId;
     }
 
     public void setRoleId(int id) {
-        this.id = id;
+        this.roleId = id;
     }
 
 }
