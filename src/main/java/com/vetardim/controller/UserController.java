@@ -7,10 +7,6 @@ import com.vetardim.DAO.UserDao;
 
 import java.util.List;
 
-/**
- * Created by artsiom on 07.03.2016.
- */
-
 public class UserController extends ActionSupport {
 
     private User user;
@@ -41,8 +37,6 @@ public class UserController extends ActionSupport {
         this.user = user;
     }
 
-
-
     @Override
     public String execute() throws Exception {
         this.usersList =  UserDao.getUsersList();
@@ -50,7 +44,7 @@ public class UserController extends ActionSupport {
     }
 
     public String update() {
-        UserDao.updateUser(getUser());
+        UserDao.addOrUpdateUser(getUser());
         return Action.SUCCESS;
     }
 
@@ -60,7 +54,7 @@ public class UserController extends ActionSupport {
     }
 
     public String add() {
-        UserDao.addUser(getUser());
+        UserDao.addOrUpdateUser(getUser());
         return Action.SUCCESS;
     }
 
