@@ -1,35 +1,24 @@
 package com.vetardim.model;
 
-/**
- * Created by vitalyorlov on 21.03.16.
- */
-
 import javax.persistence.*;
 import java.sql.Time;
 import java.util.Date;
 
-/**
- * Created by artsiom on 06.03.2016.
- */
 @Entity
-@Table(name = "medical.orders")
+@Table(name = "medical.order")
 public class Order {
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private int id;
-    @Column(name = "id_client")
-    private int idClient;
+    @Column(name = "client_id")
+    private int clientId;
     @Column(name = "date")
-    private Date date;
-    @Column(name = "id_doctor")
-    private int idDoctor;
+    private int date;
+    @Column(name = "doctor_id")
+    private int doctorId;
     @Column(name = "begin_time")
-    private Time beginTime;
-    @Column(name = "end_time")
-    private Time endTime;
+    private int beginTime;
 
     public Order (){}
 
@@ -41,44 +30,36 @@ public class Order {
         this.id = id;
     }
 
-    public int getIdClient() {
-        return idClient;
+    public int getClientId() {
+        return clientId;
     }
 
-    public void setIdClient(int idClient) {
-        this.idClient = idClient;
+    public void setClientId(int clientId) {
+        this.clientId = clientId;
     }
 
-    public int getIdDoctor() {
-        return idDoctor;
-    }
-
-    public void setIdDoctor(int idDoctor) {
-        this.idDoctor = idDoctor;
-    }
-
-    public Date getDate() {
+    public int getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(int date) {
         this.date = date;
     }
 
-    public Time getBeginTime() {
+    public int getDoctorId() {
+        return doctorId;
+    }
+
+    public void setDoctorId(int doctorId) {
+        this.doctorId = doctorId;
+    }
+
+    public int getBeginTime() {
         return beginTime;
     }
 
-    public void setBeginTime(Time beginTime) {
+    public void setBeginTime(int beginTime) {
         this.beginTime = beginTime;
-    }
-
-    public Time getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(Time endTime) {
-        this.endTime = endTime;
     }
 }
 

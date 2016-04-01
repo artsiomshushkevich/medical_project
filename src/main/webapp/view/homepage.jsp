@@ -14,7 +14,7 @@
     <s:head />
 </head>
 <body>
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <ul class="nav navbar-nav navbar-right">
             <li><a class="btn btn-link" href="/adminpanel/index.jsp">Admin panel</a></li>

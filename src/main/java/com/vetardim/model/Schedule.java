@@ -5,27 +5,23 @@ import java.sql.Time;
 import java.util.Date;
 
 @Entity
-@Table(name = "medical.schedules")
+@Table(name = "medical.schedule")
 public class Schedule {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private int id;
-    @Column(name = "id_doctor")
-    private int idDoctor;
-    @Column(name = "begin_workday")
-    private String beginWorkday;
-    @Column(name = "end_workday")
-    private String endWorkday;
-    @Column(name = "week_day")
-    private String weekDay;
-    @Column(name = "duration")
-    private Time duration;
-    @Column(name = "cabinet")
-    private int cabinet;
-
+    @Column(name = "workday")
+    private String workday;
+    @Column(name = "beginworkday")
+    private int beginWorkday;
+    @Column(name = "endworkday")
+    private int endWorkday;
+    @Column(name = "room")
+    private int room;
+    @Column(name = "doctor_id")
+    private int doctorId;
 
     public Schedule (){}
 
@@ -37,51 +33,43 @@ public class Schedule {
         this.id = id;
     }
 
-    public int getIdDoctor() {
-        return idDoctor;
+    public String getWorkday() {
+        return workday;
     }
 
-    public void setIdDoctor(int idDoctor) {
-        this.idDoctor = idDoctor;
+    public void setWorkday(String workday) {
+        this.workday = workday;
     }
 
-    public String getBeginWorkday() {
+    public int getBeginWorkday() {
         return beginWorkday;
     }
 
-    public void setBeginWorkday(String beginWorkday) {
+    public void setBeginWorkday(int beginWorkday) {
         this.beginWorkday = beginWorkday;
     }
 
-    public String getEndWorkday() {
+    public int getEndWorkday() {
         return endWorkday;
     }
 
-    public void setEndWorkday(String endWorkday) {
+    public void setEndWorkday(int endWorkday) {
         this.endWorkday = endWorkday;
     }
 
-    public String getWeekDay() {
-        return weekDay;
+    public int getRoom() {
+        return room;
     }
 
-    public void setWeekDay(String weekDay) {
-        this.weekDay = weekDay;
+    public void setRoom(int room) {
+        this.room = room;
     }
 
-    public Time getDuration() {
-        return duration;
+    public int getDoctorId() {
+        return doctorId;
     }
 
-    public void setDuration(Time duration) {
-        this.duration = duration;
-    }
-
-    public int getCabinet() {
-        return cabinet;
-    }
-
-    public void setCabinet(int cabinet) {
-        this.cabinet = cabinet;
+    public void setDoctorId(int doctorId) {
+        this.doctorId = doctorId;
     }
 }

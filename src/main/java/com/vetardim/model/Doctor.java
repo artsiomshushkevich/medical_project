@@ -2,11 +2,8 @@ package com.vetardim.model;
 
 import javax.persistence.*;
 
-/**
- * Created by vitalyorlov on 21.03.16.
- */
 @Entity
-@Table(name = "medical.doctors")
+@Table(name = "medical.doctor")
 public class Doctor {
 
     @Id
@@ -15,11 +12,11 @@ public class Doctor {
     private int id;
     @Column(name = "user_id")
     private int userId;
-    @Column(name = "first_name")
+    @Column(name = "firstname")
     private String firstname;
-    @Column(name = "second_name")
+    @Column(name = "secondname")
     private String secondname;
-    @Column(name = "last_name")
+    @Column(name = "lastname")
     private String lastname;
     @Column(name = "phone_number")
     private String phoneNumber;
@@ -27,12 +24,10 @@ public class Doctor {
     private String email;
     @Column(name = "qualification")
     private String qualification;
-    @Column(name = "position")
-    private String position;
-    @Column(name = "id_specialization")
-    private String idSpecialization;
-    @Column(name = "id_departments")
-    private String idDepartmetns;
+    @Column(name = "speciality")
+    private String speciality;
+    @Column(name = "departmentId")
+    private String departmentId;
 
     public Doctor (){}
 
@@ -60,20 +55,20 @@ public class Doctor {
         this.firstname = firstname;
     }
 
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
     public String getSecondname() {
         return secondname;
     }
 
     public void setSecondname(String secondname) {
         this.secondname = secondname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getPhoneNumber() {
@@ -100,28 +95,20 @@ public class Doctor {
         this.qualification = qualification;
     }
 
-    public String getPosition() {
-        return position;
+    public String getSpeciality() {
+        return speciality;
     }
 
-    public void setPosition(String position) {
-        this.position = position;
+    public void setSpeciality(String speciality) {
+        this.speciality = speciality;
     }
 
-    public String getIdSpecialization() {
-        return idSpecialization;
+    public String getDepartmentId() {
+        return departmentId;
     }
 
-    public void setIdSpecialization(String idSpecialization) {
-        this.idSpecialization = idSpecialization;
-    }
-
-    public String getIdDepartmetns() {
-        return idDepartmetns;
-    }
-
-    public void setIdDepartmetns(String idDepartmetns) {
-        this.idDepartmetns = idDepartmetns;
+    public void setDepartmentId(String departmentId) {
+        this.departmentId = departmentId;
     }
 }
 

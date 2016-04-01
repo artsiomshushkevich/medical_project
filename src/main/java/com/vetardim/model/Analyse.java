@@ -2,22 +2,19 @@ package com.vetardim.model;
 
 import javax.persistence.*;
 
-/**
- * Created by vitalyorlov on 21.03.16.
- */
 @Entity
-@Table(name = "medical.analyses")
+@Table(name = "medical.analyse")
 public class Analyse {
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private int id;
-    @Column(name = "id_doctor")
-    private int idDoctor;
-    @Column(name = "idClient")
-    private int idClient;
+    @Column(name = "doctor_id")
+    private int doctorId;
+    @Column(name = "client_id")
+    private int clientId;
+    @Column(name = "visit_id")
+    private int visitId;
     @Column(name = "name")
     private String name;
     @Column(name = "result")
@@ -33,20 +30,28 @@ public class Analyse {
         this.id = id;
     }
 
-    public int getIdDoctor() {
-        return idDoctor;
+    public int getDoctorId() {
+        return doctorId;
     }
 
-    public void setIdDoctor(int idDoctor) {
-        this.idDoctor = idDoctor;
+    public void setDoctorId(int doctorId) {
+        this.doctorId = doctorId;
     }
 
-    public int getIdClient() {
-        return idClient;
+    public int getClientId() {
+        return clientId;
     }
 
-    public void setIdClient(int idClient) {
-        this.idClient = idClient;
+    public void setClientId(int clientId) {
+        this.clientId = clientId;
+    }
+
+    public int getVisitId() {
+        return visitId;
+    }
+
+    public void setVisitId(int visitId) {
+        this.visitId = visitId;
     }
 
     public String getName() {

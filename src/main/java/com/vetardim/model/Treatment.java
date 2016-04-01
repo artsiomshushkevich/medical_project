@@ -3,20 +3,23 @@ package com.vetardim.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "medical.treatments")
+@Table(name = "medical.treatment")
 public class Treatment {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private int id;
-    @Column(name = "type_treatment")
-    private String typeTreatment;
-    @Column(name = "method")
-    private String method;
-    @Column(name = "treatment")
-    private String treatment;
+    @Column(name = "prescription")
+    private String prescription;
+    @Column(name = "cure_count")
+    private int cureCount;
+    @Column(name = "method_of_using")
+    private String methodOfUsing;
+    @Column(name = "cure_id")
+    private int cureId;
+    @Column(name = "visit_id")
+    private int visitId;
 
     public Treatment (){}
 
@@ -28,27 +31,43 @@ public class Treatment {
         this.id = id;
     }
 
-    public String getTypeTreatment() {
-        return typeTreatment;
+    public String getPrescription() {
+        return prescription;
     }
 
-    public void setTypeTreatment(String typeTreatment) {
-        this.typeTreatment = typeTreatment;
+    public void setPrescription(String prescription) {
+        this.prescription = prescription;
     }
 
-    public String getMethod() {
-        return method;
+    public int getCureCount() {
+        return cureCount;
     }
 
-    public void setMethod(String method) {
-        this.method = method;
+    public void setCureCount(int cureCount) {
+        this.cureCount = cureCount;
     }
 
-    public String getTreatment() {
-        return treatment;
+    public String getMethodOfUsing() {
+        return methodOfUsing;
     }
 
-    public void setTreatment(String treatment) {
-        this.treatment = treatment;
+    public void setMethodOfUsing(String methodOfUsing) {
+        this.methodOfUsing = methodOfUsing;
+    }
+
+    public int getCureId() {
+        return cureId;
+    }
+
+    public void setCureId(int cureId) {
+        this.cureId = cureId;
+    }
+
+    public int getVisitId() {
+        return visitId;
+    }
+
+    public void setVisitId(int visitId) {
+        this.visitId = visitId;
     }
 }

@@ -2,13 +2,10 @@ package com.vetardim.model;
 
 import javax.persistence.*;
 
-/**
- * Created by artsiom on 06.03.2016.
- */
 @Entity
-@Table(name = "medical.users")
+@Table(name = "medical.user")
 public class User {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")

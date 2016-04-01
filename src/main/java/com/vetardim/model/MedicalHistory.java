@@ -2,19 +2,16 @@ package com.vetardim.model;
 
 import javax.persistence.*;
 
-/**
- * Created by vitalyorlov on 21.03.16.
- */
 @Entity
-@Table(name = "medical.medical_histories")
+@Table(name = "medical.medical_history")
 public class MedicalHistory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private int id;
-    @Column(name = "info")
-    private String info;
+    @Column(name = "client_id")
+    private String clientId;
 
     public MedicalHistory (){}
 
@@ -26,14 +23,13 @@ public class MedicalHistory {
         this.id = id;
     }
 
-    public String getInfo() {
-        return info;
+    public String getClientId() {
+        return clientId;
     }
 
-    public void setName(String info) {
-        this.info = info;
+    public void setClientId(String clientId) {
+        this.clientId = clientId;
     }
-
 }
 
 

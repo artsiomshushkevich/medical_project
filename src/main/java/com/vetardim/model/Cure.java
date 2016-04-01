@@ -3,17 +3,16 @@ package com.vetardim.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "medical.specializations")
-public class Specialization {
-
+@Table(name = "medical.cure")
+public class Cure {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private int id;
     @Column(name = "name")
-    private String name;
+    private int name;
 
-    public Specialization (){}
+    public Cure (){}
 
     public int getId() {
         return id;
@@ -23,12 +22,14 @@ public class Specialization {
         this.id = id;
     }
 
-    public String getName() {
+    public int getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(int name) {
         this.name = name;
     }
 
 }
+
+

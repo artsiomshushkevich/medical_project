@@ -2,14 +2,9 @@ package com.vetardim.model;
 
 import javax.persistence.*;
 
-/**
- * Created by vitalyorlov on 21.03.16.
- */
 @Entity
-@Table(name = "medical.departments")
+@Table(name = "medical.department")
 public class Department {
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")

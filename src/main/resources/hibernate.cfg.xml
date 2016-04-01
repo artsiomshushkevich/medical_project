@@ -20,5 +20,6 @@
         </property>
         <property name="hibernate.hbm2ddl.auto">update</property>
         <mapping class="com.vetardim.model.User" />
+        <mapping class="com.vetardim.model.Department" />
     </session-factory>
 </hibernate-configuration>

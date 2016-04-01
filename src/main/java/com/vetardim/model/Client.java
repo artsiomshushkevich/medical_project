@@ -2,11 +2,8 @@ package com.vetardim.model;
 
 import javax.persistence.*;
 
-/**
- * Created by vitalyorlov on 21.03.16.
- */
 @Entity
-@Table(name = "medical.clients")
+@Table(name = "medical.client")
 public class Client {
 
     @Id
@@ -15,13 +12,11 @@ public class Client {
     private int id;
     @Column(name = "user_id")
     private int userId;
-    @Column(name = "id_medical_history")
-    private int idMedicalHistory;
-    @Column(name = "first_name")
+    @Column(name = "firstname")
     private String firstname;
-    @Column(name = "second_name")
+    @Column(name = "secondname")
     private String secondname;
-    @Column(name = "last_name")
+    @Column(name = "lastname")
     private String lastname;
     @Column(name = "phone_number")
     private String phoneNumber;
@@ -46,14 +41,6 @@ public class Client {
 
     public void setUserId(int userId) {
         this.userId = userId;
-    }
-
-    public int getIdMedicalHistory() {
-        return idMedicalHistory;
-    }
-
-    public void setIdMedicalHistory(int idMedicalHistory) {
-        this.idMedicalHistory = idMedicalHistory;
     }
 
     public String getFirstname() {

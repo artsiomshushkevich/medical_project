@@ -2,11 +2,8 @@ package com.vetardim.model;
 
 import javax.persistence.*;
 
-/**
- * Created by vitalyorlov on 21.03.16.
- */
 @Entity
-@Table(name = "medical.roles")
+@Table(name = "medical.role")
 public class Role {
 
     @Id

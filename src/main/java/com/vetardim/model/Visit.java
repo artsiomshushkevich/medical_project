@@ -3,19 +3,17 @@ package com.vetardim.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "medical.visits")
+@Table(name = "medical.visit")
 public class Visit {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private int id;
-    @Column(name = "id_treatment")
-    private int idTreatment;
-    @Column(name = "id_medical_history")
-    private int idMedicalHistory;
-    @Column(name = "id_order")
-    private int idOrder;
+    @Column(name = "medical_history_id")
+    private int medicalHistoryId;
+    @Column(name = "order_id")
+    private int orderId;
     @Column(name = "diagnosis")
     private String diagnosis;
     @Column(name = "complaints")
@@ -31,28 +29,20 @@ public class Visit {
         this.id = id;
     }
 
-    public int getIdTreatment() {
-        return idTreatment;
+    public int getMedicalHistoryId() {
+        return medicalHistoryId;
     }
 
-    public void setIdTreatment(int idTreatment) {
-        this.idTreatment = idTreatment;
+    public void setMedicalHistoryId(int medicalHistoryId) {
+        this.medicalHistoryId = medicalHistoryId;
     }
 
-    public int getIdMedicalHistory() {
-        return idMedicalHistory;
+    public int getOrderId() {
+        return orderId;
     }
 
-    public void setIdMedicalHistory(int idMedicalHistory) {
-        this.idMedicalHistory = idMedicalHistory;
-    }
-
-    public int getIdOrder() {
-        return idOrder;
-    }
-
-    public void setIdOrder(int idOrder) {
-        this.idOrder = idOrder;
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 
     public String getDiagnosis() {
