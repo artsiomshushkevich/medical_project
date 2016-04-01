@@ -44,7 +44,7 @@ public class DepartmentController extends ActionSupport {
     }
 
     public String update() {
-        DepartmentDao.updateDepartment(getDepartment());
+        DepartmentDao.addOrUpdateDepartment(getDepartment());
         return Action.SUCCESS;
     }
 
@@ -54,7 +54,7 @@ public class DepartmentController extends ActionSupport {
     }
 
     public String add() {
-        DepartmentDao.addDepartment(getDepartment());
+        DepartmentDao.addOrUpdateDepartment(getDepartment());
         return Action.SUCCESS;
     }
 

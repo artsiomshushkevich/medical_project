@@ -4,14 +4,24 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 import com.vetardim.model.User;
 import com.vetardim.DAO.UserDao;
-
+import com.vetardim.model.Role;
+import com.vetardim.DAO.RoleDao;
 import java.util.List;
 
 public class UserController extends ActionSupport {
 
     private User user;
     private List<User> usersList;
+    private List<Role> rolesList;
     private int id;
+
+    public List<Role> getRolesList() {
+        return rolesList;
+    }
+
+    public void setRolesList(List<Role> rolesList) {
+        this.rolesList = rolesList;
+    }
 
     public int getId() {
         return id;
@@ -40,6 +50,7 @@ public class UserController extends ActionSupport {
     @Override
     public String execute() throws Exception {
         this.usersList =  UserDao.getUsersList();
+        //this.rolesList = RoleDao.getRolesList();
         return Action.SUCCESS;
     }
 

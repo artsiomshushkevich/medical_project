@@ -152,6 +152,9 @@
                                     </s:iterator>
                                     </tbody>
                                 </table>
+                                <%--<s:iterator value="rolesList" var="role">--%>
+                                    <%--<p><s:property value="id"></s:property></p>--%>
+                                <%--</s:iterator>--%>
                             </div>
                         </div>
                     </div>
