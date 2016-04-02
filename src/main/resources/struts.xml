@@ -120,55 +120,37 @@
 
 
         <action name="orders-add" class="com.vetardim.controller.OrderController" method="add">
-            <result name="success" type="chain">/adminpanel/orders-index.action</result>
+            <result name="success" type="chain">orders-index</result>
         </action>
 
         <action name="orders-delete" class="com.vetardim.controller.OrderController" method="delete">
-            <result name="success" type="chain">/adminpanel/orders-index.action</result>
+            <result name="success" type="chain">orders-index</result>
         </action>
 
         <action name="orders-update" class="com.vetardim.controller.OrderController" method="update">
-            <result name="success" type="chain">/adminpanel/orders-index.action</result>
+            <result name="success" type="chain">orders-index</result>
         </action>
 
         <action name="orders-index" class="com.vetardim.controller.OrderController">
-            <result name="success">/adminpanel/orders-index.action</result>
-        </action>
-
-
-
-        <action name="prescriptions-add" class="com.vetardim.controller.PrescriptionController" method="add">
-            <result name="success" type="chain">/adminpanel/prescriptions-index.action</result>
-        </action>
-
-        <action name="prescriptions-delete" class="com.vetardim.controller.PrescriptionController" method="delete">
-            <result name="success" type="chain">/adminpanel/prescriptions-index.action</result>
-        </action>
-
-        <action name="prescriptions-update" class="com.vetardim.controller.PrescriptionController" method="update">
-            <result name="success" type="chain">/adminpanel/prescriptions-index.action</result>
-        </action>
-
-        <action name="prescriptions-index" class="com.vetardim.controller.PrescriptionController">
-            <result name="success">/adminpanel/prescriptions-index.action</result>
+            <result name="success">orders.jsp</result>
         </action>
 
 
 
         <action name="schedules-add" class="com.vetardim.controller.ScheduleController" method="add">
-            <result name="success" type="chain">/adminpanel/schedules-index.action</result>
+            <result name="success" type="chain">schedules-index</result>
         </action>
 
         <action name="schedules-delete" class="com.vetardim.controller.ScheduleController" method="delete">
-            <result name="success" type="chain">/adminpanel/schedules-index.action</result>
+            <result name="success" type="chain">schedules-index</result>
         </action>
 
         <action name="schedules-update" class="com.vetardim.controller.ScheduleController" method="update">
-            <result name="success" type="chain">/adminpanel/schedules-index.action</result>
+            <result name="success" type="chain">schedules-index</result>
         </action>
 
         <action name="schedules-index" class="com.vetardim.controller.ScheduleController">
-            <result name="success">/adminpanel/schedules-index.action</result>
+            <result name="success">schedules.jsp</result>
         </action>
 
 
