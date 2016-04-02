@@ -11,19 +11,16 @@
                     <div class="form-group">
                         <input id="orders_edit_id" name="order.id" type="hidden">
                         <div class="form-group">
-                            <label>Id client: <input type="number" class="form-control" name="order.idClient"></label>
+                            <label>Client id: <input type="number" class="form-control" name="order.clientId"></label>
                         </div>
                         <div class="form-group">
                             <label>Date: <input type="date" class="form-control" name="order.date"></label>
                         </div>
                         <div class="form-group">
-                            <label>Id doctor: <input type="number" class="form-control" name="order.idDoctor"></label>
+                            <label>Doctor id: <input type="number" class="form-control" name="order.doctorId"></label>
                         </div>
                         <div class="form-group">
                             <label>Begin time: <input type="time" class="form-control" name="order.beginTime"></label>
-                        </div>
-                        <div class="form-group">
-                            <label>End time: <input type="time" class="form-control" name="order.endTime"></label>
                         </div>
                     </div>
                     <div class="modal-footer">

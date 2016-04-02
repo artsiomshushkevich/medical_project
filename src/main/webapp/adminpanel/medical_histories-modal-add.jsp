@@ -2,7 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content">.
 
-            <form method="post" action="/add.action">
+            <form method="post" action="medical-histories-add.action">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">Add new medical history</h4>
@@ -10,7 +10,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <div class="form-group">
-                            <label>Info: <input type="text" class="form-control" name="medicalHistory.info"></label>
+                            <label>Client id: <input type="number" class="form-control" name="medicalHistory.clientId"></label>
                         </div>
                     </div>
                     <div class="modal-footer">

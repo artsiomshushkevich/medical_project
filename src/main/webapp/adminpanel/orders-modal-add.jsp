@@ -2,7 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content">.
 
-            <form method="post" action="/add.action">
+            <form method="post" action="orders-add.action">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">Add new order</h4>
@@ -10,19 +10,16 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <div class="form-group">
-                            <label>Id client: <input type="number" class="form-control" name="order.idClient"></label>
+                            <label>Client id: <input type="number" class="form-control" name="order.clientId"></label>
                         </div>
                         <div class="form-group">
                             <label>Date: <input type="date" class="form-control" name="order.date"></label>
                         </div>
                         <div class="form-group">
-                            <label>Id doctor: <input type="number" class="form-control" name="order.idDoctor"></label>
+                            <label>Doctor id: <input type="number" class="form-control" name="order.doctorId"></label>
                         </div>
                         <div class="form-group">
                             <label>Begin time: <input type="time" class="form-control" name="order.beginTime"></label>
-                        </div>
-                        <div class="form-group">
-                            <label>End time: <input type="time" class="form-control" name="order.endTime"></label>
                         </div>
                     </div>
                     <div class="modal-footer">
