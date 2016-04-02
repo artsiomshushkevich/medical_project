@@ -44,7 +44,7 @@ public class DoctorController extends ActionSupport {
     }
 
     public String update() {
-        DoctorDao.updateDoctor(getDoctor());
+        DoctorDao.addOrUpdateDoctor(getDoctor());
         return Action.SUCCESS;
     }
 
@@ -54,7 +54,7 @@ public class DoctorController extends ActionSupport {
     }
 
     public String add() {
-        DoctorDao.addDoctor(getDoctor());
+        DoctorDao.addOrUpdateDoctor(getDoctor());
         return Action.SUCCESS;
     }
 

@@ -44,7 +44,7 @@ public class ClientController extends ActionSupport {
     }
 
     public String update() {
-        ClientDao.updateClient(getClient());
+        ClientDao.addOrUpdateClient(getClient());
         return Action.SUCCESS;
     }
 
@@ -54,7 +54,7 @@ public class ClientController extends ActionSupport {
     }
 
     public String add() {
-        ClientDao.addClient(getClient());
+        ClientDao.addOrUpdateClient(getClient());
         return Action.SUCCESS;
     }
 

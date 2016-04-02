@@ -8,28 +8,9 @@ import org.hibernate.Session;
 
 import java.util.List;
 
-/**
- * Created by artsiom on 07.03.2016.
- */
-
 public class TreatmentDao {
 
-
-    public static void addTreatment(Treatment treatment) {
-        Session session = HibernateUtil.makeSession();
-        try {
-            session.beginTransaction();
-            session.save(treatment);
-            session.getTransaction().commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            session.getTransaction().rollback();
-        } finally {
-            session.close();
-        }
-
-    }
-    public static void updateTreatment(Treatment treatment) {
+    public static void addOrUpdateTreatment(Treatment treatment) {
         Session session = HibernateUtil.makeSession();
         try {
             session.beginTransaction();

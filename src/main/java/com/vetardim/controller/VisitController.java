@@ -44,7 +44,7 @@ public class VisitController extends ActionSupport {
     }
 
     public String update() {
-        VisitDao.updateVisit(getVisit());
+        VisitDao.addOrUpdateVisit(getVisit());
         return Action.SUCCESS;
     }
 
@@ -54,7 +54,7 @@ public class VisitController extends ActionSupport {
     }
 
     public String add() {
-        VisitDao.addVisit(getVisit());
+        VisitDao.addOrUpdateVisit(getVisit());
         return Action.SUCCESS;
     }
     

@@ -44,7 +44,7 @@ public class ScheduleController extends ActionSupport {
     }
 
     public String update() {
-        ScheduleDao.updateSchedule(getSchedule());
+        ScheduleDao.addOrUpdateSchedule(getSchedule());
         return Action.SUCCESS;
     }
 
@@ -54,7 +54,7 @@ public class ScheduleController extends ActionSupport {
     }
 
     public String add() {
-        ScheduleDao.addSchedule(getSchedule());
+        ScheduleDao.addOrUpdateSchedule(getSchedule());
         return Action.SUCCESS;
     }
 

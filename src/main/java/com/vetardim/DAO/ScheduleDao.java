@@ -10,22 +10,7 @@ import java.util.List;
 
 public class ScheduleDao {
 
-
-    public static void addSchedule(Schedule schedule) {
-        Session session = HibernateUtil.makeSession();
-        try {
-            session.beginTransaction();
-            session.save(schedule);
-            session.getTransaction().commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            session.getTransaction().rollback();
-        } finally {
-            session.close();
-        }
-
-    }
-    public static void updateSchedule(Schedule schedule) {
+    public static void addOrUpdateSchedule(Schedule schedule) {
         Session session = HibernateUtil.makeSession();
         try {
             session.beginTransaction();

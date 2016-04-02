@@ -44,7 +44,7 @@ public class MedicalHistoryController extends ActionSupport {
     }
 
     public String update() {
-        MedicalHistoryDao.updateMedicalHistory(getMedicalHistory());
+        MedicalHistoryDao.addOrUpdateMedicalHistory(getMedicalHistory());
         return Action.SUCCESS;
     }
 
@@ -54,7 +54,7 @@ public class MedicalHistoryController extends ActionSupport {
     }
 
     public String add() {
-        MedicalHistoryDao.addMedicalHistory(getMedicalHistory());
+        MedicalHistoryDao.addOrUpdateMedicalHistory(getMedicalHistory());
         return Action.SUCCESS;
     }
 

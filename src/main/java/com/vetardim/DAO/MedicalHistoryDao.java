@@ -8,28 +8,9 @@ import org.hibernate.Session;
 
 import java.util.List;
 
-/**
- * Created by artsiom on 07.03.2016.
- */
-
 public class MedicalHistoryDao {
 
-
-    public static void addMedicalHistory(MedicalHistory medicalHistory) {
-        Session session = HibernateUtil.makeSession();
-        try {
-            session.beginTransaction();
-            session.save(medicalHistory);
-            session.getTransaction().commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            session.getTransaction().rollback();
-        } finally {
-            session.close();
-        }
-
-    }
-    public static void updateMedicalHistory(MedicalHistory medicalHistory) {
+    public static void addOrUpdateMedicalHistory(MedicalHistory medicalHistory) {
         Session session = HibernateUtil.makeSession();
         try {
             session.beginTransaction();

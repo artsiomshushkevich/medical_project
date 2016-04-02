@@ -8,26 +8,9 @@ import org.hibernate.Session;
 
 import java.util.List;
 
-
-
 public class OrderDao {
 
-
-    public static void addOrder(Order order) {
-        Session session = HibernateUtil.makeSession();
-        try {
-            session.beginTransaction();
-            session.save(order);
-            session.getTransaction().commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            session.getTransaction().rollback();
-        } finally {
-            session.close();
-        }
-
-    }
-    public static void updateOrder(Order order) {
+    public static void addOrUpdateOrder(Order order) {
         Session session = HibernateUtil.makeSession();
         try {
             session.beginTransaction();

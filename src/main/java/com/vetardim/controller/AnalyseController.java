@@ -44,7 +44,7 @@ public class AnalyseController extends ActionSupport {
     }
 
     public String update() {
-        AnalyseDao.updateAnalyse(getAnalyse());
+        AnalyseDao.addOrUpdateAnalyse(getAnalyse());
         return Action.SUCCESS;
     }
 
@@ -54,7 +54,7 @@ public class AnalyseController extends ActionSupport {
     }
 
     public String add() {
-        AnalyseDao.addAnalyse(getAnalyse());
+        AnalyseDao.addOrUpdateAnalyse(getAnalyse());
         return Action.SUCCESS;
     }
 

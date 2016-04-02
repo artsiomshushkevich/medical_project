@@ -44,7 +44,7 @@ public class OrderController extends ActionSupport {
     }
 
     public String update() {
-        OrderDao.updateOrder(getOrder());
+        OrderDao.addOrUpdateOrder(getOrder());
         return Action.SUCCESS;
     }
 
@@ -54,7 +54,7 @@ public class OrderController extends ActionSupport {
     }
 
     public String add() {
-        OrderDao.addOrder(getOrder());
+        OrderDao.addOrUpdateOrder(getOrder());
         return Action.SUCCESS;
     }
 

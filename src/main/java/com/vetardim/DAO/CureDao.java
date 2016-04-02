@@ -1,6 +1,6 @@
 package com.vetardim.DAO;
 
-import com.vetardim.model.Analyse;
+import com.vetardim.model.Cure;
 import com.vetardim.util.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -8,13 +8,13 @@ import org.hibernate.Session;
 
 import java.util.List;
 
-public class AnalyseDao {
+public class CureDao {
 
-    public static void addOrUpdateAnalyse(Analyse analyse) {
+    public static void addOrUpdateCure(Cure cure) {
         Session session = HibernateUtil.makeSession();
         try {
             session.beginTransaction();
-            session.saveOrUpdate(analyse);
+            session.saveOrUpdate(cure);
             session.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -24,15 +24,15 @@ public class AnalyseDao {
         }
     }
 
-    public static void deleteAnalyse(int id) {
+    public static void deleteCure(int id) {
 
         Session session = HibernateUtil.makeSession();
         try {
             session.beginTransaction();
-            Analyse analyse = session.get(Analyse.class, id);
+            Cure cure = session.get(Cure.class, id);
 
-            if (analyse != null) {
-                session.delete(analyse);
+            if (cure != null) {
+                session.delete(cure);
             }
             session.getTransaction().commit();
         } catch (Exception e){
@@ -44,18 +44,18 @@ public class AnalyseDao {
 
     }
 
-    public static List<Analyse> getAnalysesList() {
+    public static List<Cure> getCuresList() {
         Session session = HibernateUtil.makeSession();
         session.beginTransaction();
-        List<Analyse> analysesList = null;
+        List<Cure> curesList = null;
         try {
-            analysesList = (List<Analyse>)session.createCriteria(Analyse.class).list();
+            curesList = (List<Cure>)session.createCriteria(Cure.class).list();
             session.getTransaction().commit();
         } catch (HibernateException e) {
             e.printStackTrace();
             session.getTransaction().rollback();
         }
 
-        return analysesList;
+        return curesList;
     }
 }

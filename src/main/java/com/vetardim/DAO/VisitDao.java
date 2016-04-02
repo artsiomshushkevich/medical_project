@@ -8,28 +8,9 @@ import org.hibernate.Session;
 
 import java.util.List;
 
-/**
- * Created by artsiom on 07.03.2016.
- */
-
 public class VisitDao {
 
-
-    public static void addVisit(Visit visit) {
-        Session session = HibernateUtil.makeSession();
-        try {
-            session.beginTransaction();
-            session.save(visit);
-            session.getTransaction().commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            session.getTransaction().rollback();
-        } finally {
-            session.close();
-        }
-
-    }
-    public static void updateVisit(Visit visit) {
+    public static void addOrUpdateVisit(Visit visit) {
         Session session = HibernateUtil.makeSession();
         try {
             session.beginTransaction();

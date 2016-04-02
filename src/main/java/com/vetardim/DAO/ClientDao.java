@@ -10,22 +10,7 @@ import java.util.List;
 
 public class ClientDao {
 
-
-    public static void addClient(Client client) {
-        Session session = HibernateUtil.makeSession();
-        try {
-            session.beginTransaction();
-            session.save(client);
-            session.getTransaction().commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            session.getTransaction().rollback();
-        } finally {
-            session.close();
-        }
-
-    }
-    public static void updateClient(Client client) {
+    public static void addOrUpdateClient(Client client) {
         Session session = HibernateUtil.makeSession();
         try {
             session.beginTransaction();

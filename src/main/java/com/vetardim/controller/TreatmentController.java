@@ -44,7 +44,7 @@ public class TreatmentController extends ActionSupport {
     }
 
     public String update() {
-        TreatmentDao.updateTreatment(getTreatment());
+        TreatmentDao.addOrUpdateTreatment(getTreatment());
         return Action.SUCCESS;
     }
 
@@ -54,7 +54,7 @@ public class TreatmentController extends ActionSupport {
     }
 
     public String add() {
-        TreatmentDao.addTreatment(getTreatment());
+        TreatmentDao.addOrUpdateTreatment(getTreatment());
         return Action.SUCCESS;
     }
 
