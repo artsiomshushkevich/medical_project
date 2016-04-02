@@ -2,16 +2,13 @@
     <div class="modal-dialog">
         <div class="modal-content">.
 
-            <form method="post" action="/add.action">
+            <form method="post" action="clients-add.action">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">Add new client</h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <div class="form-group">
-                            <label>Id medical history: <input type="number" class="form-control" name="client.idMedicalHistory"></label>
-                        </div>
                         <div class="form-group">
                             <label>User id: <input type="number" class="form-control" name="client.userId"></label>
                         </div>

@@ -2,24 +2,27 @@
     <div class="modal-dialog">
         <div class="modal-content">.
 
-            <form method="post" action="/add.action">
+            <form method="post" action="analyses-add.action">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Add new analys</h4>
+                    <h4 class="modal-title">Add new analyse</h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
                         <div class="form-group">
-                            <label>Id doctor: <input type="number" class="form-control" name="analys.idDoctor"></label>
+                            <label>Doctor id: <input type="number" class="form-control" name="analyse.doctorId"></label>
                         </div>
                         <div class="form-group">
-                            <label>Id client: <input type="number" class="form-control" name="analys.idClient"></label>
+                            <label>Client id: <input type="number" class="form-control" name="analyse.clientId"></label>
                         </div>
                         <div class="form-group">
-                            <label>Name: <input type="text" class="form-control" name="analys.name"></label>
+                            <label>Visit id: <input type="number" class="form-control" name="analyse.visitId"></label>
                         </div>
                         <div class="form-group">
-                            <label>Result: <input type="text" class="form-control" name="analys.result"></label>
+                            <label>Name: <input type="text" class="form-control" name="analyse.name"></label>
+                        </div>
+                        <div class="form-group">
+                            <label>Result: <input type="text" class="form-control" name="analyse.result"></label>
                         </div>
                     </div>
                     <div class="modal-footer">

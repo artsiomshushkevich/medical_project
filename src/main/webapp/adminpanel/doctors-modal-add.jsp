@@ -2,7 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content">.
 
-            <form method="post" action="/add.action">
+            <form method="post" action="doctors-add.action">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">Add new doctors</h4>
@@ -25,7 +25,7 @@
                             <label>Qualification: <input type="text" class="form-control" name="doctor.qualification"></label>
                         </div>
                         <div class="form-group">
-                            <label>Position: <input type="text" class="form-control" name="doctor.position"></label>
+                            <label>Speciality: <input type="text" class="form-control" name="doctor.speciality"></label>
                         </div>
                         <div class="form-group">
                             <label>Phone number: <input type="text" class="form-control" name="doctor.phoneNumber"></label>
@@ -34,10 +34,7 @@
                             <label>Email: <input type="text" class="form-control" name="doctor.email"></label>
                         </div>
                         <div class="form-group">
-                            <label>Id specialization: <input type="number" class="form-control" name="doctor.idSpecialization"></label>
-                        </div>
-                        <div class="form-group">
-                            <label>Id departments: <input type="number" class="form-control" name="doctor.idDepartments"></label>
+                            <label>Department id: <input type="number" class="form-control" name="doctor.departmentId"></label>
                         </div>
                     </div>
                     <div class="modal-footer">

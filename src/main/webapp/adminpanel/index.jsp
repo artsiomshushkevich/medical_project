@@ -84,7 +84,7 @@
                         <a href="doctors-index.action"><i class="fa fa-user-md"></i>Doctors</a>
                     </li>
                     <li>
-                        <a href="departments-departments-index.action"><i class="fa fa-hospital-o"></i>Departments</a>
+                        <a href="departments-index.action"><i class="fa fa-hospital-o"></i>Departments</a>
                     </li>
                     <li>
                         <a href="clients-index.action"><i class="fa fa-user"></i>Clients</a>

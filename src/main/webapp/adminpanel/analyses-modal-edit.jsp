@@ -2,25 +2,28 @@
     <div class="modal-dialog">
         <div class="modal-content">.
 
-            <form method="post" action="/update.action">
+            <form method="post" action="analyses-update.action">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">Update analyse info</h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <input id="analyses_edit_id" name="analyses.id" type="hidden">
+                        <input id="analyses_edit_id" name="analyse.id" type="hidden">
                         <div class="form-group">
-                            <label>Id doctor: <input type="number" class="form-control" name="analys.idDoctor"></label>
+                            <label>Doctor id: <input type="number" class="form-control" name="analyse.doctorId"></label>
                         </div>
                         <div class="form-group">
-                            <label>Id client: <input type="number" class="form-control" name="analys.idClient"></label>
+                            <label>Client id: <input type="number" class="form-control" name="analyse.clientId"></label>
                         </div>
                         <div class="form-group">
-                            <label>Name: <input type="text" class="form-control" name="analys.name"></label>
+                            <label>Visit id: <input type="number" class="form-control" name="analyse.visitId"></label>
                         </div>
                         <div class="form-group">
-                            <label>Result: <input type="text" class="form-control" name="analys.result"></label>
+                            <label>Name: <input type="text" class="form-control" name="analyse.name"></label>
+                        </div>
+                        <div class="form-group">
+                            <label>Result: <input type="text" class="form-control" name="analyse.result"></label>
                         </div>
                     </div>
                     <div class="modal-footer">

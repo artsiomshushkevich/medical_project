@@ -2,7 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content">.
 
-            <form method="post" action="/update.action">
+            <form method="post" action="clients-update.action">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">Update client info</h4>
@@ -10,9 +10,6 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <input id="clients_edit_id" name="client.id" type="hidden">
-                        <div class="form-group">
-                            <label>Id medical history: <input type="number" class="form-control" name="client.idMedicalHistory"></label>
-                        </div>
                         <div class="form-group">
                             <label>User id: <input type="number" class="form-control" name="client.userId"></label>
                         </div>
