@@ -7,7 +7,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Users Table</title>
+    <title>Cures Table</title>
     <!-- Bootstrap Styles-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FontAwesome Styles-->
@@ -65,51 +65,47 @@
                     <a href="index.jsp"><i class="fa fa-dashboard"></i> Dashboard</a>
                 </li>
                 <li>
-                    <a href="users-index.action"><i class="fa fa-desktop"></i>Users</a>
+                    <a href="users-index.action"><i class="fa fa-users"></i>Users</a>
                 </li>
                 <li>
-                    <a href="visits-index.action"><i class="fa fa-desktop"></i>Visits</a>
+                    <a href="visits-index.action"><i class="fa fa-thumb-tack"></i>Visits</a>
                 </li>
                 <li>
-                    <a href="treatments-index.action"><i class="fa fa-desktop"></i>Treatments</a>
+                    <a href="treatments-index.action"><i class="fa fa-medkit"></i>Treatments</a>
                 </li>
                 <li>
-                    <a class="active-menu" href="specializations-index.action"><i class="fa fa-desktop"></i>Specializations</a>
+                    <a href="schedules-index.action"><i class="fa fa-calendar"></i>Schedules</a>
                 </li>
                 <li>
-                    <a href="schedules-index.action"><i class="fa fa-desktop"></i>Schedules</a>
+                    <a href="orders-index.action"><i class="fa fa-paperclip"></i>Orders</a>
                 </li>
                 <li>
-                    <a href="prescriptions-index.action"><i class="fa fa-desktop"></i>Prescriptions</a>
+                    <a href="medical-histories-index.action"><i class="fa fa-book"></i>Medical histories</a>
                 </li>
                 <li>
-                    <a href="orders-index.action"><i class="fa fa-desktop"></i>Orders</a>
+                    <a href="doctors-index.action"><i class="fa fa-user-md"></i>Doctors</a>
                 </li>
                 <li>
-                    <a href="medical-histories-index.action"><i class="fa fa-desktop"></i>Medical histories</a>
+                    <a href="departments-index.action"><i class="fa fa-hospital-o"></i>Departments</a>
                 </li>
                 <li>
-                    <a href="doctors-index.action"><i class="fa fa-desktop"></i>Doctors</a>
+                    <a href="clients-index.action"><i class="fa fa-user"></i>Clients</a>
                 </li>
                 <li>
-                    <a href="departments-index.action"><i class="fa fa-desktop"></i>Departments</a>
+                    <a class="active-menu" href="cures-index.action"><i class="fa fa-plus-square"></i>Cures</a>
                 </li>
                 <li>
-                    <a href="clients-index.action"><i class="fa fa-desktop"></i>Clients</a>
+                    <a href="analyses-index.action"><i class="fa fa-pencil-square-o"></i>Analyses</a>
                 </li>
-                <li>
-                    <a href="analyses-index.action"><i class="fa fa-desktop"></i>Analyses</a>
-                </li>
-
 
             </ul>
 
         </div>
 
     </nav>
-    <%@include file='specializations-modal-add.jsp'%>
-    <%@include file='specializations-modal-edit.jsp'%>
-    <%@include file='specializations-modal-delete.jsp'%>
+    <%@include file='cures-modal-add.jsp'%>
+    <%@include file='cures-modal-edit.jsp'%>
+    <%@include file='cures-modal-delete.jsp'%>
     <!-- /. NAV SIDE  -->
     <div id="page-wrapper">
         <div id="page-inner">
@@ -118,15 +114,15 @@
                     <!-- Table -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Specializations:
+                            Cures
                         </div>
                         <div class="panel-body">
                             <div class="container">
-                                <button class="btn btn-primary" onclick="showAddModal()">Add new specializations</button>
+                                <button class="btn btn-primary" onclick="showAddModal()">Add new cure</button>
                             </div>
 
                             <div class="table-responsive">
-                                <p>Specializations list:</p>
+                                <p>Cures list:</p>
                                 <table class="table table-striped table-bordered table-hover">
                                     <thead>
                                     <tr>
@@ -136,7 +132,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <s:iterator value="specializationsList" var="specialization">
+                                    <s:iterator value="curesList" var="cure">
                                         <tr>
                                             <td><s:property value="id"></s:property></td>
                                             <td><s:property value="name"></s:property></td>
@@ -176,21 +172,21 @@
 <script>
     function showAddModal()
     {
-        $('.specializations_add_modal').modal();
+        $('.cures_add_modal').modal();
     }
 
     function showEditModal(instance)
     {
         var id = $(instance).attr('id_instance');
-        $('#specializations_edit_id').val(id);
-        $('.specializations_edit_modal').modal();
+        $('#cures_edit_id').val(id);
+        $('.cures_edit_modal').modal();
     }
 
     function showDeleteModal(instance)
     {
         var id = $(instance).attr('id_instance');
-        $('#specializations_delete_id').val(id);
-        $('.specializations_delete_modal').modal();
+        $('#cures_delete_id').val(id);
+        $('.cures_delete_modal').modal();
     }
 </script>
 </body>

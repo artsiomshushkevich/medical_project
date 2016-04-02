@@ -155,20 +155,20 @@
 
 
 
-        <action name="specializations-add" class="com.vetardim.controller.SpecializationController" method="add">
-            <result name="success" type="chain">/adminpanel/specializations-index.action</result>
+        <action name="cures-add" class="com.vetardim.controller.SpecializationController" method="add">
+            <result name="success" type="chain">cures-index</result>
         </action>
 
-        <action name="specializations-delete" class="com.vetardim.controller.SpecializationController" method="delete">
-            <result name="success" type="chain">/adminpanel/specializations-index.action</result>
+        <action name="cures-delete" class="com.vetardim.controller.SpecializationController" method="delete">
+            <result name="success" type="chain">cures-index</result>
         </action>
 
-        <action name="specializations-update" class="com.vetardim.controller.SpecializationController" method="update">
-            <result name="success" type="chain">/adminpanel/specializations-index.action</result>
+        <action name="cures-update" class="com.vetardim.controller.SpecializationController" method="update">
+            <result name="success" type="chain">cures-index</result>
         </action>
 
-        <action name="specializations-index" class="com.vetardim.controller.SpecializationController">
-            <result name="success">/adminpanel/specializations-index.action</result>
+        <action name="cures-index" class="com.vetardim.controller.SpecializationController">
+            <result name="success">cures.jsp</result>
         </action>
 
 

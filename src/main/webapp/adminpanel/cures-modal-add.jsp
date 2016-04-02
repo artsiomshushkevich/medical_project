@@ -1,8 +1,8 @@
-<div class="modal specializations_add_modal fade" tabindex="-1" role="dialog">
+<div class="modal cures_add_modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">.
 
-            <form method="post" action="/add.action">
+            <form method="post" action="cures-add.action">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">Add new specialization</h4>
@@ -10,7 +10,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <div class="form-group">
-                            <label>Name: <input type="text" class="form-control" name="specialization.name"></label>
+                            <label>Name: <input type="text" class="form-control" name="cure.name"></label>
                         </div>
                     </div>
                     <div class="modal-footer">
