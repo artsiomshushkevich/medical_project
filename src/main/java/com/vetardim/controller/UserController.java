@@ -50,7 +50,7 @@ public class UserController extends ActionSupport {
     @Override
     public String execute() throws Exception {
         this.usersList =  UserDao.getUsersList();
-        //this.rolesList = RoleDao.getRolesList();
+        this.rolesList = RoleDao.getRolesList();
         return Action.SUCCESS;
     }
 

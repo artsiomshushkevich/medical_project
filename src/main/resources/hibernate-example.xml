@@ -22,6 +22,17 @@ YOU HAVE TO ADD IT TO !!!! hibernate.cfg.xml !!!
         </property>
         <property name="hibernate.hbm2ddl.auto">update</property>
         <mapping class="com.vetardim.model.User" />
+        <mapping class="com.vetardim.model.Department" />
+        <mapping class="com.vetardim.model.Analyse" />
+        <mapping class="com.vetardim.model.Client" />
+        <mapping class="com.vetardim.model.Cure" />
+        <mapping class="com.vetardim.model.Doctor" />
+        <mapping class="com.vetardim.model.MedicalHistory" />
+        <mapping class="com.vetardim.model.Order" />
+        <mapping class="com.vetardim.model.Role" />
+        <mapping class="com.vetardim.model.Schedule" />
+        <mapping class="com.vetardim.model.Treatment" />
+        <mapping class="com.vetardim.model.Visit" />
         here you have to add your models. example above.
     </session-factory>
 </hibernate-configuration>

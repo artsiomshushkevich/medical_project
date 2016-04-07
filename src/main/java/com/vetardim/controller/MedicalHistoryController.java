@@ -10,7 +10,7 @@ import java.util.List;
 public class MedicalHistoryController extends ActionSupport {
 
     private MedicalHistory medicalHistory;
-    private List<MedicalHistory> medicalHistoryList;
+    private List<MedicalHistory> medicalHistoriesList;
     private int id;
 
     public MedicalHistory getMedicalHistory() {
@@ -21,12 +21,12 @@ public class MedicalHistoryController extends ActionSupport {
         this.medicalHistory = medicalHistory;
     }
 
-    public List<MedicalHistory> getMedicalHistoryList() {
-        return medicalHistoryList;
+    public List<MedicalHistory> getMedicalHistoriesList() {
+        return medicalHistoriesList;
     }
 
-    public void setMedicalHistoryList(List<MedicalHistory> medicalHistoryList) {
-        this.medicalHistoryList = medicalHistoryList;
+    public void setMedicalHistoriesList(List<MedicalHistory> medicalHistoryList) {
+        this.medicalHistoriesList = medicalHistoryList;
     }
 
     public int getId() {
@@ -39,7 +39,7 @@ public class MedicalHistoryController extends ActionSupport {
 
     @Override
     public String execute() throws Exception {
-        this.medicalHistoryList =  MedicalHistoryDao.getMedicalHistoriesList();
+        this.medicalHistoriesList =  MedicalHistoryDao.getMedicalHistoriesList();
         return Action.SUCCESS;
     }
 

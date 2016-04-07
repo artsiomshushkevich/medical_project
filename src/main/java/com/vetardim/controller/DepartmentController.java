@@ -10,7 +10,7 @@ import java.util.List;
 public class DepartmentController extends ActionSupport {
 
     private Department department;
-    private List<Department> departmentList;
+    private List<Department> departmentsList;
     private int id;
 
     public Department getDepartment() {
@@ -21,12 +21,12 @@ public class DepartmentController extends ActionSupport {
         this.department = department;
     }
 
-    public List<Department> getDepartmentList() {
-        return departmentList;
+    public List<Department> getDepartmentsList() {
+        return departmentsList;
     }
 
-    public void setDepartmentList(List<Department> departmentList) {
-        this.departmentList = departmentList;
+    public void setDepartmentsList(List<Department> departmentList) {
+        this.departmentsList = departmentList;
     }
 
     public int getId() {
@@ -39,7 +39,7 @@ public class DepartmentController extends ActionSupport {
 
     @Override
     public String execute() throws Exception {
-        this.departmentList =  DepartmentDao.getDepartmentsList();
+        this.departmentsList =  DepartmentDao.getDepartmentsList();
         return Action.SUCCESS;
     }
 
