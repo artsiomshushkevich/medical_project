@@ -7,3 +7,7 @@
 #create database
 1. cd src/main/resources/database
 2. mysql -u root -p < schema.sql
+
+#for filling database
+1. cd src/main/resources/database
+2. mysql -u root -p < seeder.sql
