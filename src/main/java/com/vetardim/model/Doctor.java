@@ -26,7 +26,7 @@ public class Doctor {
     private String qualification;
     @Column(name = "speciality")
     private String speciality;
-    @Column(name = "departmentId")
+    @Column(name = "department_id")
     private String departmentId;
 
     public Doctor (){}

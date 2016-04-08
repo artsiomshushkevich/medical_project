@@ -14,8 +14,8 @@ public class Visit {
     private int medicalHistoryId;
     @Column(name = "order_id")
     private int orderId;
-    @Column(name = "diagnosis")
-    private String diagnosis;
+    @Column(name = "diagnosys")
+    private String diagnosys;
     @Column(name = "complaints")
     private String complaints;
 
@@ -45,12 +45,12 @@ public class Visit {
         this.orderId = orderId;
     }
 
-    public String getDiagnosis() {
-        return diagnosis;
+    public String getDiagnosys() {
+        return diagnosys;
     }
 
-    public void setDiagnosis(String diagnosis) {
-        this.diagnosis = diagnosis;
+    public void setDiagnosys(String diagnosys) {
+        this.diagnosys = diagnosys;
     }
 
     public String getComplaints() {

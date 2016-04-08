@@ -148,7 +148,7 @@
                                             <td><s:property value="secondname"></s:property></td>
                                             <td><s:property value="lastname"></s:property></td>
                                             <td><s:property value="qualification"></s:property></td>
-                                            <td><s:property value="position"></s:property></td>
+                                            <td><s:property value="speciality"></s:property></td>
                                             <td><s:property value="email"></s:property></td>
                                             <td><s:property value="phoneNumber"></s:property></td>
                                             <td><s:property value="departmentId"></s:property></td>

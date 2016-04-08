@@ -11,13 +11,19 @@
                     <div class="form-group">
                         <input id="treatments_edit_id" name="treatment.id" type="hidden">
                         <div class="form-group">
-                            <label>Type treatment: <input type="text" class="form-control" name="treatment.typeTreatment"></label>
+                            <label>Prescription: <input type="text" class="form-control" name="treatment.prescription"></label>
                         </div>
                         <div class="form-group">
-                            <label>Method: <input type="text" class="form-control" name="treatment.method"></label>
+                            <label>Cure count: <input type="text" class="form-control" name="treatment.cureCount"></label>
                         </div>
                         <div class="form-group">
-                            <label>Treatment: <input type="text" class="form-control" name="treatment.treatment"></label>
+                            <label>Method of using: <input type="text" class="form-control" name="treatment.methodOfUsing"></label>
+                        </div>
+                        <div class="form-group">
+                            <label>Cure id: <input type="text" class="form-control" name="treatment.cureId"></label>
+                        </div>
+                        <div class="form-group">
+                            <label>Visit id: <input type="text" class="form-control" name="treatment.visitId"></label>
                         </div>
                     </div>
                     <div class="modal-footer">
