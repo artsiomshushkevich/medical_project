@@ -133,7 +133,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <s:iterator value="departmentList" var="department">
+                                    <s:iterator value="departmentsList" var="department">
                                         <tr>
                                             <td><s:property value="id"></s:property></td>
                                             <td><s:property value="name"></s:property></td>
