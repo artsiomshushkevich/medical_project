@@ -139,7 +139,7 @@
                                             <td><s:property value="id"></s:property></td>
                                             <td><s:property value="nickname"></s:property></td>
                                             <td><s:property value="password"></s:property></td>
-                                            <td><s:property value="roleId"></s:property></td>
+                                            <td><s:property value="role.name"></s:property></td>
                                             <td>
                                                 <button class="btn btn-link" id_instance="<s:property value="id"/>" onclick="showEditModal(this)">update</button>
                                                 &middot;

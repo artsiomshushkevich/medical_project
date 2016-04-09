@@ -14,8 +14,18 @@ public class User {
     private String nickname;
     @Column(name = "password")
     private String password;
-    @Column(name = "role_id")
-    private int roleId;
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "role_id")
+    private Role role;
 
     public User (){}
 
@@ -41,14 +51,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public int getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(int id) {
-        this.roleId = id;
     }
 
 }
