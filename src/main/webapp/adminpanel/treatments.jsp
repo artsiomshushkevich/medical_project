@@ -65,40 +65,37 @@
                     <a href="index.jsp"><i class="fa fa-dashboard"></i> Dashboard</a>
                 </li>
                 <li>
-                    <a href="users-index.action"><i class="fa fa-desktop"></i>Users</a>
+                    <a href="users-index.action"><i class="fa fa-users"></i>Users</a>
                 </li>
                 <li>
-                    <a href="visits-index.action"><i class="fa fa-desktop"></i>Visits</a>
+                    <a href="visits-index.action"><i class="fa fa-thumb-tack"></i>Visits</a>
                 </li>
                 <li>
-                    <a class="active-menu" href="treatments-index.action"><i class="fa fa-desktop"></i>Treatments</a>
+                    <a class="active-menu" href="treatments-index.action"><i class="fa fa-medkit"></i>Treatments</a>
                 </li>
                 <li>
-                    <a href="specializations-index.action"><i class="fa fa-desktop"></i>Specializations</a>
+                    <a href="schedules-index.action"><i class="fa fa-calendar"></i>Schedules</a>
                 </li>
                 <li>
-                    <a href="schedules-index.action"><i class="fa fa-desktop"></i>Schedules</a>
+                    <a href="orders-index.action"><i class="fa fa-paperclip"></i>Orders</a>
                 </li>
                 <li>
-                    <a href="prescriptions-index.action"><i class="fa fa-desktop"></i>Prescriptions</a>
+                    <a href="medical-histories-index.action"><i class="fa fa-book"></i>Medical histories</a>
                 </li>
                 <li>
-                    <a href="orders-index.action"><i class="fa fa-desktop"></i>Orders</a>
+                    <a href="doctors-index.action"><i class="fa fa-user-md"></i>Doctors</a>
                 </li>
                 <li>
-                    <a href="medical-histories-index.action"><i class="fa fa-desktop"></i>Medical histories</a>
+                    <a href="departments-index.action"><i class="fa fa-hospital-o"></i>Departments</a>
                 </li>
                 <li>
-                    <a href="doctors-index.action"><i class="fa fa-desktop"></i>Doctors</a>
+                    <a href="clients-index.action"><i class="fa fa-user"></i>Clients</a>
                 </li>
                 <li>
-                    <a href="departments-index.action"><i class="fa fa-desktop"></i>Departments</a>
+                    <a href="cures-index.action"><i class="fa fa-plus-square"></i>Cures</a>
                 </li>
                 <li>
-                    <a href="clients-index.action"><i class="fa fa-desktop"></i>Clients</a>
-                </li>
-                <li>
-                    <a href="analyses-index.action"><i class="fa fa-desktop"></i>Analyses</a>
+                    <a href="analyses-index.action"><i class="fa fa-pencil-square-o"></i>Analyses</a>
                 </li>
 
             </ul>
@@ -130,9 +127,11 @@
                                     <thead>
                                     <tr>
                                         <th>id</th>
-                                        <th>type treatment</th>
-                                        <th>method</th>
-                                        <th>treatment</th>
+                                        <th>prescription</th>
+                                        <th>cure count</th>
+                                        <th>method of using</th>
+                                        <th>cure id</th>
+                                        <th>visit id</th>
                                         <th>actions</th>
                                     </tr>
                                     </thead>
@@ -140,9 +139,11 @@
                                     <s:iterator value="treatmentsList" var="treatment">
                                         <tr>
                                             <td><s:property value="id"></s:property></td>
-                                            <td><s:property value="type_treatment"></s:property></td>
-                                            <td><s:property value="method"></s:property></td>
-                                            <td><s:property value="treatment"></s:property></td>
+                                            <td><s:property value="prescription"></s:property></td>
+                                            <td><s:property value="cureCount"></s:property></td>
+                                            <td><s:property value="methodOfUsing"></s:property></td>
+                                            <td><s:property value="cureId"></s:property></td>
+                                            <td><s:property value="visitId"></s:property></td>
                                             <td>
                                                 <button class="btn btn-link" id_instance="<s:property value="id"/>" onclick="showEditModal(this)">update</button>
                                                 &middot;

@@ -142,9 +142,9 @@
                                         <tr>
                                             <td><s:property value="id"></s:property></td>
                                             <td><s:property value="userId"></s:property></td>
-                                            <td><s:property value="firstName"></s:property></td>
-                                            <td><s:property value="secondName"></s:property></td>
-                                            <td><s:property value="lastName"></s:property></td>
+                                            <td><s:property value="firstname"></s:property></td>
+                                            <td><s:property value="secondname"></s:property></td>
+                                            <td><s:property value="lastname"></s:property></td>
                                             <td><s:property value="phoneNumber"></s:property></td>
                                             <td><s:property value="address"></s:property></td>
                                             <td><s:property value="email"></s:property></td>

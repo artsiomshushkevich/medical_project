@@ -155,56 +155,56 @@
 
 
 
-        <action name="cures-add" class="com.vetardim.controller.SpecializationController" method="add">
+        <action name="cures-add" class="com.vetardim.controller.CureController" method="add">
             <result name="success" type="chain">cures-index</result>
         </action>
 
-        <action name="cures-delete" class="com.vetardim.controller.SpecializationController" method="delete">
+        <action name="cures-delete" class="com.vetardim.controller.CureController" method="delete">
             <result name="success" type="chain">cures-index</result>
         </action>
 
-        <action name="cures-update" class="com.vetardim.controller.SpecializationController" method="update">
+        <action name="cures-update" class="com.vetardim.controller.CureController" method="update">
             <result name="success" type="chain">cures-index</result>
         </action>
 
-        <action name="cures-index" class="com.vetardim.controller.SpecializationController">
+        <action name="cures-index" class="com.vetardim.controller.CureController">
             <result name="success">cures.jsp</result>
         </action>
 
 
 
         <action name="treatments-add" class="com.vetardim.controller.TreatmentController" method="add">
-            <result name="success" type="chain">/adminpanel/treatments-index.action</result>
+            <result name="success" type="chain">treatments-index</result>
         </action>
 
         <action name="treatments-delete" class="com.vetardim.controller.TreatmentController" method="delete">
-            <result name="success" type="chain">/adminpanel/treatments-index.action</result>
+            <result name="success" type="chain">treatments-index</result>
         </action>
 
         <action name="treatments-update" class="com.vetardim.controller.TreatmentController" method="update">
-            <result name="success" type="chain">/adminpanel/treatments-index.action</result>
+            <result name="success" type="chain">treatments-index</result>
         </action>
 
         <action name="treatments-index" class="com.vetardim.controller.TreatmentController">
-            <result name="success">/adminpanel/treatments-index.action</result>
+            <result name="success">treatments.jsp</result>
         </action>
 
 
 
         <action name="visits-add" class="com.vetardim.controller.VisitController" method="add">
-            <result name="success" type="chain">/adminpanel/visits-index.action</result>
+            <result name="success" type="chain">visits-index</result>
         </action>
 
         <action name="visits-delete" class="com.vetardim.controller.VisitController" method="delete">
-            <result name="success" type="chain">/adminpanel/visits-index.action</result>
+            <result name="success" type="chain">visits-index</result>
         </action>
 
         <action name="visits-update" class="com.vetardim.controller.VisitController" method="update">
-            <result name="success" type="chain">/adminpanel/visits-index.action</result>
+            <result name="success" type="chain">visits-index</result>
         </action>
 
         <action name="visits-index" class="com.vetardim.controller.VisitController">
-            <result name="success">/adminpanel/visits-index.action</result>
+            <result name="success">visits.jsp</result>
         </action>
 
 

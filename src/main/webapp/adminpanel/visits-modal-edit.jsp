@@ -11,19 +11,16 @@
                     <div class="form-group">
                         <input id="visits_edit_id" name="visit.id" type="hidden">
                         <div class="form-group">
-                            <label>Id treatment: <input type="number" class="form-control" name="visit.idTreatment"></label>
-                        </div>
-                        <div class="form-group">
-                            <label>Id medical history: <input type="number" class="form-control" name="visit.idMedicalHistory"></label>
-                        </div>
-                        <div class="form-group">
-                            <label>Id order: <input type="number" class="form-control" name="visit.idOrder"></label>
-                        </div>
-                        <div class="form-group">
-                            <label>Diagnosis: <input type="text" class="form-control" name="visit.diagnosis"></label>
-                        </div>
-                        <div class="form-group">
                             <label>Complaints: <input type="text" class="form-control" name="visit.complaints"></label>
+                        </div>
+                        <div class="form-group">
+                            <label>Diagnosys: <input type="text" class="form-control" name="visit.diagnosys"></label>
+                        </div>
+                        <div class="form-group">
+                            <label>Medical history id: <input type="number" class="form-control" name="visit.idOrder"></label>
+                        </div>
+                        <div class="form-group">
+                            <label>Order id: <input type="number" class="form-control" name="visit.orderId"></label>
                         </div>
                     </div>
                     <div class="modal-footer">
