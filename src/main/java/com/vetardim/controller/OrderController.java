@@ -4,6 +4,7 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 import com.vetardim.model.Order;
 import com.vetardim.DAO.OrderDao;
+import com.vetardim.util.UnixTimeConverter;
 
 import java.util.List;
 
@@ -12,6 +13,26 @@ public class OrderController extends ActionSupport {
     private Order order;
     private List<Order> ordersList;
     private int id;
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    private String date;
+
+    private String time;
 
     public Order getOrder() {
         return order;
@@ -54,6 +75,9 @@ public class OrderController extends ActionSupport {
     }
 
     public String add() {
+        UnixTimeConverter converter = new UnixTimeConverter();
+        long unixtime = converter.convertTimeToUnixTime(time);
+        String tempTime = converter.convertUnixTimeToTime(unixtime);
         OrderDao.addOrUpdateOrder(getOrder());
         return Action.SUCCESS;
     }
