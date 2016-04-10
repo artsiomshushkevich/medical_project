@@ -1,7 +1,7 @@
 package com.vetardim.model;
 
 import javax.persistence.*;
-import java.util.List;
+
 
 @Entity
 @Table(name = "medical.role")
@@ -13,18 +13,6 @@ public class Role {
     private int id;
     @Column(name = "name")
     private String name;
-
-    @OneToMany(mappedBy = "role")
-    private List<User> usersList;
-
-
-    public List<User> getUsersList() {
-        return usersList;
-    }
-
-    public void setUsersList(List<User> usersList) {
-        this.usersList = usersList;
-    }
 
 
     public Role (){}

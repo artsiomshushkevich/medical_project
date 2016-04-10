@@ -10,7 +10,16 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private int id;
-    @Column(name = "user_id")
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    @Column(name="user_id")
     private int userId;
     @Column(name = "firstname")
     private String firstname;
@@ -25,6 +34,13 @@ public class Client {
     @Column(name = "email")
     private String email;
 
+
+
+
+
+
+
+
     public Client (){}
 
     public int getId() {
@@ -35,13 +51,7 @@ public class Client {
         this.id = id;
     }
 
-    public int getUserId() {
-        return userId;
-    }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
 
     public String getFirstname() {
         return firstname;
