@@ -11,19 +11,19 @@
                     <div class="form-group">
                         <input id="analyses_edit_id" name="analyse.id" type="hidden">
                         <div class="form-group">
-                            <label>Doctor id: <input type="number" class="form-control" name="analyse.doctorId"></label>
+                            <label>Doctor id: <input type="number" min="1" required class="form-control" name="analyse.doctorId"></label>
                         </div>
                         <div class="form-group">
-                            <label>Client id: <input type="number" class="form-control" name="analyse.clientId"></label>
+                            <label>Client id: <input type="number" min="1" required class="form-control" name="analyse.clientId"></label>
                         </div>
                         <div class="form-group">
-                            <label>Visit id: <input type="number" class="form-control" name="analyse.visitId"></label>
+                            <label>Visit id: <input type="number" min="1" required class="form-control" name="analyse.visitId"></label>
                         </div>
                         <div class="form-group">
-                            <label>Name: <input type="text" class="form-control" name="analyse.name"></label>
+                            <label>Name: <input type="text" required class="form-control" name="analyse.name"></label>
                         </div>
                         <div class="form-group">
-                            <label>Result: <input type="text" class="form-control" name="analyse.result"></label>
+                            <label>Result: <input type="text" required class="form-control" name="analyse.result"></label>
                         </div>
                     </div>
                     <div class="modal-footer">

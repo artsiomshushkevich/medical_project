@@ -20,6 +20,8 @@ public class RoleDao {
         } catch (HibernateException e) {
             e.printStackTrace();
             session.getTransaction().rollback();
+        } finally {
+            session.close();
         }
 
         return rolesList;

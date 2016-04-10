@@ -54,6 +54,8 @@ public class VisitDao {
         } catch (HibernateException e) {
             e.printStackTrace();
             session.getTransaction().rollback();
+        } finally {
+            session.close();
         }
 
         return visitsList;

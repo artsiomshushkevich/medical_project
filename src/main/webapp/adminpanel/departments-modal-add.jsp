@@ -10,10 +10,10 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <div class="form-group">
-                            <label>Name: <input type="text" class="form-control" name="department.name"></label>
+                            <label>Name: <input type="text" required  class="form-control" name="department.name"></label>
                         </div>
                         <div class="form-group">
-                            <label>Address: <input type="text" class="form-control" name="department.address"></label>
+                            <label>Address: <input type="text" required class="form-control" name="department.address"></label>
                         </div>
                     </div>
                     <div class="modal-footer">

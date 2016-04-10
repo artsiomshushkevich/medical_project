@@ -51,12 +51,23 @@ public class UserController extends ActionSupport {
     @Override
     public String execute() throws Exception {
         this.usersList =  UserDao.getUsersList();
-        this.rolesList = RoleDao.getRolesList();
+
         return Action.SUCCESS;
     }
 
     public String update() {
-        UserDao.addOrUpdateUser(getUser());
+        List<User> usersList = UserDao.getUsersList();
+        boolean flag = false;
+        for (User tempUser : usersList) {
+            if(tempUser.getRoleId() == user.getRoleId() && user.getRoleId() == 1) {
+                flag = true;
+                break;
+            }
+        }
+        if (!flag) {
+            UserDao.addOrUpdateUser(getUser());
+        }
+
         return Action.SUCCESS;
     }
 
@@ -66,7 +77,18 @@ public class UserController extends ActionSupport {
     }
 
     public String add() {
-        UserDao.addOrUpdateUser(getUser());
+        List<User> usersList = UserDao.getUsersList();
+        boolean flag = false;
+        for (User tempUser : usersList) {
+            if(tempUser.getRoleId() == user.getRoleId() && user.getRoleId() == 1) {
+                flag = true;
+                break;
+            }
+        }
+        if (!flag) {
+            UserDao.addOrUpdateUser(getUser());
+        }
+
         return Action.SUCCESS;
     }
 

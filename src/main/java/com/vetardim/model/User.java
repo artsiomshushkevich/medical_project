@@ -7,13 +7,21 @@ import javax.persistence.*;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private int id;
     @Column(name = "login")
     private String nickname;
     @Column(name = "password")
     private String password;
+
+    public int getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(int roleId) {
+        this.roleId = roleId;
+    }
+
     @Column(name = "role_id")
     private int roleId;
 
@@ -41,14 +49,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public int getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(int id) {
-        this.roleId = id;
     }
 
 }

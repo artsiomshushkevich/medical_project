@@ -11,7 +11,7 @@
                     <div class="form-group">
                         <input id="cures_edit_id" name="cure.id" type="hidden">
                         <div class="form-group">
-                            <label>Name: <input type="text" class="form-control" name="cure.name"></label>
+                            <label>Name: <input type="text" required class="form-control" name="cure.name"></label>
                         </div>
                     </div>
                     <div class="modal-footer">

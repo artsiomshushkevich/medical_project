@@ -2,7 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content">.
 
-            <form method="post" action="/add.action">
+            <form method="post" action="treatments-add.action">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">Add new treatment</h4>
@@ -10,19 +10,19 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <div class="form-group">
-                            <label>Prescription: <input type="text" class="form-control" name="treatment.prescription"></label>
+                            <label>Prescription: <input type="text" required class="form-control" name="treatment.prescription"></label>
                         </div>
                         <div class="form-group">
-                            <label>Cure count: <input type="number" class="form-control" name="treatment.cureCount"></label>
+                            <label>Cure count: <input type="number" required min="1" class="form-control" name="treatment.cureCount"></label>
                         </div>
                         <div class="form-group">
-                            <label>Method of using: <input type="text" class="form-control" name="treatment.methodOfUsing"></label>
+                            <label>Method of using: <input type="text" required class="form-control" name="treatment.methodOfUsing"></label>
                         </div>
                         <div class="form-group">
-                            <label>Cure id: <input type="number" class="form-control" name="treatment.cureId"></label>
+                            <label>Cure id: <input type="number" min="1" required class="form-control" name="treatment.cureId"></label>
                         </div>
                         <div class="form-group">
-                            <label>Visit id: <input type="number" class="form-control" name="treatment.visitId"></label>
+                            <label>Visit id: <input type="number" required min="1" class="form-control" name="treatment.visitId"></label>
                         </div>
                     </div>
                     <div class="modal-footer">

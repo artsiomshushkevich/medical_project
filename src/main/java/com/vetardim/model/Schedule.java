@@ -9,15 +9,14 @@ import java.util.Date;
 public class Schedule {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private int id;
     @Column(name = "workday")
     private String workday;
     @Column(name = "beginworkday")
-    private int beginWorkday;
+    private long beginWorkday;
     @Column(name = "endworkday")
-    private int endWorkday;
+    private long endWorkday;
     @Column(name = "room")
     private int room;
     @Column(name = "doctor_id")
@@ -41,19 +40,19 @@ public class Schedule {
         this.workday = workday;
     }
 
-    public int getBeginWorkday() {
+    public long getBeginWorkday() {
         return beginWorkday;
     }
 
-    public void setBeginWorkday(int beginWorkday) {
+    public void setBeginWorkday(long beginWorkday) {
         this.beginWorkday = beginWorkday;
     }
 
-    public int getEndWorkday() {
+    public long getEndWorkday() {
         return endWorkday;
     }
 
-    public void setEndWorkday(int endWorkday) {
+    public void setEndWorkday(long endWorkday) {
         this.endWorkday = endWorkday;
     }
 

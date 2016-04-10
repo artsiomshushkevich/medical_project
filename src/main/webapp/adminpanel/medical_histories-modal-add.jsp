@@ -10,7 +10,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <div class="form-group">
-                            <label>Client id: <input type="number" class="form-control" name="medicalHistory.clientId"></label>
+                            <label>Client id: <input type="number" min="1" required class="form-control" name="medicalHistory.clientId"></label>
                         </div>
                     </div>
                     <div class="modal-footer">

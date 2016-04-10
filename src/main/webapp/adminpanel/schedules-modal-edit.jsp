@@ -9,21 +9,21 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <input id="schedules_edit_id" name="schedule.id" type="hidden">
+                        <input id="schedules_edit_id"  name="schedule.id" type="hidden">
                         <div class="form-group">
-                            <label>Doctor id: <input type="number" class="form-control" name="schedule.doctorId"></label>
+                            <label>Doctor id: <input type="number" min="1" required class="form-control" name="schedule.doctorId"></label>
                         </div>
                         <div class="form-group">
-                            <label>Workday: <input type="text" class="form-control" name="schedule.workday"></label>
+                            <label>Workday: <input type="text" required class="form-control" name="schedule.workday"></label>
                         </div>
                         <div class="form-group">
-                            <label>Begin workday: <input type="text" class="form-control" name="schedule.beginWorkday"></label>
+                            <label>Begin workday: <input type="time" required class="form-control" name="beginWorkTime"></label>
                         </div>
                         <div class="form-group">
-                            <label>End workday: <input type="text" class="form-control" name="schedule.endWorkday"></label>
+                            <label>End workday: <input type="time" required lass="form-control" name="endWorkTime"></label>
                         </div>
                         <div class="form-group">
-                            <label>Room: <input type="number" class="form-control" name="schedule.room"></label>
+                            <label>Room: <input type="number" required min="0" class="form-control" name="schedule.room"></label>
                         </div>
                     </div>
                     <div class="modal-footer">

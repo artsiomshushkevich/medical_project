@@ -8,17 +8,16 @@ import java.util.Date;
 @Table(name = "medical.order")
 public class Order {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private int id;
     @Column(name = "client_id")
     private int clientId;
     @Column(name = "date")
-    private int date;
+    private long date;
     @Column(name = "doctor_id")
     private int doctorId;
     @Column(name = "begin_time")
-    private int beginTime;
+    private long beginTime;
 
     public Order (){}
 
@@ -38,11 +37,11 @@ public class Order {
         this.clientId = clientId;
     }
 
-    public int getDate() {
+    public long getDate() {
         return date;
     }
 
-    public void setDate(int date) {
+    public void setDate(long date) {
         this.date = date;
     }
 
@@ -54,11 +53,11 @@ public class Order {
         this.doctorId = doctorId;
     }
 
-    public int getBeginTime() {
+    public long getBeginTime() {
         return beginTime;
     }
 
-    public void setBeginTime(int beginTime) {
+    public void setBeginTime(long beginTime) {
         this.beginTime = beginTime;
     }
 }

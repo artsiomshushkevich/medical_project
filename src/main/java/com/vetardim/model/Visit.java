@@ -7,7 +7,6 @@ import javax.persistence.*;
 public class Visit {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private int id;
     @Column(name = "medical_history_id")

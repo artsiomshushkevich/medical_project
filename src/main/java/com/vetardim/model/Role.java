@@ -2,16 +2,17 @@ package com.vetardim.model;
 
 import javax.persistence.*;
 
+
 @Entity
 @Table(name = "medical.role")
 public class Role {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private int id;
     @Column(name = "name")
     private String name;
+
 
     public Role (){}
 
