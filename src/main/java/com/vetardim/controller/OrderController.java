@@ -64,6 +64,9 @@ public class OrderController extends ActionSupport {
     }
 
     public String update() {
+        UnixTimeConverter converter = new UnixTimeConverter();
+        order.setBeginTime(converter.convertTimeToUnixTime(time, "hh:mm"));
+        order.setDate(converter.convertTimeToUnixTime(date, "yyyy-MM-dd"));
         OrderDao.addOrUpdateOrder(getOrder());
         return Action.SUCCESS;
     }
@@ -75,7 +78,6 @@ public class OrderController extends ActionSupport {
 
     public String add() {
         UnixTimeConverter converter = new UnixTimeConverter();
-
         order.setBeginTime(converter.convertTimeToUnixTime(time, "hh:mm"));
         order.setDate(converter.convertTimeToUnixTime(date, "yyyy-MM-dd"));
         OrderDao.addOrUpdateOrder(getOrder());

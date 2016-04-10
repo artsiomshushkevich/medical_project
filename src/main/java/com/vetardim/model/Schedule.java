@@ -9,7 +9,6 @@ import java.util.Date;
 public class Schedule {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private int id;
     @Column(name = "workday")

@@ -17,10 +17,10 @@
                             <label>Workday: <input type="text" required class="form-control" name="schedule.workday"></label>
                         </div>
                         <div class="form-group">
-                            <label>Begin workday: <input type="time" required class="form-control" name="schedule.beginWorkday"></label>
+                            <label>Begin workday: <input type="time" required class="form-control" name="beginWorkTime"></label>
                         </div>
                         <div class="form-group">
-                            <label>End workday: <input type="time" required lass="form-control" name="schedule.endWorkday"></label>
+                            <label>End workday: <input type="time" required lass="form-control" name="endWorkTime"></label>
                         </div>
                         <div class="form-group">
                             <label>Room: <input type="number" required min="0" class="form-control" name="schedule.room"></label>

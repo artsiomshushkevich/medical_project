@@ -2,7 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content">.
 
-            <form method="post" action="schedules-add.action">
+            <form method="post" action="schedules-add.action" enctype="multipart/form-data">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">Add new schedule</h4>
@@ -16,10 +16,10 @@
                             <label>Workday: <input type="text" required class="form-control" name="schedule.workday"></label>
                         </div>
                         <div class="form-group">
-                            <label>Begin workday: <input type="time" required class="form-control" name="schedule.beginWorkday"></label>
+                            <label>Begin workday: <input type="time" required class="form-control" name="beginWorkTime"></label>
                         </div>
                         <div class="form-group">
-                            <label>End workday: <input type="time" required class="form-control" name="schedule.endWorkday"></label>
+                            <label>End workday: <input type="time" required class="form-control" name="endWorkTime"></label>
                         </div>
                         <div class="form-group">
                             <label>Room: <input type="number" required min="0" class="form-control" name="schedule.room"></label>
