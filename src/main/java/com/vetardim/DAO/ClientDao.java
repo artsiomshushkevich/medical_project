@@ -54,6 +54,8 @@ public class ClientDao {
         } catch (HibernateException e) {
             e.printStackTrace();
             session.getTransaction().rollback();
+        } finally {
+            session.close();
         }
 
         return clientsList;

@@ -140,11 +140,19 @@
                                             <td><s:property value="nickname"></s:property></td>
                                             <td><s:property value="password"></s:property></td>
                                             <td><s:property value="roleId"></s:property></td>
-                                            <td>
-                                                <button class="btn btn-link" id_instance="<s:property value="id"/>" onclick="showEditModal(this)">update</button>
-                                                &middot;
-                                                <button class="btn btn-link" id_instance="<s:property value="id"/>" onclick="showDeleteModal(this)">delete</button>
-                                            </td>
+                                            <s:if test="%{roleId == 1}">
+                                                <td>
+                                                    This's admin!
+                                                </td>
+                                            </s:if>
+                                            <s:else>
+                                                <td>
+                                                    <button class="btn btn-link" id_instance="<s:property value="id"/>" onclick="showEditModal(this)">update</button>
+                                                    &middot;
+                                                    <button class="btn btn-link" id_instance="<s:property value="id"/>" onclick="showDeleteModal(this)">delete</button>
+                                                </td>
+                                            </s:else>
+
                                         </tr>
                                     </s:iterator>
                                     </tbody>
