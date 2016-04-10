@@ -20,8 +20,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `medical`.`user` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `login` VARCHAR(45) NULL,
-  `password` VARCHAR(45) NULL,
+  `login` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(45) NOT NULL,
   `role_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_user_role_idx` (`role_id` ASC),
@@ -102,8 +102,8 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `medical`.`schedule` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `workday` VARCHAR(45) NOT NULL,
-  `beginworkday` INT NOT NULL,
-  `endworkday` INT NOT NULL,
+  `beginworkday` MEDIUMTEXT NOT NULL,
+  `endworkday` MEDIUMTEXT NOT NULL,
   `room` INT NOT NULL,
   `doctor_id` INT NOT NULL,
   PRIMARY KEY (`id`),
@@ -137,8 +137,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `medical`.`order` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `date` INT NOT NULL,
-  `begin_time` INT NOT NULL,
+  `date` MEDIUMTEXT NOT NULL,
+  `begin_time` MEDIUMTEXT NOT NULL,
   `doctor_id` INT NOT NULL,
   `client_id` INT NOT NULL,
   PRIMARY KEY (`id`),
