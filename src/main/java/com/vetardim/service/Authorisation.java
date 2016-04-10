@@ -75,11 +75,14 @@ public class Authorisation extends ActionSupport implements SessionAware {
         return Action.SUCCESS;
     }
 
+    public String logout() throws Exception {
+        session.invalidate();
+        return Action.SUCCESS;
+    }
+
     public String login() throws Exception {
 
         for (User listElement : UserDao.getUsersList()) {
-            System.out.println("login.action");
-
             if (this.login.equals(listElement.getNickname())) {
                 if (this.password.equals(listElement.getPassword()))
                     role_id = listElement.getRoleId();

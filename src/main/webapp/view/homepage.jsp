@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib prefix="s" uri="/struts-tags" %>
 <html>
 <head>
@@ -17,9 +18,20 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <ul class="nav navbar-nav navbar-right">
-            <li><a class="btn btn-link" href="/adminpanel/index.jsp">Admin panel</a></li>
-            <li><a class="btn btn-link" href="registration.action">Sing up</a></li>
-            <li><a class="btn btn-link" href="authorisation.action">Sing in</a></li>
+            <c:set var="salary" scope="session" value='<%=session.getAttribute("role")%>'/>
+            <c:if test="${salary eq 'Client'}">
+                <li><a class="btn btn-link" href="registration.action">Sing up</a></li>
+                <li><a class="btn btn-link" href="logout.action">Sing out</a></li>
+            </c:if>
+            <c:if test="${salary eq 'Admin'}">
+                <li><a class="btn btn-link" href="adminpanel.action">Admin panel</a></li>
+                <li><a class="btn btn-link" href="registration.action">Sing up</a></li>
+                <li><a class="btn btn-link" href="logout.action">Sing out</a></li>
+            </c:if>
+            <c:if test="${salary eq 'Doctor'}">
+                <li><a class="btn btn-link" href="registration.action">Sing up</a></li>
+                <li><a class="btn btn-link" href="logout.action">Sing out</a></li>
+            </c:if>
         </ul>
     </div>
 </nav>

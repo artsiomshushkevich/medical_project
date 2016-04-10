@@ -9,7 +9,7 @@ import com.vetardim.model.Role;
 import com.vetardim.DAO.RoleDao;
 import java.util.List;
 
-public class UserController extends ActionSupport implements ModelDriven<User> {
+public class UserController extends ActionSupport {
 
     private User user;
     private List<User> usersList;
@@ -70,7 +70,4 @@ public class UserController extends ActionSupport implements ModelDriven<User> {
         return Action.SUCCESS;
     }
 
-    public User getModel() {
-        return this.user;
-    }
 }

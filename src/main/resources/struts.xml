@@ -12,8 +12,16 @@
         <interceptors>
             <interceptor name="roleInterceptor" class="com.vetardim.interceptor.RoleInterceptor"/>
             <interceptor-stack name="roleStack">
+                <interceptor-ref name="defaultStack"/>
                 <interceptor-ref name="roleInterceptor">
                     <param name="allowedRoles">admin</param>
+                </interceptor-ref>
+            </interceptor-stack>
+
+            <interceptor-stack name="roleStackUser">
+                <interceptor-ref name="defaultStack"/>
+                <interceptor-ref name="roleInterceptor">
+                    <param name="allowedRoles">admin,doctor,client</param>
                 </interceptor-ref>
             </interceptor-stack>
         </interceptors>
@@ -29,8 +37,12 @@
         </action>
 
         <action name="login" class="com.vetardim.service.Authorisation" method="login">
-            <result name="success">/view/successlogin.jsp</result>
+            <result name="success" type="chain">homepage</result>
             <result name="login" type="chain">authorisation</result>
+        </action>
+
+        <action name="logout" class="com.vetardim.service.Authorisation" method="logout">
+            <result name="success">/index.jsp</result>
         </action>
 
         <action name="authorisation" class="com.vetardim.service.Authorisation">
@@ -40,6 +52,11 @@
         <action name="adminpanel">
             <interceptor-ref name="roleStack"/>
             <result type="redirect">/adminpanel/index.jsp</result>
+        </action>
+
+        <action name="homepage">
+            <interceptor-ref name="roleStackUser"/>
+            <result type="redirect">/view/homepage.jsp</result>
         </action>
 
         <action name="users-add" class="com.vetardim.controller.UserController" method="add">
@@ -62,17 +79,14 @@
 
 
         <action name="analyses-add" class="com.vetardim.controller.AnalyseController" method="add">
-            <interceptor-ref name="roleStack"/>
             <result name="success" type="chain">analyses-index</result>
         </action>
 
         <action name="analyses-delete" class="com.vetardim.controller.AnalyseController" method="delete">
-            <interceptor-ref name="roleStack"/>
             <result name="success" type="chain">analyses-index</result>
         </action>
 
         <action name="analyses-update" class="com.vetardim.controller.AnalyseController" method="update">
-            <interceptor-ref name="roleStack"/>
             <result name="success" type="chain">analyses-index</result>
         </action>
 
@@ -84,17 +98,14 @@
 
 
         <action name="clients-add" class="com.vetardim.controller.ClientController" method="add">
-            <interceptor-ref name="roleStack"/>
             <result name="success" type="chain">clients-index</result>
         </action>
 
         <action name="clients-delete" class="com.vetardim.controller.ClientController" method="delete">
-            <interceptor-ref name="roleStack"/>
             <result name="success" type="chain">clients-index</result>
         </action>
 
         <action name="clients-update" class="com.vetardim.controller.ClientController" method="update">
-            <interceptor-ref name="roleStack"/>
             <result name="success" type="chain">clients-index</result>
         </action>
 
@@ -106,17 +117,14 @@
 
 
         <action name="departments-add" class="com.vetardim.controller.DepartmentController" method="add">
-            <interceptor-ref name="roleStack"/>
             <result name="success" type="chain">departments-index</result>
         </action>
 
         <action name="departments-delete" class="com.vetardim.controller.DepartmentController" method="delete">
-            <interceptor-ref name="roleStack"/>
             <result name="success" type="chain">departments-index</result>
         </action>
 
         <action name="departments-update" class="com.vetardim.controller.DepartmentController" method="update">
-            <interceptor-ref name="roleStack"/>
             <result name="success" type="chain">departments-index</result>
         </action>
 
@@ -128,17 +136,14 @@
 
 
         <action name="doctors-add" class="com.vetardim.controller.DoctorController" method="add">
-            <interceptor-ref name="roleStack"/>
             <result name="success" type="chain">doctors-index</result>
         </action>
 
         <action name="doctors-delete" class="com.vetardim.controller.DoctorController" method="delete">
-            <interceptor-ref name="roleStack"/>
             <result name="success" type="chain">doctors-index</result>
         </action>
 
         <action name="doctors-update" class="com.vetardim.controller.DoctorController" method="update">
-            <interceptor-ref name="roleStack"/>
             <result name="success" type="chain">doctors-index</result>
         </action>
 
@@ -150,17 +155,14 @@
 
 
         <action name="medical-histories-add" class="com.vetardim.controller.MedicalHistoryController" method="add">
-            <interceptor-ref name="roleStack"/>
             <result name="success" type="chain">medical-histories-index</result>
         </action>
 
         <action name="medical-histories-delete" class="com.vetardim.controller.MedicalHistoryController" method="delete">
-            <interceptor-ref name="roleStack"/>
             <result name="success" type="chain">medical-histories-index</result>
         </action>
 
         <action name="medical-histories-update" class="com.vetardim.controller.MedicalHistoryController" method="update">
-            <interceptor-ref name="roleStack"/>
             <result name="success" type="chain">medical-histories-index</result>
         </action>
 
@@ -172,17 +174,14 @@
 
 
         <action name="orders-add" class="com.vetardim.controller.OrderController" method="add">
-            <interceptor-ref name="roleStack"/>
             <result name="success" type="chain">orders-index</result>
         </action>
 
         <action name="orders-delete" class="com.vetardim.controller.OrderController" method="delete">
-            <interceptor-ref name="roleStack"/>
             <result name="success" type="chain">orders-index</result>
         </action>
 
         <action name="orders-update" class="com.vetardim.controller.OrderController" method="update">
-            <interceptor-ref name="roleStack"/>
             <result name="success" type="chain">orders-index</result>
         </action>
 
@@ -194,17 +193,14 @@
 
 
         <action name="schedules-add" class="com.vetardim.controller.ScheduleController" method="add">
-            <interceptor-ref name="roleStack"/>
             <result name="success" type="chain">schedules-index</result>
         </action>
 
         <action name="schedules-delete" class="com.vetardim.controller.ScheduleController" method="delete">
-            <interceptor-ref name="roleStack"/>
             <result name="success" type="chain">schedules-index</result>
         </action>
 
         <action name="schedules-update" class="com.vetardim.controller.ScheduleController" method="update">
-            <interceptor-ref name="roleStack"/>
             <result name="success" type="chain">schedules-index</result>
         </action>
 
@@ -235,17 +231,14 @@
 
 
         <action name="treatments-add" class="com.vetardim.controller.TreatmentController" method="add">
-            <interceptor-ref name="roleStack"/>
             <result name="success" type="chain">treatments-index</result>
         </action>
 
         <action name="treatments-delete" class="com.vetardim.controller.TreatmentController" method="delete">
-            <interceptor-ref name="roleStack"/>
             <result name="success" type="chain">treatments-index</result>
         </action>
 
         <action name="treatments-update" class="com.vetardim.controller.TreatmentController" method="update">
-            <interceptor-ref name="roleStack"/>
             <result name="success" type="chain">treatments-index</result>
         </action>
 
@@ -257,17 +250,14 @@
 
 
         <action name="visits-add" class="com.vetardim.controller.VisitController" method="add">
-            <interceptor-ref name="roleStack"/>
             <result name="success" type="chain">visits-index</result>
         </action>
 
         <action name="visits-delete" class="com.vetardim.controller.VisitController" method="delete">
-            <interceptor-ref name="roleStack"/>
             <result name="success" type="chain">visits-index</result>
         </action>
 
         <action name="visits-update" class="com.vetardim.controller.VisitController" method="update">
-            <interceptor-ref name="roleStack"/>
             <result name="success" type="chain">visits-index</result>
         </action>
 
