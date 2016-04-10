@@ -2,13 +2,14 @@ package com.vetardim.controller;
 
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.ModelDriven;
 import com.vetardim.model.User;
 import com.vetardim.DAO.UserDao;
 import com.vetardim.model.Role;
 import com.vetardim.DAO.RoleDao;
 import java.util.List;
 
-public class UserController extends ActionSupport {
+public class UserController extends ActionSupport implements ModelDriven<User> {
 
     private User user;
     private List<User> usersList;
@@ -69,5 +70,7 @@ public class UserController extends ActionSupport {
         return Action.SUCCESS;
     }
 
-
+    public User getModel() {
+        return this.user;
+    }
 }

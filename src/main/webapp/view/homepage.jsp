@@ -18,6 +18,8 @@
     <div class="container">
         <ul class="nav navbar-nav navbar-right">
             <li><a class="btn btn-link" href="/adminpanel/index.jsp">Admin panel</a></li>
+            <li><a class="btn btn-link" href="registration.action">Sing up</a></li>
+            <li><a class="btn btn-link" href="authorisation.action">Sing in</a></li>
         </ul>
     </div>
 </nav>
