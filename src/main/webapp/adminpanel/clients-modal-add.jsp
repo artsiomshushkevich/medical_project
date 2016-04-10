@@ -10,25 +10,25 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <div class="form-group">
-                            <label>User id: <input type="number" class="form-control" name="client.userId"></label>
+                            <label>User id: <input type="number" required min="1" class="form-control" name="client.userId"></label>
                         </div>
                         <div class="form-group">
-                            <label>First name: <input type="text" class="form-control" name="client.firstname"></label>
+                            <label>First name: <input type="text" required class="form-control" name="client.firstname"></label>
                         </div>
                         <div class="form-group">
-                            <label>Second name: <input type="text" class="form-control" name="client.secondname"></label>
+                            <label>Second name: <input type="text" required class="form-control" name="client.secondname"></label>
                         </div>
                         <div class="form-group">
-                            <label>Last name: <input type="text" class="form-control" name="client.lastname"></label>
+                            <label>Last name: <input type="text" required class="form-control" name="client.lastname"></label>
                         </div>
                         <div class="form-group">
-                            <label>Phone number: <input type="text" class="form-control" name="client.phoneNumber"></label>
+                            <label>Phone number: <input type="text" required class="form-control" name="client.phoneNumber"></label>
                         </div>
                         <div class="form-group">
-                            <label>Address: <input type="text" class="form-control" name="client.address"></label>
+                            <label>Address: <input type="text" required class="form-control" name="client.address"></label>
                         </div>
                         <div class="form-group">
-                            <label>Email: <input type="text" class="form-control" name="client.email"></label>
+                            <label>Email: <input type="text" required class="form-control" name="client.email"></label>
                         </div>
                     </div>
                     <div class="modal-footer">

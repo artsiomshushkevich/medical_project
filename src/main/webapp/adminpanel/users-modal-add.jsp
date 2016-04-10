@@ -10,13 +10,13 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <div class="form-group">
-                            <label>Nickname: <input type="text" class="form-control" name="user.nickname"></label>
+                            <label>Nickname: <input type="text" required class="form-control" name="user.nickname"></label>
                         </div>
                         <div class="form-group">
-                            <label>Password: <input type="password" class="form-control" name="user.password"></label>
+                            <label>Password: <input type="password" required  class="form-control" name="user.password"></label>
                         </div>
                         <div class="form-group">
-                            <label>Role id: <input type="number" class="form-control" name="user.roleId"></label>
+                            <label>Role id: <input type="number" class="form-control"  required min="1" max="3" name="user.roleId"></label>
                         </div>
                     </div>
                     <div class="modal-footer">
