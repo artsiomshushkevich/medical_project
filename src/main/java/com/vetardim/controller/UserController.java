@@ -56,18 +56,7 @@ public class UserController extends ActionSupport {
     }
 
     public String update() {
-        List<User> usersList = UserDao.getUsersList();
-        boolean flag = false;
-        for (User tempUser : usersList) {
-            if(tempUser.getRoleId() == user.getRoleId() && user.getRoleId() == 1) {
-                flag = true;
-                break;
-            }
-        }
-        if (!flag) {
-            UserDao.addOrUpdateUser(getUser());
-        }
-
+        UserDao.addOrUpdateUser(getUser());
         return Action.SUCCESS;
     }
 
@@ -77,18 +66,7 @@ public class UserController extends ActionSupport {
     }
 
     public String add() {
-        List<User> usersList = UserDao.getUsersList();
-        boolean flag = false;
-        for (User tempUser : usersList) {
-            if(tempUser.getRoleId() == user.getRoleId() && user.getRoleId() == 1) {
-                flag = true;
-                break;
-            }
-        }
-        if (!flag) {
-            UserDao.addOrUpdateUser(getUser());
-        }
-
+        UserDao.addOrUpdateUser(getUser());
         return Action.SUCCESS;
     }
 

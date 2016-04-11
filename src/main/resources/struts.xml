@@ -29,7 +29,7 @@
         <default-action-ref name="index"/>
 
         <action name="singup" class="com.vetardim.service.Registration" method="singup">
-            <result name="success">/view/successsingup.jsp</result>
+            <result name="success">/view/success-signup.jsp</result>
         </action>
 
         <action name="registration" class="com.vetardim.service.Registration">

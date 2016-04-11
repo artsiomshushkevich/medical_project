@@ -60,13 +60,16 @@ public class OrderController extends ActionSupport {
     @Override
     public String execute() throws Exception {
         this.ordersList =  OrderDao.getOrdersList();
+        for (Order order: ordersList) {
+            order.setDateInString(UnixTimeConverter.convertUnixTimeToTime(order.getDate(),"yyyy:MM:dd"));
+            order.setBeginTimeInString(UnixTimeConverter.convertUnixTimeToTime(order.getBeginTime(),"hh:mm"));
+        }
         return Action.SUCCESS;
     }
 
     public String update() {
-        UnixTimeConverter converter = new UnixTimeConverter();
-        order.setBeginTime(converter.convertTimeToUnixTime(time, "hh:mm"));
-        order.setDate(converter.convertTimeToUnixTime(date, "yyyy-MM-dd"));
+        order.setBeginTime(UnixTimeConverter.convertTimeToUnixTime(time, "hh:mm"));
+        order.setDate(UnixTimeConverter.convertTimeToUnixTime(date, "yyyy-MM-dd"));
         OrderDao.addOrUpdateOrder(getOrder());
         return Action.SUCCESS;
     }
@@ -77,9 +80,8 @@ public class OrderController extends ActionSupport {
     }
 
     public String add() {
-        UnixTimeConverter converter = new UnixTimeConverter();
-        order.setBeginTime(converter.convertTimeToUnixTime(time, "hh:mm"));
-        order.setDate(converter.convertTimeToUnixTime(date, "yyyy-MM-dd"));
+        order.setBeginTime(UnixTimeConverter.convertTimeToUnixTime(time, "hh:mm"));
+        order.setDate(UnixTimeConverter.convertTimeToUnixTime(date, "yyyy-MM-dd"));
         OrderDao.addOrUpdateOrder(getOrder());
         return Action.SUCCESS;
     }

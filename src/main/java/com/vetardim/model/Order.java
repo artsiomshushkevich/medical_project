@@ -19,6 +19,25 @@ public class Order {
     @Column(name = "begin_time")
     private long beginTime;
 
+    private String dateInString;
+    private String beginTimeInString;
+
+    public String getDateInString() {
+        return dateInString;
+    }
+
+    public void setDateInString(String dateInString) {
+        this.dateInString = dateInString;
+    }
+
+    public String getBeginTimeInString() {
+        return beginTimeInString;
+    }
+
+    public void setBeginTimeInString(String beginTimeInString) {
+        this.beginTimeInString = beginTimeInString;
+    }
+
     public Order (){}
 
     public int getId() {

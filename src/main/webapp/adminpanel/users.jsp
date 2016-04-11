@@ -140,7 +140,7 @@
                                             <td><s:property value="nickname"></s:property></td>
                                             <td><s:property value="password"></s:property></td>
                                             <td><s:property value="roleId"></s:property></td>
-                                            <s:if test="%{roleId == 1}">
+                                            <s:if test="%{nickname == 'admin'}">
                                                 <td>
                                                     This's admin!
                                                 </td>

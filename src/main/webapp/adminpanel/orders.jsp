@@ -139,9 +139,9 @@
                                         <tr>
                                             <td><s:property value="id"></s:property></td>
                                             <td><s:property value="clientId"></s:property></td>
-                                            <td><s:property value="date"></s:property></td>
+                                            <td><s:property value="dateInString"></s:property></td>
                                             <td><s:property value="doctorId"></s:property></td>
-                                            <td><s:property value="beginTime"></s:property></td>
+                                            <td><s:property value="beginTimeInString"></s:property></td>
                                             <td>
                                                 <button class="btn btn-link" id_instance="<s:property value="id"/>" onclick="showEditModal(this)">update</button>
                                                 &middot;

@@ -10,13 +10,13 @@ import java.text.SimpleDateFormat;
  * Created by artsiom on 4/10/16.
  */
 public class UnixTimeConverter {
-    public String convertUnixTimeToTime(long unixTime, String format) {
+    public static String convertUnixTimeToTime(long unixTime, String format) {
         Date date = new Date(unixTime*1000L);
         DateFormat formatter = new SimpleDateFormat(format);
         return  formatter.format(date);
     }
 
-    public long convertTimeToUnixTime (String time, String format) {
+    public static long convertTimeToUnixTime (String time, String format) {
         DateFormat formatter = new SimpleDateFormat(format);
         Date date = null;
         try {

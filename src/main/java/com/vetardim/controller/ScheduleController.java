@@ -59,13 +59,17 @@ public class ScheduleController extends ActionSupport {
     @Override
     public String execute() throws Exception {
         this.schedulesList =  ScheduleDao.getSchedulesList();
+        for (Schedule schedule: schedulesList) {
+            schedule.setBeginWorkdayInString(UnixTimeConverter.convertUnixTimeToTime(
+                    schedule.getBeginWorkday(),"hh:mm"));
+            schedule.setEndWorkdayInString(UnixTimeConverter.convertUnixTimeToTime(schedule.getEndWorkday(),"hh:mm"));
+        }
         return Action.SUCCESS;
     }
 
     public String update() {
-        UnixTimeConverter converter = new UnixTimeConverter();
-        schedule.setBeginWorkday(converter.convertTimeToUnixTime(getBeginWorkTime(), "hh:mm"));
-        schedule.setEndWorkday(converter.convertTimeToUnixTime(getBeginWorkTime(), "hh:mm"));
+        schedule.setBeginWorkday(UnixTimeConverter.convertTimeToUnixTime(getBeginWorkTime(), "hh:mm"));
+        schedule.setEndWorkday(UnixTimeConverter.convertTimeToUnixTime(getBeginWorkTime(), "hh:mm"));
         ScheduleDao.addOrUpdateSchedule(getSchedule());
         return Action.SUCCESS;
     }
@@ -76,9 +80,8 @@ public class ScheduleController extends ActionSupport {
     }
 
     public String add() {
-        UnixTimeConverter converter = new UnixTimeConverter();
-        schedule.setBeginWorkday(converter.convertTimeToUnixTime(getBeginWorkTime(), "hh:mm"));
-        schedule.setEndWorkday(converter.convertTimeToUnixTime(getBeginWorkTime(), "hh:mm"));
+        schedule.setBeginWorkday(UnixTimeConverter.convertTimeToUnixTime(getBeginWorkTime(), "hh:mm"));
+        schedule.setEndWorkday(UnixTimeConverter.convertTimeToUnixTime(getBeginWorkTime(), "hh:mm"));
         ScheduleDao.addOrUpdateSchedule(getSchedule());
         return Action.SUCCESS;
     }

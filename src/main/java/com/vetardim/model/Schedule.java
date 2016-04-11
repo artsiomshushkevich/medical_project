@@ -22,6 +22,25 @@ public class Schedule {
     @Column(name = "doctor_id")
     private int doctorId;
 
+    private String beginWorkdayInString;
+    private String endWorkdayInString;
+
+    public String getBeginWorkdayInString() {
+        return beginWorkdayInString;
+    }
+
+    public void setBeginWorkdayInString(String beginWorkdayInString) {
+        this.beginWorkdayInString = beginWorkdayInString;
+    }
+
+    public String getEndWorkdayInString() {
+        return endWorkdayInString;
+    }
+
+    public void setEndWorkdayInString(String endWorkdayInString) {
+        this.endWorkdayInString = endWorkdayInString;
+    }
+
     public Schedule (){}
 
     public int getId() {

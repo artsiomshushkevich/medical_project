@@ -141,8 +141,8 @@
                                             <td><s:property value="id"></s:property></td>
                                             <td><s:property value="doctorId"></s:property></td>
                                             <td><s:property value="workday"></s:property></td>
-                                            <td><s:property value="beginWorkday"></s:property></td>
-                                            <td><s:property value="endWorkday"></s:property></td>
+                                            <td><s:property value="beginWorkdayInString"></s:property></td>
+                                            <td><s:property value="endWorkdayInString"></s:property></td>
                                             <td><s:property value="room"></s:property></td>
                                             <td>
                                                 <button class="btn btn-link" id_instance="<s:property value="id"/>" onclick="showEditModal(this)">update</button>
