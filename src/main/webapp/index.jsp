@@ -18,15 +18,16 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <ul class="nav navbar-nav navbar-right">
-            <li><a class="btn btn-link" href="registration.action">Sing up</a></li>
-            <c:set var="salary" scope="session" value='<%=session.getAttribute("role")%>'/>
-            <c:if test="${salary eq null}">
-                <li><a class="btn btn-link" href="authorisation.action">Sing in</a></li>
-            </c:if>
-            <c:set var="salary" scope="session" value='<%=session.getAttribute("role")%>'/>
-            <c:if test="${salary eq not null}">
-                <li><a class="btn btn-link" href="logout.action">Sing out</a></li>
-            </c:if>
+            <c:set var="salary" value='<%=session.getAttribute("role")%>'/>
+            <c:choose>
+                <c:when test="${salary eq null}">
+                    <li><a class="btn btn-link" href="registration.action">Sing up</a></li>
+                    <li><a class="btn btn-link" href="authorisation.action">Sing in</a></li>
+                </c:when>
+                <c:otherwise>
+                    <li><a class="btn btn-link" href="logout.action">Sing out</a></li>
+                </c:otherwise>
+            </c:choose>
         </ul>
     </div>
 </nav>

@@ -30,7 +30,8 @@ public class RoleInterceptor extends AbstractInterceptor {
         HttpServletResponse response = ServletActionContext.getResponse();
         String result = null;
         if (!isAllowed(request, invocation.getAction())) {
-            result = handleRejection(invocation, response);
+            response.sendRedirect("/");
+            //result = handleRejection(invocation, response);
         } else {
             result = invocation.invoke();
         }
@@ -78,10 +79,8 @@ public class RoleInterceptor extends AbstractInterceptor {
     }
 
     protected String handleRejection(ActionInvocation invocation,
-                                     HttpServletResponse response)
-            throws Exception {
-
-      //  response.sendError(HttpServletResponse.SC_FORBIDDEN);
+                                     HttpServletResponse response) throws Exception {
+        response.sendRedirect("/");
         return "invalidAdminAccess";
     }
 
