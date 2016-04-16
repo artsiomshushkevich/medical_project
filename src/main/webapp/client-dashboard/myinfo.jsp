@@ -73,7 +73,7 @@
                     <a href="client-mymedicalhistory.action"><i class="fa fa-medkit"></i>My medical history</a>
                 </li>
                 <li>
-                    <a href="client-myanalyses.action"><i class="fa fa-calendar"></i>Analyse</a>
+                    <a href="client-myanalyses.action"><i class="fa fa-pencil-square-o"></i>My analyses</a>
                 </li>
             </ul>
 

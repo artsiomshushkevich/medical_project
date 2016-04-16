@@ -70,8 +70,8 @@ public class Authorisation extends ActionSupport implements SessionAware {
 
     @Override
     public String execute() throws Exception {
-        this.usersList = UserDao.getUsersList();
-        this.rolesList = RoleDao.getRolesList();
+       // this.usersList = UserDao.getUsersList();
+       // this.rolesList = RoleDao.getRolesList();
         return Action.SUCCESS;
     }
 

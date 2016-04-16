@@ -268,13 +268,28 @@
 
 
 
-
         <action name="client-dashboard">
             <result type="redirect">/client-dashboard/index.jsp</result>
         </action>
 
         <action name="client-myinfo" class="com.vetardim.controller.clientDashboard.MyInfoController">
             <result name="success">/client-dashboard/myinfo.jsp</result>
+        </action>
+
+        <action name="client-makeorder" class="com.vetardim.controller.clientDashboard.MakeOrderController">
+            <result name="success">/client-dashboard/make-order.jsp</result>
+        </action>
+
+        <action name="client-myanalyses" class="com.vetardim.controller.clientDashboard.MyAnalysesController">
+            <result name="success">/client-dashboard/my-analyses.jsp</result>
+        </action>
+
+        <action name="client-mymedicalhistory" class="com.vetardim.controller.clientDashboard.MyMedicalHistoryController">
+            <result name="success">/client-dashboard/my-medical-history.jsp</result>
+        </action>
+
+        <action name="client-myorders" class="com.vetardim.controller.clientDashboard.MyOrdersController">
+            <result name="success">/client-dashboard/my-orders.jsp</result>
         </action>
 
 

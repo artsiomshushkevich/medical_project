@@ -2,8 +2,10 @@ package com.vetardim.DAO;
 
 import com.vetardim.model.Doctor;
 import com.vetardim.util.HibernateUtil;
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 
 import java.util.List;
@@ -42,6 +44,25 @@ public class DoctorDao {
             session.close();
         }
 
+    }
+
+    public static Doctor getDoctorById(int id) {
+        Session session = HibernateUtil.makeSession();
+        session.beginTransaction();
+        Doctor doctor = null;
+        try {
+            Criteria criteria = session.createCriteria(Doctor.class);
+            criteria.add(Restrictions.eq("id", id));
+            doctor = (Doctor)criteria.uniqueResult();
+            session.getTransaction().commit();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            session.getTransaction().rollback();
+        } finally {
+            session.close();
+        }
+
+        return doctor;
     }
 
     public static List<Doctor> getDoctorsList() {

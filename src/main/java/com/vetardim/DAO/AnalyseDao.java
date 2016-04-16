@@ -2,8 +2,10 @@ package com.vetardim.DAO;
 
 import com.vetardim.model.Analyse;
 import com.vetardim.util.HibernateUtil;
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 
 import java.util.List;
@@ -42,6 +44,25 @@ public class AnalyseDao {
             session.close();
         }
 
+    }
+
+    public static List<Analyse> getAnalysesListByClientId(int id) {
+        Session session = HibernateUtil.makeSession();
+        session.beginTransaction();
+        List<Analyse> analysesList = null;
+        try {
+            Criteria criteria = session.createCriteria(Analyse.class);
+            criteria.add(Restrictions.eq("clientId", id));
+            analysesList = (List<Analyse>)criteria.list();
+            session.getTransaction().commit();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            session.getTransaction().rollback();
+        } finally {
+            session.close();
+        }
+
+        return analysesList;
     }
 
     public static List<Analyse> getAnalysesList() {

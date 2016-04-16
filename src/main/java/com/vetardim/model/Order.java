@@ -3,6 +3,7 @@ package com.vetardim.model;
 import javax.persistence.*;
 import java.sql.Time;
 import java.util.Date;
+import com.vetardim.model.Doctor;
 
 @Entity
 @Table(name = "medical.order")
@@ -21,6 +22,34 @@ public class Order {
 
     private String dateInString;
     private String beginTimeInString;
+    private String doctorFullname;
+    private String doctorSpeciality;
+    private String departmentAddress;
+
+    public String getDoctorSpeciality() {
+        return doctorSpeciality;
+    }
+
+    public void setDoctorSpeciality(String doctorSpeciality) {
+        this.doctorSpeciality = doctorSpeciality;
+    }
+
+    public String getDoctorFullname() {
+        return doctorFullname;
+    }
+
+    public void setDoctorFullname(String doctorFullname) {
+        this.doctorFullname = doctorFullname;
+    }
+
+    public String getDepartmentAddress() {
+        return departmentAddress;
+    }
+
+    public void setDepartmentAddress(String departmentAddress) {
+        this.departmentAddress = departmentAddress;
+    }
+
 
     public String getDateInString() {
         return dateInString;

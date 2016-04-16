@@ -26,7 +26,7 @@ public class Doctor {
     @Column(name = "speciality")
     private String speciality;
     @Column(name = "department_id")
-    private String departmentId;
+    private int departmentId;
 
     public Doctor (){}
 
@@ -102,12 +102,17 @@ public class Doctor {
         this.speciality = speciality;
     }
 
-    public String getDepartmentId() {
+    public int getDepartmentId() {
         return departmentId;
     }
 
-    public void setDepartmentId(String departmentId) {
+    public void setDepartmentId(int departmentId) {
         this.departmentId = departmentId;
     }
+
+    public String getFullname() {
+        return lastname + " " + firstname + " " + secondname;
+    }
+
 }
 

@@ -19,6 +19,26 @@ public class Analyse {
     @Column(name = "result")
     private String result;
 
+    private String doctorFullname;
+    private String doctorSpeciality;
+
+    public String getDoctorSpeciality() {
+        return doctorSpeciality;
+    }
+
+    public void setDoctorSpeciality(String doctorSpeciality) {
+        this.doctorSpeciality = doctorSpeciality;
+    }
+
+    public String getDoctorFullname() {
+        return doctorFullname;
+    }
+
+    public void setDoctorFullname(String doctorFullname) {
+        this.doctorFullname = doctorFullname;
+    }
+
+
     public Analyse (){}
 
     public int getId() {

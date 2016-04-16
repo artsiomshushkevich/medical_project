@@ -2,8 +2,10 @@ package com.vetardim.DAO;
 
 import com.vetardim.model.Order;
 import com.vetardim.util.HibernateUtil;
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 
 import java.util.List;
@@ -42,6 +44,25 @@ public class OrderDao {
             session.close();
         }
 
+    }
+
+    public static List<Order> getOrdersListByClientId(int id) {
+        Session session = HibernateUtil.makeSession();
+        session.beginTransaction();
+        List<Order> ordersList = null;
+        try {
+            Criteria criteria = session.createCriteria(Order.class);
+            criteria.add(Restrictions.eq("clientId", id));
+            ordersList = (List<Order>)criteria.list();
+            session.getTransaction().commit();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            session.getTransaction().rollback();
+        } finally {
+            session.close();
+        }
+
+        return ordersList;
     }
 
     public static List<Order> getOrdersList() {

@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -71,7 +70,7 @@
                     <a href="client-makeorder.action"><i class="fa fa-thumb-tack"></i>Make order</a>
                 </li>
                 <li>
-                    <a href="client-mymedicalhistory.action"><i class="fa fa-medkit"></i>My medical history</a>
+                    <a class="active-menu" href="client-mymedicalhistory.action"><i class="fa fa-medkit"></i>My medical history</a>
                 </li>
                 <li>
                     <a href="client-myanalyses.action"><i class="fa fa-pencil-square-o"></i>My analyses</a>
@@ -86,8 +85,16 @@
         <div id="page-inner">
             <div class="row">
                 <div class="col-md-12">
-                        <c:set var="salary" scope="session" value='<%=session.getAttribute("login")%>'/>
-                            <h1 class="text-center">Welcome, <c:out value="${salary}"/></h1>
+                    <!-- Table -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            My info
+                        </div>
+                        <div class="panel-body">
+
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -113,4 +120,5 @@
 </body>
 
 </html>
+
 
