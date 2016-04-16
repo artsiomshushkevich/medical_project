@@ -88,7 +88,8 @@ public class Authorisation extends ActionSupport implements SessionAware {
                     role_id = listElement.getRoleId();
                 for (Role role : RoleDao.getRolesList()) {
                     if (this.role_id == role.getId()) {
-                        session.put("name", listElement.getNickname());
+                        session.put("id", listElement.getId());
+                        session.put("login", listElement.getNickname());
                         session.put("role", role.getName());
                         return Action.SUCCESS;
                     }

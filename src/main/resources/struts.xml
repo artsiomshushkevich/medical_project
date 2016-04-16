@@ -268,6 +268,22 @@
 
 
 
+
+        <action name="client-dashboard">
+            <result type="redirect">/client-dashboard/index.jsp</result>
+        </action>
+
+        <action name="client-myinfo" class="com.vetardim.controller.clientDashboard.MyInfoController">
+            <result name="success">/client-dashboard/myinfo.jsp</result>
+        </action>
+
+
+
+        <action name="doctor-dashboard">
+
+            <result type="redirect">/doctor-dashboard/index.jsp</result>
+        </action>
+
     </package>
 
 </struts>
