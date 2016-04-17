@@ -7,6 +7,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 
+import com.vetardim.DAO.RoleDao;
+import com.vetardim.DAO.UserDao;
+import com.vetardim.model.Role;
+import com.vetardim.model.User;
 import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionInvocation;
@@ -50,8 +54,24 @@ public class RoleInterceptor extends AbstractInterceptor {
     protected boolean isAllowed(HttpServletRequest request, Object action) throws Exception {
         HttpSession session=request.getSession(false);
         boolean result = false;
+        boolean accept =false;
         String loginRole = null;
+        if (session.getAttribute("name")!=null) {
+            String Username = (String) session.getAttribute("name");
+            for (User listElement : UserDao.getUsersList()) {
+                if (Username.equals(listElement.getNickname())) {
+                    for (Role role : RoleDao.getRolesList()) {
+                        if (listElement.getRoleId() == role.getId()) {
+                            accept = true;
+                            session.setAttribute("role", role.getName());
+                        }
+                    }
 
+                }
+
+            }
+            if (!accept) session.invalidate();
+        }
         if(session!=null){
             loginRole=(String)session.getAttribute("role");
         }

@@ -18,6 +18,12 @@
         <div class="form-group">
             <label>Login: <input class="form-control" name="login"></label><br>
             <label>Password: <input type="password" class="form-control" name="password"></label><br>
+            <label>First name: <input class="form-control" name="client.firstname"></label><br>
+            <label>Second name: <input class="form-control" name="client.secondname"></label><br>
+            <label>Last name: <input class="form-control" name="client.lastname"></label><br>
+            <label>Phone number: <input type="number" class="form-control" name="client.phoneNumber"></label><br>
+            <label>address: <input class="form-control" name="client.address"></label><br>
+            <label>email: <input class="form-control" name="client.email"></label><br>
             <%--  <label>Confirm password: <input type="password" class="form-control" name="user.password"></label><br>--%>
             <button type="submit" class="btn btn-default">Ok</button>
         </div>
