@@ -2,8 +2,10 @@ package com.vetardim.DAO;
 
 import com.vetardim.model.Schedule;
 import com.vetardim.util.HibernateUtil;
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 
 import java.util.List;
@@ -42,6 +44,25 @@ public class ScheduleDao {
             session.close();
         }
 
+    }
+
+    public static List<Schedule> getSchedulesListByDoctorId(int id) {
+        Session session = HibernateUtil.makeSession();
+        session.beginTransaction();
+        List<Schedule> schedulesList = null;
+        try {
+            Criteria criteria = session.createCriteria(Schedule.class);
+            criteria.add(Restrictions.eq("doctorId", id));
+            schedulesList = (List<Schedule>)criteria.list();
+            session.getTransaction().commit();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            session.getTransaction().rollback();
+        } finally {
+            session.close();
+        }
+
+        return schedulesList;
     }
 
     public static List<Schedule> getSchedulesList() {

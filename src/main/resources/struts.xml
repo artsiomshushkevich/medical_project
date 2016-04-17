@@ -324,6 +324,10 @@
             <result name="success">/doctor-dashboard/visit-treatments.jsp</result>
         </action>
 
+        <action name="doctor-myschedule" class="com.vetardim.controller.doctorDashboard.MyScheduleController">
+            <result name="success">/doctor-dashboard/my-schedule.jsp</result>
+        </action>
+
     </package>
 
 

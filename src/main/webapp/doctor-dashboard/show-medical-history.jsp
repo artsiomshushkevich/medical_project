@@ -73,7 +73,7 @@
                     <a class="active-menu" href="doctor-medical-histories.action"><i class="fa fa-medkit"></i>Medical histories</a>
                 </li>
                 <li>
-                    <a href="doctor-myanalyses.action"><i class="fa fa-calendar"></i>My schedule</a>
+                    <a href="doctor-myschedule.action"><i class="fa fa-calendar"></i>My schedule</a>
                 </li>
             </ul>
 

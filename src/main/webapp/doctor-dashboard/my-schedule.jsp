@@ -1,13 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib prefix="s" uri="/struts-tags" %>
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
+    <title>Schedules Table</title>
     <!-- Bootstrap Styles-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FontAwesome Styles-->
@@ -30,7 +30,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.jsp">Dashboard</a>
+            <a class="navbar-brand" href="../index.jsp">Medical</a>
         </div>
 
         <ul class="nav navbar-top-links navbar-right">
@@ -74,7 +74,7 @@
                     <a href="doctor-medical-histories.action"><i class="fa fa-medkit"></i>Medical histories</a>
                 </li>
                 <li>
-                    <a href="doctor-myschedule.action"><i class="fa fa-calendar"></i>My schedule</a>
+                    <a class="active-menu" href="doctor-myschedule.action"><i class="fa fa-calendar"></i>My schedule</a>
                 </li>
             </ul>
 
@@ -86,8 +86,38 @@
         <div id="page-inner">
             <div class="row">
                 <div class="col-md-12">
-                    <c:set var="salary" scope="session" value='<%=session.getAttribute("login")%>'/>
-                    <h1 class="text-center">Welcome, <c:out value="${salary}"/></h1>
+                    <!-- Table -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            My schedule
+                        </div>
+                        <div class="panel-body">
+
+                            <div class="table-responsive">
+                                <p>Schedules list:</p>
+                                <table class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>workday</th>
+                                        <th>begin workday</th>
+                                        <th>end workday</th>
+                                        <th>room</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <s:iterator value="schedulesList" var="schedule">
+                                        <tr>
+                                            <td><s:property value="workday"></s:property></td>
+                                            <td><s:property value="beginWorkdayInString"></s:property></td>
+                                            <td><s:property value="endWorkdayInString"></s:property></td>
+                                            <td><s:property value="room"></s:property></td>
+                                        </tr>
+                                    </s:iterator>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -109,8 +139,6 @@
 <!-- Custom Js -->
 <script src="assets/js/custom-scripts.js"></script>
 
-
 </body>
 
 </html>
-
