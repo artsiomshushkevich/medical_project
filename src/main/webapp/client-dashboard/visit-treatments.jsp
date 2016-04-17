@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -70,7 +71,7 @@
                     <a href="client-makeorder.action"><i class="fa fa-thumb-tack"></i>Make order</a>
                 </li>
                 <li>
-                    <a class="active-menu" href="client-mymedicalhistory.action"><i class="fa fa-medkit"></i>My medical history</a>
+                    <a href="client-mymedicalhistory.action"><i class="fa fa-medkit"></i>My medical history</a>
                 </li>
                 <li>
                     <a href="client-myanalyses.action"><i class="fa fa-pencil-square-o"></i>My analyses</a>
@@ -85,45 +86,32 @@
         <div id="page-inner">
             <div class="row">
                 <div class="col-md-12">
-                    <!-- Table -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            My medical history (ID: <s:property value="medicalHistory.id"></s:property>)
+                            <a href="client-mymedicalhistory.action" class="btn btn-primary text-center">Go back to my medical history</a>
                         </div>
                         <div class="panel-body">
-                            <div class="table-responsive">
-                                <p>Visits list:</p>
-                                <table class="table table-striped table-bordered table-hover">
-                                    <thead>
+                            <p>Treatments list:</p>
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th>prescription</th>
+                                    <th>cure count</th>
+                                    <th>method of using</th>
+                                    <th>cure</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <s:iterator value="treatmentsList" var="treatment">
                                     <tr>
-                                        <th>id</th>
-                                        <th>complaints</th>
-                                        <th>diagnosys</th>
-                                        <th>doctor speciality</th>
-                                        <th>doctor name</th>
-                                        <th>date</th>
-                                        <th>actions</th>
+                                        <td><s:property value="prescription"></s:property></td>
+                                        <td><s:property value="cureCount"></s:property></td>
+                                        <td><s:property value="methodOfUsing"></s:property></td>
+                                        <td><s:property value="cure"></s:property></td>
                                     </tr>
-                                    </thead>
-                                    <tbody>
-                                    <s:iterator value="visitsList" var="visit">
-                                        <tr>
-                                            <td><s:property value="id"></s:property></td>
-                                            <td><s:property value="complaints"></s:property></td>
-                                            <td><s:property value="diagnosys"></s:property></td>
-                                            <td><s:property value="doctorSpeciality"></s:property></td>
-                                            <td><s:property value="doctorFullname"></s:property></td>
-                                            <td><s:property value="date"></s:property></td>
-                                            <td>
-                                                <a href="client-show-treatment.action?id=<s:property value="id"/>" class="btn btn-link">
-                                                    show treatment
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    </s:iterator>
-                                    </tbody>
-                                </table>
-                            </div>
+                                </s:iterator>
+                                </tbody>
+                            </table>
 
                         </div>
                     </div>
@@ -152,5 +140,4 @@
 </body>
 
 </html>
-
 

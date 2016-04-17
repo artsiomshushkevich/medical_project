@@ -299,6 +299,10 @@
             <result name="success">/client-dashboard/make-order-answer.jsp</result>
         </action>
 
+        <action name="client-show-treatment" class="com.vetardim.controller.clientDashboard.ShowTreatmentsController">
+            <result name="success">/client-dashboard/visit-treatments.jsp</result>
+        </action>
+
         <action name="doctor-dashboard">
 
             <result type="redirect">/doctor-dashboard/index.jsp</result>

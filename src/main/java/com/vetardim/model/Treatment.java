@@ -20,6 +20,16 @@ public class Treatment {
     @Column(name = "visit_id")
     private int visitId;
 
+    private String cure;
+
+    public String getCure() {
+        return cure;
+    }
+
+    public void setCure(String cure) {
+        this.cure = cure;
+    }
+
     public Treatment (){}
 
     public int getId() {

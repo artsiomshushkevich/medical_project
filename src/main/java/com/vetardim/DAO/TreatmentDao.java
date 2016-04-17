@@ -2,8 +2,10 @@ package com.vetardim.DAO;
 
 import com.vetardim.model.Treatment;
 import com.vetardim.util.HibernateUtil;
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 
 import java.util.List;
@@ -42,6 +44,25 @@ public class TreatmentDao {
             session.close();
         }
 
+    }
+
+    public static List<Treatment> getTreatmentsListByVisitId(int id) {
+        Session session = HibernateUtil.makeSession();
+        session.beginTransaction();
+        List<Treatment> treatmentsList = null;
+        try {
+            Criteria criteria = session.createCriteria(Treatment.class);
+            criteria.add(Restrictions.eq("visitId", id));
+            treatmentsList = (List<Treatment>)criteria.list();
+            session.getTransaction().commit();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            session.getTransaction().rollback();
+        } finally {
+            session.close();
+        }
+
+        return treatmentsList;
     }
 
     public static List<Treatment> getTreatmentsList() {
