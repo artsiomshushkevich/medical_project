@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -62,19 +61,19 @@
         <div class="sidebar-collapse">
             <ul class="nav" id="main-menu">
                 <li>
-                    <a href="doctor-myinfo.action"><i class="fa fa-dashboard"></i>My info</a>
+                    <a class="active-menu" href="doctor-myinfo.action"><i class="fa fa-dashboard"></i>My info</a>
                 </li>
                 <li>
                     <a href="doctor-myorders.action"><i class="fa fa-paperclip"></i>My orders</a>
                 </li>
                 <li>
-                    <a href="doctor-makeorder.action"><i class="fa fa-thumb-tack"></i>Create visit</a>
+                    <a href="doctor-makeorder.action"><i class="fa fa-thumb-tack"></i>Make order</a>
                 </li>
                 <li>
-                    <a href="doctor-mymedicalhistory.action"><i class="fa fa-medkit"></i>Medical histories</a>
+                    <a href="doctor-mymedicalhistory.action"><i class="fa fa-medkit"></i>My medical history</a>
                 </li>
                 <li>
-                    <a href="doctor-myanalyses.action"><i class="fa fa-calendar"></i>My schedule</a>
+                    <a href="doctor-myanalyses.action"><i class="fa fa-pencil-square-o"></i>My analyses</a>
                 </li>
             </ul>
 
@@ -86,8 +85,57 @@
         <div id="page-inner">
             <div class="row">
                 <div class="col-md-12">
-                    <c:set var="salary" scope="session" value='<%=session.getAttribute("login")%>'/>
-                    <h1 class="text-center">Welcome, <c:out value="${salary}"/></h1>
+                    <!-- Table -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            My info
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <p>Information about me:</p>
+                                <table class="table table-striped table-hover">
+                                    <tbody>
+                                    <tr>
+                                        <td>Login: </td>
+                                        <td><s:property value="doctor.login"></s:property></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Firstname: </td>
+                                        <td><s:property value="doctor.firstname"></s:property></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Secondname: </td>
+                                        <td><s:property value="doctor.secondname"></s:property></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Lastname: </td>
+                                        <td><s:property value="doctor.lastname"></s:property></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Qualification: </td>
+                                        <td><s:property value="doctor.qualification"></s:property></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Speciality: </td>
+                                        <td><s:property value="doctor.speciality"></s:property></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Phone number: </td>
+                                        <td><s:property value="doctor.phoneNumber"></s:property></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Department: </td>
+                                        <td><s:property value="doctor.department"></s:property></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Email: </td>
+                                        <td><s:property value="doctor.email"></s:property></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -113,4 +161,5 @@
 </body>
 
 </html>
+
 

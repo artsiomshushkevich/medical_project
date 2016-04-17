@@ -46,6 +46,25 @@ public class DoctorDao {
 
     }
 
+    public static Doctor getDoctorByUserId(int id) {
+        Session session = HibernateUtil.makeSession();
+        session.beginTransaction();
+        Doctor doctor = null;
+        try {
+            Criteria criteria = session.createCriteria(Doctor.class);
+            criteria.add(Restrictions.eq("userId", id));
+            doctor = (Doctor)criteria.uniqueResult();
+            session.getTransaction().commit();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            session.getTransaction().rollback();
+        } finally {
+            session.close();
+        }
+
+        return doctor;
+    }
+
     public static Doctor getDoctorById(int id) {
         Session session = HibernateUtil.makeSession();
         session.beginTransaction();

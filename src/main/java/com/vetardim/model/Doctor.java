@@ -28,6 +28,26 @@ public class Doctor {
     @Column(name = "department_id")
     private int departmentId;
 
+    private String login;
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    private String department;
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
     public Doctor (){}
 
     public int getId() {

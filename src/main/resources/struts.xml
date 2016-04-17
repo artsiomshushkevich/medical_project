@@ -292,9 +292,6 @@
             <result name="success">/client-dashboard/my-orders.jsp</result>
         </action>
 
-        <!--<action name="get-treatments" class="com.vetardim.controller.clientDashboard.GetTreatmentAction">-->
-        <!--</action>-->
-
         <action name="client-order-add" class="com.vetardim.controller.clientDashboard.AddOrderController">
             <result name="success">/client-dashboard/make-order-answer.jsp</result>
         </action>
@@ -304,8 +301,11 @@
         </action>
 
         <action name="doctor-dashboard">
-
             <result type="redirect">/doctor-dashboard/index.jsp</result>
+        </action>
+
+        <action name="doctor-myinfo" class="com.vetardim.controller.doctorDashboard.MyInfoController">
+            <result name="success">/doctor-dashboard/myinfo.jsp</result>
         </action>
 
     </package>
