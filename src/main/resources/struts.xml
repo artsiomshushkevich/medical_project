@@ -308,6 +308,22 @@
             <result name="success">/doctor-dashboard/myinfo.jsp</result>
         </action>
 
+        <action name="doctor-myorders" class="com.vetardim.controller.doctorDashboard.MyOrdersController">
+            <result name="success">/doctor-dashboard/my-orders.jsp</result>
+        </action>
+
+        <action name="doctor-medical-histories" class="com.vetardim.controller.doctorDashboard.MedicalHistoriesController">
+            <result name="success">/doctor-dashboard/medical-histories.jsp</result>
+        </action>
+
+        <action name="doctor-show-medical-history" class="com.vetardim.controller.doctorDashboard.MedicalHistoriesController" method="showMedicalHistory">
+            <result name="success">/doctor-dashboard/show-medical-history.jsp</result>
+        </action>
+
+        <action name="doctor-show-treatment" class="com.vetardim.controller.doctorDashboard.MedicalHistoriesController" method="getTreatments">
+            <result name="success">/doctor-dashboard/visit-treatments.jsp</result>
+        </action>
+
     </package>
 
 

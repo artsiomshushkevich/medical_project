@@ -61,7 +61,7 @@
         <div class="sidebar-collapse">
             <ul class="nav" id="main-menu">
                 <li>
-                    <a class="active-menu" href="doctor-myinfo.action"><i class="fa fa-dashboard"></i>My info</a>
+                    <a href="doctor-myinfo.action"><i class="fa fa-dashboard"></i>My info</a>
                 </li>
                 <li>
                     <a href="doctor-myorders.action"><i class="fa fa-paperclip"></i>My orders</a>
@@ -70,7 +70,7 @@
                     <a href="doctor-makeorder.action"><i class="fa fa-thumb-tack"></i>Create visit</a>
                 </li>
                 <li>
-                    <a href="doctor-medical-histories.action"><i class="fa fa-medkit"></i>Medical histories</a>
+                    <a class="active-menu" href="doctor-medical-histories.action"><i class="fa fa-medkit"></i>Medical histories</a>
                 </li>
                 <li>
                     <a href="doctor-myanalyses.action"><i class="fa fa-calendar"></i>My schedule</a>
@@ -88,52 +88,43 @@
                     <!-- Table -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            My info
+                            Medical history (ID: <s:property value="medicalHistory.id"></s:property>)
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">
-                                <p>Information about me:</p>
-                                <table class="table table-striped table-hover">
+                                <p>Visits list:</p>
+                                <table class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>complaints</th>
+                                        <th>diagnosys</th>
+                                        <th>doctor speciality</th>
+                                        <th>doctor name</th>
+                                        <th>date</th>
+                                        <th>actions</th>
+                                    </tr>
+                                    </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>Login: </td>
-                                        <td><s:property value="doctor.login"></s:property></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Firstname: </td>
-                                        <td><s:property value="doctor.firstname"></s:property></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Secondname: </td>
-                                        <td><s:property value="doctor.secondname"></s:property></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Lastname: </td>
-                                        <td><s:property value="doctor.lastname"></s:property></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Qualification: </td>
-                                        <td><s:property value="doctor.qualification"></s:property></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Speciality: </td>
-                                        <td><s:property value="doctor.speciality"></s:property></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Phone number: </td>
-                                        <td><s:property value="doctor.phoneNumber"></s:property></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Department: </td>
-                                        <td><s:property value="doctor.department"></s:property></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Email: </td>
-                                        <td><s:property value="doctor.email"></s:property></td>
-                                    </tr>
+                                    <s:iterator value="visitsList" var="visit">
+                                        <tr>
+                                            <td><s:property value="id"></s:property></td>
+                                            <td><s:property value="complaints"></s:property></td>
+                                            <td><s:property value="diagnosys"></s:property></td>
+                                            <td><s:property value="doctorSpeciality"></s:property></td>
+                                            <td><s:property value="doctorFullname"></s:property></td>
+                                            <td><s:property value="date"></s:property></td>
+                                            <td>
+                                                <a href="doctor-show-treatment.action?id=<s:property value="id"/>" class="btn btn-link">
+                                                    show treatment
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </s:iterator>
                                     </tbody>
                                 </table>
                             </div>
+
                         </div>
                     </div>
                 </div>

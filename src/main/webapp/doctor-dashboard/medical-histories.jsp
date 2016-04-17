@@ -1,12 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="s" uri="/struts-tags" %>
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
+    <title>Medical Histories Table</title>
     <!-- Bootstrap Styles-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FontAwesome Styles-->
@@ -29,7 +30,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.jsp">Dashboard</a>
+            <a class="navbar-brand" href="../index.jsp">Medical</a>
         </div>
 
         <ul class="nav navbar-top-links navbar-right">
@@ -61,7 +62,7 @@
         <div class="sidebar-collapse">
             <ul class="nav" id="main-menu">
                 <li>
-                    <a class="active-menu" href="doctor-myinfo.action"><i class="fa fa-dashboard"></i>My info</a>
+                    <a href="doctor-myinfo.action"><i class="fa fa-dashboard"></i>My info</a>
                 </li>
                 <li>
                     <a href="doctor-myorders.action"><i class="fa fa-paperclip"></i>My orders</a>
@@ -70,13 +71,12 @@
                     <a href="doctor-makeorder.action"><i class="fa fa-thumb-tack"></i>Create visit</a>
                 </li>
                 <li>
-                    <a href="doctor-medical-histories.action"><i class="fa fa-medkit"></i>Medical histories</a>
+                    <a class="active-menu" href="doctor-medical-histories.action"><i class="fa fa-medkit"></i>Medical histories</a>
                 </li>
                 <li>
                     <a href="doctor-myanalyses.action"><i class="fa fa-calendar"></i>My schedule</a>
                 </li>
             </ul>
-
         </div>
 
     </nav>
@@ -88,49 +88,34 @@
                     <!-- Table -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            My info
+                            Medical histories
                         </div>
                         <div class="panel-body">
+
                             <div class="table-responsive">
-                                <p>Information about me:</p>
-                                <table class="table table-striped table-hover">
+                                <p>Medical histories list:</p>
+                                <table class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>client id</th>
+                                        <th>client name</th>
+                                        <th>actions</th>
+                                    </tr>
+                                    </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>Login: </td>
-                                        <td><s:property value="doctor.login"></s:property></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Firstname: </td>
-                                        <td><s:property value="doctor.firstname"></s:property></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Secondname: </td>
-                                        <td><s:property value="doctor.secondname"></s:property></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Lastname: </td>
-                                        <td><s:property value="doctor.lastname"></s:property></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Qualification: </td>
-                                        <td><s:property value="doctor.qualification"></s:property></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Speciality: </td>
-                                        <td><s:property value="doctor.speciality"></s:property></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Phone number: </td>
-                                        <td><s:property value="doctor.phoneNumber"></s:property></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Department: </td>
-                                        <td><s:property value="doctor.department"></s:property></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Email: </td>
-                                        <td><s:property value="doctor.email"></s:property></td>
-                                    </tr>
+                                    <s:iterator value="medicalHistoriesList" var="medicalHistory">
+                                        <tr>
+                                            <td><s:property value="id"></s:property></td>
+                                            <td><s:property value="clientId"></s:property></td>
+                                            <td><s:property value="clientFullname"></s:property></td>
+                                            <td>
+                                                <a href="doctor-show-medical-history.action?id=<s:property value="id"/>" class="btn btn-link">
+                                                    show medical history
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </s:iterator>
                                     </tbody>
                                 </table>
                             </div>
@@ -157,9 +142,6 @@
 <!-- Custom Js -->
 <script src="assets/js/custom-scripts.js"></script>
 
-
 </body>
 
 </html>
-
-

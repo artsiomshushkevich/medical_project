@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -61,7 +62,7 @@
         <div class="sidebar-collapse">
             <ul class="nav" id="main-menu">
                 <li>
-                    <a class="active-menu" href="doctor-myinfo.action"><i class="fa fa-dashboard"></i>My info</a>
+                    <a href="doctor-myinfo.action"><i class="fa fa-dashboard"></i>My info</a>
                 </li>
                 <li>
                     <a href="doctor-myorders.action"><i class="fa fa-paperclip"></i>My orders</a>
@@ -70,7 +71,7 @@
                     <a href="doctor-makeorder.action"><i class="fa fa-thumb-tack"></i>Create visit</a>
                 </li>
                 <li>
-                    <a href="doctor-medical-histories.action"><i class="fa fa-medkit"></i>Medical histories</a>
+                    <a class="active-menu" href="doctor-medical-histories.action"><i class="fa fa-medkit"></i>Medical histories</a>
                 </li>
                 <li>
                     <a href="doctor-myanalyses.action"><i class="fa fa-calendar"></i>My schedule</a>
@@ -85,55 +86,33 @@
         <div id="page-inner">
             <div class="row">
                 <div class="col-md-12">
-                    <!-- Table -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            My info
+                            <%--<a href="client-mymedicalhistory.action" class="btn btn-primary text-center">Go back to my medical history</a>--%>
                         </div>
                         <div class="panel-body">
-                            <div class="table-responsive">
-                                <p>Information about me:</p>
-                                <table class="table table-striped table-hover">
-                                    <tbody>
+                            <p>Treatments list:</p>
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th>prescription</th>
+                                    <th>cure count</th>
+                                    <th>method of using</th>
+                                    <th>cure</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <s:iterator value="treatmentsList" var="treatment">
                                     <tr>
-                                        <td>Login: </td>
-                                        <td><s:property value="doctor.login"></s:property></td>
+                                        <td><s:property value="prescription"></s:property></td>
+                                        <td><s:property value="cureCount"></s:property></td>
+                                        <td><s:property value="methodOfUsing"></s:property></td>
+                                        <td><s:property value="cure"></s:property></td>
                                     </tr>
-                                    <tr>
-                                        <td>Firstname: </td>
-                                        <td><s:property value="doctor.firstname"></s:property></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Secondname: </td>
-                                        <td><s:property value="doctor.secondname"></s:property></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Lastname: </td>
-                                        <td><s:property value="doctor.lastname"></s:property></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Qualification: </td>
-                                        <td><s:property value="doctor.qualification"></s:property></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Speciality: </td>
-                                        <td><s:property value="doctor.speciality"></s:property></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Phone number: </td>
-                                        <td><s:property value="doctor.phoneNumber"></s:property></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Department: </td>
-                                        <td><s:property value="doctor.department"></s:property></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Email: </td>
-                                        <td><s:property value="doctor.email"></s:property></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                                </s:iterator>
+                                </tbody>
+                            </table>
+
                         </div>
                     </div>
                 </div>
@@ -161,5 +140,4 @@
 </body>
 
 </html>
-
 

@@ -61,10 +61,10 @@
         <div class="sidebar-collapse">
             <ul class="nav" id="main-menu">
                 <li>
-                    <a class="active-menu" href="doctor-myinfo.action"><i class="fa fa-dashboard"></i>My info</a>
+                    <a href="doctor-myinfo.action"><i class="fa fa-dashboard"></i>My info</a>
                 </li>
                 <li>
-                    <a href="doctor-myorders.action"><i class="fa fa-paperclip"></i>My orders</a>
+                    <a class="active-menu" href="doctor-myorders.action"><i class="fa fa-paperclip"></i>My orders</a>
                 </li>
                 <li>
                     <a href="doctor-makeorder.action"><i class="fa fa-thumb-tack"></i>Create visit</a>
@@ -88,49 +88,31 @@
                     <!-- Table -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            My info
+                            My orders
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">
-                                <p>Information about me:</p>
-                                <table class="table table-striped table-hover">
+                                <p>Orders list:</p>
+                                <table class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>date</th>
+                                        <th>begin time</th>
+                                        <th>client name</th>
+                                        <th>client id</th>
+                                    </tr>
+                                    </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>Login: </td>
-                                        <td><s:property value="doctor.login"></s:property></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Firstname: </td>
-                                        <td><s:property value="doctor.firstname"></s:property></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Secondname: </td>
-                                        <td><s:property value="doctor.secondname"></s:property></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Lastname: </td>
-                                        <td><s:property value="doctor.lastname"></s:property></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Qualification: </td>
-                                        <td><s:property value="doctor.qualification"></s:property></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Speciality: </td>
-                                        <td><s:property value="doctor.speciality"></s:property></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Phone number: </td>
-                                        <td><s:property value="doctor.phoneNumber"></s:property></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Department: </td>
-                                        <td><s:property value="doctor.department"></s:property></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Email: </td>
-                                        <td><s:property value="doctor.email"></s:property></td>
-                                    </tr>
+                                    <s:iterator value="ordersList" var="order">
+                                        <tr>
+                                            <td><s:property value="id"></s:property></td>
+                                            <td><s:property value="dateInString"></s:property></td>
+                                            <td><s:property value="beginTimeInString"></s:property></td>
+                                            <td><s:property value="clientFullname"></s:property></td>
+                                            <td><s:property value="clientId"></s:property></td>
+                                        </tr>
+                                    </s:iterator>
                                     </tbody>
                                 </table>
                             </div>

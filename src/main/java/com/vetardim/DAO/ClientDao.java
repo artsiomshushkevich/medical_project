@@ -47,6 +47,25 @@ public class ClientDao {
 
     }
 
+    public static Client getClientById(int id) {
+        Session session = HibernateUtil.makeSession();
+        session.beginTransaction();
+        Client client = null;
+        try {
+            Criteria criteria = session.createCriteria(Client.class);
+            criteria.add(Restrictions.eq("id", id));
+            client = (Client)criteria.uniqueResult();
+            session.getTransaction().commit();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            session.getTransaction().rollback();
+        } finally {
+            session.close();
+        }
+
+        return client;
+    }
+
     public static Client getClientByUserId(int id) {
         Session session = HibernateUtil.makeSession();
         session.beginTransaction();

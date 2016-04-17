@@ -71,7 +71,7 @@
                     <a href="doctor-makeorder.action"><i class="fa fa-thumb-tack"></i>Create visit</a>
                 </li>
                 <li>
-                    <a href="doctor-mymedicalhistory.action"><i class="fa fa-medkit"></i>Medical histories</a>
+                    <a href="doctor-medical-histories.action"><i class="fa fa-medkit"></i>Medical histories</a>
                 </li>
                 <li>
                     <a href="doctor-myanalyses.action"><i class="fa fa-calendar"></i>My schedule</a>

@@ -103,5 +103,10 @@ public class Client {
         this.email = email;
     }
 
+    public String getFullname() {
+        return lastname + " " + firstname + " " + secondname;
+    }
+
+
 }
 

@@ -23,6 +23,16 @@ public class Order {
     private String doctorSpeciality;
     private String departmentAddress;
 
+    private String clientFullname;
+
+    public String getClientFullname() {
+        return clientFullname;
+    }
+
+    public void setClientFullname(String clientFullname) {
+        this.clientFullname = clientFullname;
+    }
+
     public String getDoctorSpeciality() {
         return doctorSpeciality;
     }
