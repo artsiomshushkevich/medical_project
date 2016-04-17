@@ -68,7 +68,7 @@
                     <a href="doctor-myorders.action"><i class="fa fa-paperclip"></i>My orders</a>
                 </li>
                 <li>
-                    <a href="doctor-makeorder.action"><i class="fa fa-thumb-tack"></i>Create visit</a>
+                    <a href="doctor-makevisit.action"><i class="fa fa-thumb-tack"></i>Create visit</a>
                 </li>
                 <li>
                     <a class="active-menu" href="doctor-medical-histories.action"><i class="fa fa-medkit"></i>Medical histories</a>

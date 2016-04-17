@@ -328,6 +328,22 @@
             <result name="success">/doctor-dashboard/my-schedule.jsp</result>
         </action>
 
+        <action name="doctor-makevisit" class="com.vetardim.controller.doctorDashboard.MakeVisitController">
+            <result name="success">/doctor-dashboard/make-visit.jsp</result>
+        </action>
+
+        <action name="doctor-visit-add" class="com.vetardim.controller.doctorDashboard.MakeVisitController" method="addVisit">
+            <result name="success">/doctor-dashboard/make-visit-answer.jsp</result>
+        </action>
+
+        <action name="doctor-make-treatment" class="com.vetardim.controller.doctorDashboard.MakeVisitController" method="makeTreatment">
+            <result name="success">/doctor-dashboard/make-treatment.jsp</result>
+        </action>
+
+        <action name="doctor-add-treatment" class="com.vetardim.controller.doctorDashboard.MakeVisitController" method="addTreatment">
+            <result name="success">/doctor-dashboard/make-treatment-answer.jsp</result>
+        </action>
+
     </package>
 
 
