@@ -65,6 +65,25 @@ public class OrderDao {
         return ordersList;
     }
 
+    public static Order getOrderById(int id) {
+        Session session = HibernateUtil.makeSession();
+        session.beginTransaction();
+        Order order = null;
+        try {
+            Criteria criteria = session.createCriteria(Order.class);
+            criteria.add(Restrictions.eq("id", id));
+            order = (Order)criteria.uniqueResult();
+            session.getTransaction().commit();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            session.getTransaction().rollback();
+        } finally {
+            session.close();
+        }
+
+        return order;
+    }
+
     public static List<Order> getOrdersList() {
         Session session = HibernateUtil.makeSession();
         session.beginTransaction();

@@ -18,7 +18,36 @@ public class Visit {
     @Column(name = "complaints")
     private String complaints;
 
+    private String doctorFullname;
+    private String doctorSpeciality;
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    private String date;
+
     public Visit (){}
+
+    public String getDoctorFullname() {
+        return doctorFullname;
+    }
+
+    public void setDoctorFullname(String doctorFullname) {
+        this.doctorFullname = doctorFullname;
+    }
+
+    public String getDoctorSpeciality() {
+        return doctorSpeciality;
+    }
+
+    public void setDoctorSpeciality(String doctorSpeciality) {
+        this.doctorSpeciality = doctorSpeciality;
+    }
 
     public int getId() {
         return id;

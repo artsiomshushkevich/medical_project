@@ -80,6 +80,7 @@
         </div>
 
     </nav>
+    <%@include file='treatments-modal.jsp'%>
     <!-- /. NAV SIDE  -->
     <div id="page-wrapper">
         <div id="page-inner">
@@ -88,10 +89,40 @@
                     <!-- Table -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            My info
+                            My medical history (ID: <s:property value="medicalHistory.id"></s:property>)
                         </div>
                         <div class="panel-body">
-
+                            <div class="table-responsive">
+                                <p>Visits list:</p>
+                                <table class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>complaints</th>
+                                        <th>diagnosys</th>
+                                        <th>doctor speciality</th>
+                                        <th>doctor name</th>
+                                        <th>date</th>
+                                        <th>actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <s:iterator value="visitsList" var="visit">
+                                        <tr>
+                                            <td><s:property value="id"></s:property></td>
+                                            <td><s:property value="complaints"></s:property></td>
+                                            <td><s:property value="diagnosys"></s:property></td>
+                                            <td><s:property value="doctorSpeciality"></s:property></td>
+                                            <td><s:property value="doctorFullname"></s:property></td>
+                                            <td><s:property value="date"></s:property></td>
+                                            <td>
+                                                <button class="btn btn-link" id_instance="<s:property value="id"/>" onclick="showTreatmentModal(this)">show treatments</button>
+                                            </td>
+                                        </tr>
+                                    </s:iterator>
+                                    </tbody>
+                                </table>
+                            </div>
 
                         </div>
                     </div>
@@ -120,5 +151,21 @@
 </body>
 
 </html>
+
+<script>
+    function showTreatmentModal(instance)
+    {
+        var visitId = $(instance).attr('id_instance');
+        $.getJSON('get-treatments', {
+            visitId : visitId
+        }, function(jsonResponse) {
+            $.each(jsonResponse.stateMap, function(key, value) {
+                $('#answer').append(key + " " + value);
+            });
+        });
+
+        $('.treatments_modal').modal();
+    }
+</script>
 
 

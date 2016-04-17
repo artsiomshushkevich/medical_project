@@ -88,10 +88,32 @@
                     <!-- Table -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            My info
+                            Make order section
                         </div>
                         <div class="panel-body">
-
+                            <form method="post" action="client-order-add.action">
+                                <div class="form-group">
+                                    <p>Select doctor:</p>
+                                    <select required class="form-control" name="doctorId">
+                                        <s:iterator value="doctorsList" var="doctor">
+                                            <option value="<s:property value="id"></s:property>">
+                                                <b>Name:</b> <s:property value="getFullname()"></s:property>&nbsp; &middot; &nbsp;
+                                                <b>Speciality:</b> <s:property value="speciality"></s:property>
+                                            </option>
+                                        </s:iterator>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <p>Select date:</p>
+                                    <input type="date" required class="form-control" name="date">
+                                </div>
+                                <div class="form-group">
+                                    <p>Select begin time:</p>
+                                    <input type="time" required class="form-control" name="time">
+                                </div>
+                                <br>
+                                <button type="submit" class="btn btn-primary add-btn">Make order</button>
+                            </form>
                         </div>
                     </div>
                 </div>

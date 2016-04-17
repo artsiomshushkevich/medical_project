@@ -2,8 +2,10 @@ package com.vetardim.DAO;
 
 import com.vetardim.model.MedicalHistory;
 import com.vetardim.util.HibernateUtil;
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 
 import java.util.List;
@@ -42,6 +44,25 @@ public class MedicalHistoryDao {
             session.close();
         }
 
+    }
+
+    public static MedicalHistory getMedicalHistoryByClientId(int id) {
+        Session session = HibernateUtil.makeSession();
+        session.beginTransaction();
+        MedicalHistory medicalHistory = null;
+        try {
+            Criteria criteria = session.createCriteria(MedicalHistory.class);
+            criteria.add(Restrictions.eq("clientId", id));
+            medicalHistory = (MedicalHistory) criteria.uniqueResult();
+            session.getTransaction().commit();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            session.getTransaction().rollback();
+        } finally {
+            session.close();
+        }
+
+        return medicalHistory;
     }
 
     public static List<MedicalHistory> getMedicalHistoriesList() {

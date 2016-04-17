@@ -1,9 +1,6 @@
 package com.vetardim.model;
 
 import javax.persistence.*;
-import java.sql.Time;
-import java.util.Date;
-import com.vetardim.model.Doctor;
 
 @Entity
 @Table(name = "medical.order")

@@ -10,7 +10,7 @@ public class MedicalHistory {
     @Column(name = "id")
     private int id;
     @Column(name = "client_id")
-    private String clientId;
+    private int clientId;
 
     public MedicalHistory (){}
 
@@ -22,11 +22,11 @@ public class MedicalHistory {
         this.id = id;
     }
 
-    public String getClientId() {
+    public int getClientId() {
         return clientId;
     }
 
-    public void setClientId(String clientId) {
+    public void setClientId(int clientId) {
         this.clientId = clientId;
     }
 }

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -64,7 +65,7 @@
                     <a href="client-myinfo.action"><i class="fa fa-dashboard"></i>My info</a>
                 </li>
                 <li>
-                    <a class="active-menu" href="client-myorders.action"><i class="fa fa-paperclip"></i>My orders</a>
+                    <a href="client-myorders.action"><i class="fa fa-paperclip"></i>My orders</a>
                 </li>
                 <li>
                     <a href="client-makeorder.action"><i class="fa fa-thumb-tack"></i>Make order</a>
@@ -85,41 +86,8 @@
         <div id="page-inner">
             <div class="row">
                 <div class="col-md-12">
-                    <!-- Table -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            My analyses
-                        </div>
-                        <div class="panel-body">
-                            <div class="table-responsive">
-                                <p>Analyses list:</p>
-                                <table class="table table-striped table-bordered table-hover">
-                                    <thead>
-                                    <tr>
-                                        <th>id</th>
-                                        <th>name</th>
-                                        <th>result</th>
-                                        <th>visit id</th>
-                                        <th>doctor speciality</th>
-                                        <th>doctor name</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <s:iterator value="analysesList" var="analyse">
-                                        <tr>
-                                            <td><s:property value="id"></s:property></td>
-                                            <td><s:property value="name"></s:property></td>
-                                            <td><s:property value="result"></s:property></td>
-                                            <td><s:property value="visitId"></s:property></td>
-                                            <td><s:property value="doctorSpeciality"></s:property></td>
-                                            <td><s:property value="doctorFullname"></s:property></td>
-                                        </tr>
-                                    </s:iterator>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+                    <h1 class="text-center"><s:property value="answer"></s:property></h1>
+                    <%--<a href="client-myorders.action" class="btn btn-primary text-center">Go back to my orders</a>--%>
                 </div>
             </div>
         </div>
@@ -145,6 +113,4 @@
 </body>
 
 </html>
-
-
 
