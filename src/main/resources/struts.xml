@@ -346,6 +346,7 @@
 
         <action name="doctor-visit-add" class="com.vetardim.controller.doctorDashboard.MakeVisitController" method="addVisit">
             <result name="success">/doctor-dashboard/make-visit-answer.jsp</result>
+            <result name="error">/doctor-dashboard/make-visit-answer-error.jsp</result>
         </action>
 
         <action name="doctor-make-treatment" class="com.vetardim.controller.doctorDashboard.MakeVisitController" method="makeTreatment">

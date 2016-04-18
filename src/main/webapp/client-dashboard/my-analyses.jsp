@@ -64,7 +64,7 @@
                     <a href="client-myinfo.action"><i class="fa fa-dashboard"></i>My info</a>
                 </li>
                 <li>
-                    <a class="active-menu" href="client-myorders.action"><i class="fa fa-paperclip"></i>My orders</a>
+                    <a href="client-myorders.action"><i class="fa fa-paperclip"></i>My orders</a>
                 </li>
                 <li>
                     <a href="client-makeorder.action"><i class="fa fa-thumb-tack"></i>Make order</a>
@@ -73,7 +73,7 @@
                     <a href="client-mymedicalhistory.action"><i class="fa fa-medkit"></i>My medical history</a>
                 </li>
                 <li>
-                    <a href="client-myanalyses.action"><i class="fa fa-pencil-square-o"></i>My analyses</a>
+                    <a class="active-menu" href="client-myanalyses.action"><i class="fa fa-pencil-square-o"></i>My analyses</a>
                 </li>
             </ul>
 

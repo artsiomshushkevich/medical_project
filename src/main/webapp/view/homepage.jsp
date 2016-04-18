@@ -21,7 +21,6 @@
             <c:set var="salary" scope="session" value='<%=session.getAttribute("role")%>'/>
             <c:if test="${salary eq 'Client'}">
                 <li><a class="btn btn-link" href="client-dashboard.action">Dashboard</a></li>
-                <li><a class="btn btn-link" href="registration.action">Sing up</a></li>
                 <li><a class="btn btn-link" href="logout.action">Sing out</a></li>
             </c:if>
             <c:if test="${salary eq 'Admin'}">
@@ -30,7 +29,6 @@
             </c:if>
             <c:if test="${salary eq 'Doctor'}">
                 <li><a class="btn btn-link" href="doctor-dashboard.action">Dashboard</a></li>
-                <li><a class="btn btn-link" href="registration.action">Sing up</a></li>
                 <li><a class="btn btn-link" href="logout.action">Sing out</a></li>
             </c:if>
         </ul>

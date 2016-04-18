@@ -99,7 +99,13 @@
                                     <label>Diagnosys: <input type="text" required  class="form-control" name="visit.diagnosys"></label>
                                 </div>
                                 <div class="form-group">
-                                    <label>Medical history id: <input type="number" required min="1" class="form-control" name="visit.medicalHistoryId"></label>
+                                    <label>Medical history id:
+                                        <select class="form-control" name="visit.medicalHistoryId">
+                                            <s:iterator value="medicalHistories" var="medicalHistory">
+                                                <option value="<s:property value="id"/>"><s:property value="id"/></option>
+                                            </s:iterator>
+                                        </select>
+                                    </label>
                                 </div>
                                 <div class="form-group">
                                     <label>Order id: <input type="number" required min="1" class="form-control" name="visit.orderId"></label>

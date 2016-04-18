@@ -77,7 +77,6 @@
                     <a href="doctor-myschedule.action"><i class="fa fa-calendar"></i>My schedule</a>
                 </li>
             </ul>
-
         </div>
 
     </nav>
@@ -86,35 +85,7 @@
         <div id="page-inner">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Create treatment
-                        </div>
-                        <div class="panel-body">
-                            <form method="post" action="doctor-add-treatment.action">
-                                <div class="form-group">
-                                    <label>Prescription: <input type="text" required class="form-control" name="treatment.prescription"></label>
-                                </div>
-                                <div class="form-group">
-                                    <label>Cure count: <input type="number" required min="1" class="form-control" name="treatment.cureCount"></label>
-                                </div>
-                                <div class="form-group">
-                                    <label>Method of using: <input type="text" required class="form-control" name="treatment.methodOfUsing"></label>
-                                </div>
-                                <div class="form-group">
-                                    <label>Cure id:
-                                        <select class="form-control" name="treatment.cureId">
-                                            <s:iterator value="curesList" var="cure">
-                                                <option value="<s:property value="id"/>"><s:property value="name"/></option>
-                                            </s:iterator>
-                                        </select>
-                                    </label>
-                                </div>
-                                <br>
-                                <button type="submit" class="btn btn-primary add-btn">Save</button>
-                            </form>
-                        </div>
-                    </div>
+                    <h1 class="text-center"><s:property value="answer"></s:property></h1>
                 </div>
             </div>
         </div>
