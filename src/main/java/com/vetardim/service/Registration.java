@@ -2,6 +2,8 @@ package com.vetardim.service;
 
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
+import com.vetardim.DAO.ClientDao;
+import com.vetardim.model.Client;
 import com.vetardim.model.User;
 import com.vetardim.DAO.UserDao;
 
@@ -14,6 +16,7 @@ import java.util.List;
 public class Registration extends ActionSupport {
 
     private User user = new User();
+    private Client client = new Client();
     private List<User> usersList = new ArrayList<User>();
     public User getUser() {
         return user;
@@ -21,6 +24,14 @@ public class Registration extends ActionSupport {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public Client getClient() {
+        return client;
+    }
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
     public List<User> getUsersList() {
         return usersList;
     }
@@ -63,6 +74,14 @@ public class Registration extends ActionSupport {
         this.user.setPassword(this.password);
         this.user.setRoleId(2);
         UserDao.addOrUpdateUser(getUser());
+        for (User listElement : UserDao.getUsersList()) {
+            if(this.login.equals(listElement.getNickname()))
+            {
+               client.setUserId(listElement.getId());
+                ClientDao.addOrUpdateClient(getClient());
+            }
+
+        }
         return Action.SUCCESS;
     }
 

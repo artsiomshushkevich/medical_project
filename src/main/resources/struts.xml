@@ -24,28 +24,40 @@
                     <param name="allowedRoles">admin,doctor,client</param>
                 </interceptor-ref>
             </interceptor-stack>
+
+            <interceptor-stack name="disroleStackUser">
+                <interceptor-ref name="defaultStack"/>
+                <interceptor-ref name="roleInterceptor">
+                    <param name="disallowedRoles">admin,doctor,client</param>
+                </interceptor-ref>
+            </interceptor-stack>
         </interceptors>
 
         <default-action-ref name="index"/>
 
         <action name="singup" class="com.vetardim.service.Registration" method="singup">
+            <interceptor-ref name="disroleStackUser"/>
             <result name="success">/view/success-signup.jsp</result>
         </action>
 
         <action name="registration" class="com.vetardim.service.Registration">
+            <interceptor-ref name="disroleStackUser"/>
             <result name="success">/view/registration.jsp</result>
         </action>
 
         <action name="login" class="com.vetardim.service.Authorisation" method="login">
+            <interceptor-ref name="disroleStackUser"/>
             <result name="success" type="chain">homepage</result>
             <result name="login" type="chain">authorisation</result>
         </action>
 
         <action name="logout" class="com.vetardim.service.Authorisation" method="logout">
+            <interceptor-ref name="roleStackUser"/>
             <result name="success">/index.jsp</result>
         </action>
 
         <action name="authorisation" class="com.vetardim.service.Authorisation">
+            <interceptor-ref name="disroleStackUser"/>
             <result name="success">/view/authorisation.jsp</result>
         </action>
 

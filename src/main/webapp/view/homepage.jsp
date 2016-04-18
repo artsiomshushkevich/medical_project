@@ -26,7 +26,6 @@
             </c:if>
             <c:if test="${salary eq 'Admin'}">
                 <li><a class="btn btn-link" href="adminpanel.action">Admin panel</a></li>
-                <li><a class="btn btn-link" href="registration.action">Sing up</a></li>
                 <li><a class="btn btn-link" href="logout.action">Sing out</a></li>
             </c:if>
             <c:if test="${salary eq 'Doctor'}">
