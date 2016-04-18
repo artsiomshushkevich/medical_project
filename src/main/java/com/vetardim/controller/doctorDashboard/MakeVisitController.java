@@ -1,11 +1,14 @@
 package com.vetardim.controller.doctorDashboard;
 
 import com.opensymphony.xwork2.Action;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.vetardim.DAO.TreatmentDao;
 import com.vetardim.DAO.VisitDao;
 import com.vetardim.model.Treatment;
 import com.vetardim.model.Visit;
+
+import java.util.Map;
 
 public class MakeVisitController extends ActionSupport {
 
@@ -46,7 +49,8 @@ public class MakeVisitController extends ActionSupport {
 
     public String addVisit() {
         VisitDao.addOrUpdateVisit(getVisit());
-        orderId = getVisit().getId();
+        Map session = ActionContext.getContext().getSession();
+        session.put("orderId", getVisit().getOrderId());
         answer = "Visit is added successful";
         return Action.SUCCESS;
     }
@@ -56,6 +60,8 @@ public class MakeVisitController extends ActionSupport {
     }
 
     public String addTreatment() {
+        Map session = ActionContext.getContext().getSession();
+        orderId = Integer.parseInt(session.get("orderId").toString());
         Visit visit = VisitDao.getVisitByOrderId(orderId);
         getTreatment().setVisitId(visit.getId());
         TreatmentDao.addOrUpdateTreatment(getTreatment());
