@@ -13,7 +13,6 @@ public class User {
     private String nickname;
     @Column(name = "password")
     private String password;
-
     public int getRoleId() {
         return roleId;
     }
@@ -24,6 +23,16 @@ public class User {
 
     @Column(name = "role_id")
     private int roleId;
+
+    private String role;
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     public User (){}
 

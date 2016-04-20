@@ -127,7 +127,7 @@
                                     <thead>
                                     <tr>
                                         <th>id</th>
-                                        <th>client id</th>
+                                        <th>client fullname</th>
                                         <th>actions</th>
                                     </tr>
                                     </thead>
@@ -135,7 +135,7 @@
                                     <s:iterator value="medicalHistoriesList" var="medicalHistory">
                                         <tr>
                                             <td><s:property value="id"></s:property></td>
-                                            <td><s:property value="clientId"></s:property></td>
+                                            <td><s:property value="clientFullname"></s:property></td>
                                             <td>
                                                 <button class="btn btn-link" id_instance="<s:property value="id"/>" onclick="showEditModal(this)">update</button>
                                                 &middot;

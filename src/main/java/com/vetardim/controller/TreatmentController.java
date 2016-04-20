@@ -2,6 +2,8 @@ package com.vetardim.controller;
 
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
+import com.vetardim.DAO.CureDao;
+import com.vetardim.DAO.VisitDao;
 import com.vetardim.model.Treatment;
 import com.vetardim.DAO.TreatmentDao;
 
@@ -40,10 +42,14 @@ public class TreatmentController extends ActionSupport {
     @Override
     public String execute() throws Exception {
         this.treatmentsList =  TreatmentDao.getTreatmentsList();
+        for (Treatment treatment: treatmentsList) {
+            treatment.setCure(CureDao.getCureById(treatment.getCureId()).getName());
+        }
         return Action.SUCCESS;
     }
 
     public String update() {
+        if (!validate(getTreatment())) return Action.ERROR;
         TreatmentDao.addOrUpdateTreatment(getTreatment());
         return Action.SUCCESS;
     }
@@ -54,10 +60,25 @@ public class TreatmentController extends ActionSupport {
     }
 
     public String add() {
+        if (!validate(getTreatment())) return Action.ERROR;
         TreatmentDao.addOrUpdateTreatment(getTreatment());
         return Action.SUCCESS;
     }
 
+    public String errorString;
+
+    private boolean validate(Treatment treatment)
+    {
+        if (CureDao.getCureById(treatment.getCureId()) == null) {
+            errorString = "Cure id is invalid";
+            return false;
+        }
+        if (VisitDao.getVisitById(treatment.getVisitId()) == null) {
+            errorString = "Visit id is invalid";
+            return false;
+        }
+        return true;
+    }
 
 }
 

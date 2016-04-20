@@ -73,209 +73,253 @@
 
         <action name="users-add" class="com.vetardim.controller.UserController" method="add">
             <result name="success" type="chain">users-index</result>
+            <result name="error">/adminpanel/error-page.jsp</result>
         </action>
 
         <action name="users-delete" class="com.vetardim.controller.UserController" method="delete">
             <result name="success" type="chain">users-index</result>
+            <result name="error">/adminpanel/error-page.jsp</result>
         </action>
 
         <action name="users-update" class="com.vetardim.controller.UserController" method="update">
             <result name="success" type="chain">users-index</result>
+            <result name="error">/adminpanel/error-page.jsp</result>
         </action>
 
         <action name="users-index" class="com.vetardim.controller.UserController">
             <interceptor-ref name="roleStack"/>
             <result name="success">/adminpanel/users.jsp</result>
+            <result name="error">/adminpanel/error-page.jsp</result>
         </action>
 
 
 
         <action name="analyses-add" class="com.vetardim.controller.AnalyseController" method="add">
             <result name="success" type="chain">analyses-index</result>
+            <result name="error">/adminpanel/error-page.jsp</result>
         </action>
 
         <action name="analyses-delete" class="com.vetardim.controller.AnalyseController" method="delete">
             <result name="success" type="chain">analyses-index</result>
+            <result name="error">/adminpanel/error-page.jsp</result>
         </action>
 
         <action name="analyses-update" class="com.vetardim.controller.AnalyseController" method="update">
             <result name="success" type="chain">analyses-index</result>
+            <result name="error">/adminpanel/error-page.jsp</result>
         </action>
 
         <action name="analyses-index" class="com.vetardim.controller.AnalyseController">
             <interceptor-ref name="roleStack"/>
             <result name="success">/adminpanel/analyses.jsp</result>
+            <result name="error">/adminpanel/error-page.jsp</result>
         </action>
 
 
 
         <action name="clients-add" class="com.vetardim.controller.ClientController" method="add">
             <result name="success" type="chain">clients-index</result>
+            <result name="error">/adminpanel/error-page.jsp</result>
         </action>
 
         <action name="clients-delete" class="com.vetardim.controller.ClientController" method="delete">
             <result name="success" type="chain">clients-index</result>
+            <result name="error">/adminpanel/error-page.jsp</result>
         </action>
 
         <action name="clients-update" class="com.vetardim.controller.ClientController" method="update">
             <result name="success" type="chain">clients-index</result>
+            <result name="error">/adminpanel/error-page.jsp</result>
         </action>
 
         <action name="clients-index" class="com.vetardim.controller.ClientController">
             <interceptor-ref name="roleStack"/>
             <result name="success">/adminpanel/clients.jsp</result>
+            <result name="error">/adminpanel/error-page.jsp</result>
         </action>
 
 
 
         <action name="departments-add" class="com.vetardim.controller.DepartmentController" method="add">
             <result name="success" type="chain">departments-index</result>
+            <result name="error">/adminpanel/error-page.jsp</result>
         </action>
 
         <action name="departments-delete" class="com.vetardim.controller.DepartmentController" method="delete">
             <result name="success" type="chain">departments-index</result>
+            <result name="error">/adminpanel/error-page.jsp</result>
         </action>
 
         <action name="departments-update" class="com.vetardim.controller.DepartmentController" method="update">
             <result name="success" type="chain">departments-index</result>
+            <result name="error">/adminpanel/error-page.jsp</result>
         </action>
 
         <action name="departments-index" class="com.vetardim.controller.DepartmentController">
             <interceptor-ref name="roleStack"/>
             <result name="success">/adminpanel/departments.jsp</result>
+            <result name="error">/adminpanel/error-page.jsp</result>
         </action>
 
 
 
         <action name="doctors-add" class="com.vetardim.controller.DoctorController" method="add">
             <result name="success" type="chain">doctors-index</result>
+            <result name="error">/adminpanel/error-page.jsp</result>
         </action>
 
         <action name="doctors-delete" class="com.vetardim.controller.DoctorController" method="delete">
             <result name="success" type="chain">doctors-index</result>
+            <result name="error">/adminpanel/error-page.jsp</result>
         </action>
 
         <action name="doctors-update" class="com.vetardim.controller.DoctorController" method="update">
             <result name="success" type="chain">doctors-index</result>
+            <result name="error">/adminpanel/error-page.jsp</result>
         </action>
 
         <action name="doctors-index" class="com.vetardim.controller.DoctorController">
             <interceptor-ref name="roleStack"/>
             <result name="success">/adminpanel/doctors.jsp</result>
+            <result name="error">/adminpanel/error-page.jsp</result>
         </action>
 
 
 
         <action name="medical-histories-add" class="com.vetardim.controller.MedicalHistoryController" method="add">
             <result name="success" type="chain">medical-histories-index</result>
+            <result name="error">/adminpanel/error-page.jsp</result>
         </action>
 
         <action name="medical-histories-delete" class="com.vetardim.controller.MedicalHistoryController" method="delete">
             <result name="success" type="chain">medical-histories-index</result>
+            <result name="error">/adminpanel/error-page.jsp</result>
         </action>
 
         <action name="medical-histories-update" class="com.vetardim.controller.MedicalHistoryController" method="update">
             <result name="success" type="chain">medical-histories-index</result>
+            <result name="error">/adminpanel/error-page.jsp</result>
         </action>
 
         <action name="medical-histories-index" class="com.vetardim.controller.MedicalHistoryController">
             <interceptor-ref name="roleStack"/>
             <result name="success">/adminpanel/medical_histories.jsp</result>
+            <result name="error">/adminpanel/error-page.jsp</result>
         </action>
 
 
 
         <action name="orders-add" class="com.vetardim.controller.OrderController" method="add">
             <result name="success" type="chain">orders-index</result>
+            <result name="error">/adminpanel/error-page.jsp</result>
         </action>
 
         <action name="orders-delete" class="com.vetardim.controller.OrderController" method="delete">
             <result name="success" type="chain">orders-index</result>
+            <result name="error">/adminpanel/error-page.jsp</result>
         </action>
 
         <action name="orders-update" class="com.vetardim.controller.OrderController" method="update">
             <result name="success" type="chain">orders-index</result>
+            <result name="error">/adminpanel/error-page.jsp</result>
         </action>
 
         <action name="orders-index" class="com.vetardim.controller.OrderController">
             <interceptor-ref name="roleStack"/>
             <result name="success">/adminpanel/orders.jsp</result>
+            <result name="error">/adminpanel/error-page.jsp</result>
         </action>
 
 
 
         <action name="schedules-add" class="com.vetardim.controller.ScheduleController" method="add">
             <result name="success" type="chain">schedules-index</result>
+            <result name="error">/adminpanel/error-page.jsp</result>
         </action>
 
         <action name="schedules-delete" class="com.vetardim.controller.ScheduleController" method="delete">
             <result name="success" type="chain">schedules-index</result>
+            <result name="error">/adminpanel/error-page.jsp</result>
         </action>
 
         <action name="schedules-update" class="com.vetardim.controller.ScheduleController" method="update">
             <result name="success" type="chain">schedules-index</result>
+            <result name="error">/adminpanel/error-page.jsp</result>
         </action>
 
         <action name="schedules-index" class="com.vetardim.controller.ScheduleController">
             <interceptor-ref name="roleStack"/>
             <result name="success">/adminpanel/schedules.jsp</result>
+            <result name="error">/adminpanel/error-page.jsp</result>
         </action>
 
 
 
         <action name="cures-add" class="com.vetardim.controller.CureController" method="add">
             <result name="success" type="chain">cures-index</result>
+            <result name="error">/adminpanel/error-page.jsp</result>
         </action>
 
         <action name="cures-delete" class="com.vetardim.controller.CureController" method="delete">
             <result name="success" type="chain">cures-index</result>
+            <result name="error">/adminpanel/error-page.jsp</result>
         </action>
 
         <action name="cures-update" class="com.vetardim.controller.CureController" method="update">
             <result name="success" type="chain">cures-index</result>
+            <result name="error">/adminpanel/error-page.jsp</result>
         </action>
 
         <action name="cures-index" class="com.vetardim.controller.CureController">
             <interceptor-ref name="roleStack"/>
             <result name="success">/adminpanel/cures.jsp</result>
+            <result name="error">/adminpanel/error-page.jsp</result>
         </action>
 
 
 
         <action name="treatments-add" class="com.vetardim.controller.TreatmentController" method="add">
             <result name="success" type="chain">treatments-index</result>
+            <result name="error">/adminpanel/error-page.jsp</result>
         </action>
 
         <action name="treatments-delete" class="com.vetardim.controller.TreatmentController" method="delete">
             <result name="success" type="chain">treatments-index</result>
+            <result name="error">/adminpanel/error-page.jsp</result>
         </action>
 
         <action name="treatments-update" class="com.vetardim.controller.TreatmentController" method="update">
             <result name="success" type="chain">treatments-index</result>
+            <result name="error">/adminpanel/error-page.jsp</result>
         </action>
 
         <action name="treatments-index" class="com.vetardim.controller.TreatmentController">
             <interceptor-ref name="roleStack"/>
             <result name="success">/adminpanel/treatments.jsp</result>
+            <result name="error">/adminpanel/error-page.jsp</result>
         </action>
 
 
 
         <action name="visits-add" class="com.vetardim.controller.VisitController" method="add">
             <result name="success" type="chain">visits-index</result>
+            <result name="error">/adminpanel/error-page.jsp</result>
         </action>
 
         <action name="visits-delete" class="com.vetardim.controller.VisitController" method="delete">
             <result name="success" type="chain">visits-index</result>
+            <result name="error">/adminpanel/error-page.jsp</result>
         </action>
 
         <action name="visits-update" class="com.vetardim.controller.VisitController" method="update">
             <result name="success" type="chain">visits-index</result>
+            <result name="error">/adminpanel/error-page.jsp</result>
         </action>
 
         <action name="visits-index" class="com.vetardim.controller.VisitController">
             <interceptor-ref name="roleStack"/>
             <result name="success">/adminpanel/visits.jsp</result>
+            <result name="error">/adminpanel/error-page.jsp</result>
         </action>
 
 

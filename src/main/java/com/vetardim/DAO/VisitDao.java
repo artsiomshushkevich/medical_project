@@ -84,6 +84,25 @@ public class VisitDao {
         return visit;
     }
 
+    public static Visit getVisitById(int id) {
+        Session session = HibernateUtil.makeSession();
+        session.beginTransaction();
+        Visit visit = null;
+        try {
+            Criteria criteria = session.createCriteria(Visit.class);
+            criteria.add(Restrictions.eq("id", id));
+            visit = (Visit)criteria.uniqueResult();
+            session.getTransaction().commit();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            session.getTransaction().rollback();
+        } finally {
+            session.close();
+        }
+
+        return visit;
+    }
+
     public static List<Visit> getVisitsList() {
         Session session = HibernateUtil.makeSession();
         session.beginTransaction();

@@ -24,6 +24,15 @@ public class Schedule {
 
     private String beginWorkdayInString;
     private String endWorkdayInString;
+    private String doctorFullname;
+
+    public String getDoctorFullname() {
+        return doctorFullname;
+    }
+
+    public void setDoctorFullname(String doctorFullname) {
+        this.doctorFullname = doctorFullname;
+    }
 
     public String getBeginWorkdayInString() {
         return beginWorkdayInString;

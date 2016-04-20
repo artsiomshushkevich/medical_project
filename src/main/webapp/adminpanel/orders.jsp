@@ -127,9 +127,9 @@
                                     <thead>
                                     <tr>
                                         <th>id</th>
-                                        <th>client id</th>
+                                        <th>client fullname</th>
                                         <th>date</th>
-                                        <th>doctor id</th>
+                                        <th>doctor fullname</th>
                                         <th>begin time</th>
                                         <th>actions</th>
                                     </tr>
@@ -138,9 +138,9 @@
                                     <s:iterator value="ordersList" var="order">
                                         <tr>
                                             <td><s:property value="id"></s:property></td>
-                                            <td><s:property value="clientId"></s:property></td>
+                                            <td><s:property value="clientFullname"></s:property></td>
                                             <td><s:property value="dateInString"></s:property></td>
-                                            <td><s:property value="doctorId"></s:property></td>
+                                            <td><s:property value="doctorFullname"></s:property></td>
                                             <td><s:property value="beginTimeInString"></s:property></td>
                                             <td>
                                                 <button class="btn btn-link" id_instance="<s:property value="id"/>" onclick="showEditModal(this)">update</button>

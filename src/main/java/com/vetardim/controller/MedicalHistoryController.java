@@ -2,6 +2,8 @@ package com.vetardim.controller;
 
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
+import com.vetardim.DAO.ClientDao;
+import com.vetardim.model.Client;
 import com.vetardim.model.MedicalHistory;
 import com.vetardim.DAO.MedicalHistoryDao;
 
@@ -40,10 +42,15 @@ public class MedicalHistoryController extends ActionSupport {
     @Override
     public String execute() throws Exception {
         this.medicalHistoriesList =  MedicalHistoryDao.getMedicalHistoriesList();
+        for (MedicalHistory medicalHistory: medicalHistoriesList) {
+            Client client = ClientDao.getClientById(medicalHistory.getClientId());
+            medicalHistory.setClientFullname(client.getFullname());
+        }
         return Action.SUCCESS;
     }
 
     public String update() {
+        if (!validate(getMedicalHistory())) return Action.ERROR;
         MedicalHistoryDao.addOrUpdateMedicalHistory(getMedicalHistory());
         return Action.SUCCESS;
     }
@@ -54,9 +61,21 @@ public class MedicalHistoryController extends ActionSupport {
     }
 
     public String add() {
+        if (!validate(getMedicalHistory())) return Action.ERROR;
         MedicalHistoryDao.addOrUpdateMedicalHistory(getMedicalHistory());
         return Action.SUCCESS;
     }
 
+    public String errorString;
+
+    private boolean validate(MedicalHistory medicalHistory)
+    {
+        if (ClientDao.getClientById(medicalHistory.getClientId()) == null) {
+            errorString = "Client id is invalid";
+            return false;
+        }
+
+        return true;
+    }
 
 }

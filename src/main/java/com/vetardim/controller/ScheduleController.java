@@ -2,6 +2,7 @@ package com.vetardim.controller;
 
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
+import com.vetardim.DAO.DoctorDao;
 import com.vetardim.model.Schedule;
 import com.vetardim.DAO.ScheduleDao;
 import com.vetardim.util.UnixTimeConverter;
@@ -63,11 +64,13 @@ public class ScheduleController extends ActionSupport {
             schedule.setBeginWorkdayInString(UnixTimeConverter.convertUnixTimeToTime(
                     schedule.getBeginWorkday(),"hh:mm"));
             schedule.setEndWorkdayInString(UnixTimeConverter.convertUnixTimeToTime(schedule.getEndWorkday(),"hh:mm"));
+            schedule.setDoctorFullname(DoctorDao.getDoctorById(schedule.getDoctorId()).getFullname());
         }
         return Action.SUCCESS;
     }
 
     public String update() {
+        if (!validate(getSchedule())) return Action.ERROR;
         schedule.setBeginWorkday(UnixTimeConverter.convertTimeToUnixTime(getBeginWorkTime(), "hh:mm"));
         schedule.setEndWorkday(UnixTimeConverter.convertTimeToUnixTime(getBeginWorkTime(), "hh:mm"));
         ScheduleDao.addOrUpdateSchedule(getSchedule());
@@ -80,10 +83,22 @@ public class ScheduleController extends ActionSupport {
     }
 
     public String add() {
+        if (!validate(getSchedule())) return Action.ERROR;
         schedule.setBeginWorkday(UnixTimeConverter.convertTimeToUnixTime(getBeginWorkTime(), "hh:mm"));
         schedule.setEndWorkday(UnixTimeConverter.convertTimeToUnixTime(getBeginWorkTime(), "hh:mm"));
         ScheduleDao.addOrUpdateSchedule(getSchedule());
         return Action.SUCCESS;
+    }
+
+    public String errorString;
+
+    private boolean validate(Schedule schedule)
+    {
+        if (DoctorDao.getDoctorById(schedule.getDoctorId()) == null) {
+            errorString = "Doctor id is invalid";
+            return false;
+        }
+        return true;
     }
 
 }

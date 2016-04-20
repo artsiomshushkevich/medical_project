@@ -130,7 +130,7 @@
                                         <th>prescription</th>
                                         <th>cure count</th>
                                         <th>method of using</th>
-                                        <th>cure id</th>
+                                        <th>cure</th>
                                         <th>visit id</th>
                                         <th>actions</th>
                                     </tr>
@@ -142,7 +142,7 @@
                                             <td><s:property value="prescription"></s:property></td>
                                             <td><s:property value="cureCount"></s:property></td>
                                             <td><s:property value="methodOfUsing"></s:property></td>
-                                            <td><s:property value="cureId"></s:property></td>
+                                            <td><s:property value="cure"></s:property></td>
                                             <td><s:property value="visitId"></s:property></td>
                                             <td>
                                                 <button class="btn btn-link" id_instance="<s:property value="id"/>" onclick="showEditModal(this)">update</button>

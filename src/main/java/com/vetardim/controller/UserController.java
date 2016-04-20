@@ -15,6 +15,7 @@ public class UserController extends ActionSupport {
     private List<User> usersList;
     private List<Role> rolesList;
     private int id;
+    public String errorString;
 
     public List<Role> getRolesList() {
         return rolesList;
@@ -50,24 +51,43 @@ public class UserController extends ActionSupport {
 
     @Override
     public String execute() throws Exception {
+        this.rolesList = RoleDao.getRolesList();
         this.usersList =  UserDao.getUsersList();
-
+        for (User user: usersList) {
+            user.setRole(RoleDao.getRoleById(user.getRoleId()).getName());
+        }
         return Action.SUCCESS;
     }
 
     public String update() {
+        if(!validate(getUser())) return Action.ERROR;
         UserDao.addOrUpdateUser(getUser());
         return Action.SUCCESS;
     }
 
     public String delete() {
+        if(!validate(UserDao.getUserById(getId()))) return Action.ERROR;
+
         UserDao.deleteUser(getId());
         return Action.SUCCESS;
     }
 
     public String add() {
+        if(!validate(getUser())) return Action.ERROR;
         UserDao.addOrUpdateUser(getUser());
         return Action.SUCCESS;
     }
 
+    private boolean validate(User user)
+    {
+        if(user.getNickname().equals("admin")) {
+            errorString = "Operations with admin are prohibited";
+            return false;
+        }
+        if (RoleDao.getRoleById(user.getRoleId()) == null) {
+            errorString = "Role id is invalid";
+            return false;
+        }
+        return true;
+    }
 }

@@ -2,6 +2,8 @@ package com.vetardim.controller;
 
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
+import com.vetardim.DAO.ClientDao;
+import com.vetardim.DAO.DoctorDao;
 import com.vetardim.model.Order;
 import com.vetardim.DAO.OrderDao;
 import com.vetardim.util.UnixTimeConverter;
@@ -63,11 +65,14 @@ public class OrderController extends ActionSupport {
         for (Order order: ordersList) {
             order.setDateInString(UnixTimeConverter.convertUnixTimeToTime(order.getDate(),"yyyy:MM:dd"));
             order.setBeginTimeInString(UnixTimeConverter.convertUnixTimeToTime(order.getBeginTime(),"hh:mm"));
+            order.setDoctorFullname(DoctorDao.getDoctorById(order.getDoctorId()).getFullname());
+            order.setClientFullname(ClientDao.getClientById(order.getClientId()).getFullname());
         }
         return Action.SUCCESS;
     }
 
     public String update() {
+        if (!validate(getOrder())) return Action.ERROR;
         order.setBeginTime(UnixTimeConverter.convertTimeToUnixTime(time, "hh:mm"));
         order.setDate(UnixTimeConverter.convertTimeToUnixTime(date, "yyyy-MM-dd"));
         OrderDao.addOrUpdateOrder(getOrder());
@@ -80,11 +85,26 @@ public class OrderController extends ActionSupport {
     }
 
     public String add() {
+        if (!validate(getOrder())) return Action.ERROR;
         order.setBeginTime(UnixTimeConverter.convertTimeToUnixTime(time, "hh:mm"));
         order.setDate(UnixTimeConverter.convertTimeToUnixTime(date, "yyyy-MM-dd"));
         OrderDao.addOrUpdateOrder(getOrder());
         return Action.SUCCESS;
     }
 
+    public String errorString;
+
+    private boolean validate(Order order)
+    {
+        if (DoctorDao.getDoctorById(order.getDoctorId()) == null) {
+            errorString = "Doctor id is invalid";
+            return false;
+        }
+        if (ClientDao.getClientById(order.getClientId()) == null) {
+            errorString = "Client id is invalid";
+            return false;
+        }
+        return true;
+    }
 
 }

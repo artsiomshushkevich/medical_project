@@ -65,6 +65,25 @@ public class MedicalHistoryDao {
         return medicalHistory;
     }
 
+    public static MedicalHistory getMedicalHistoryById(int id) {
+        Session session = HibernateUtil.makeSession();
+        session.beginTransaction();
+        MedicalHistory medicalHistory = null;
+        try {
+            Criteria criteria = session.createCriteria(MedicalHistory.class);
+            criteria.add(Restrictions.eq("id", id));
+            medicalHistory = (MedicalHistory) criteria.uniqueResult();
+            session.getTransaction().commit();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            session.getTransaction().rollback();
+        } finally {
+            session.close();
+        }
+
+        return medicalHistory;
+    }
+
     public static List<MedicalHistory> getMedicalHistoriesList() {
         Session session = HibernateUtil.makeSession();
         session.beginTransaction();

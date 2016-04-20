@@ -2,8 +2,11 @@ package com.vetardim.controller;
 
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
+import com.vetardim.DAO.RoleDao;
+import com.vetardim.DAO.UserDao;
 import com.vetardim.model.Client;
 import com.vetardim.DAO.ClientDao;
+import com.vetardim.model.User;
 
 import java.util.List;
 
@@ -44,6 +47,7 @@ public class ClientController extends ActionSupport {
     }
 
     public String update() {
+        if (!validate(getClient())) return Action.ERROR;
         ClientDao.addOrUpdateClient(getClient());
         return Action.SUCCESS;
     }
@@ -54,8 +58,25 @@ public class ClientController extends ActionSupport {
     }
 
     public String add() {
+        if (!validate(getClient())) return Action.ERROR;
         ClientDao.addOrUpdateClient(getClient());
         return Action.SUCCESS;
+    }
+
+    public String errorString;
+
+    private boolean validate(Client client)
+    {
+        if (UserDao.getUserById(client.getUserId()) == null) {
+            errorString = "User id is invalid";
+            return false;
+        }
+        User user = UserDao.getUserById(client.getUserId());
+        if (!RoleDao.getRoleById(user.getRoleId()).getName().equals("Client") ) {
+            errorString = "User has not role Client";
+            return false;
+        }
+        return true;
     }
 
 

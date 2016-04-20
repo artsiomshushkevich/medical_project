@@ -2,6 +2,8 @@ package com.vetardim.controller;
 
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
+import com.vetardim.DAO.MedicalHistoryDao;
+import com.vetardim.DAO.OrderDao;
 import com.vetardim.model.Visit;
 import com.vetardim.DAO.VisitDao;
 
@@ -44,6 +46,7 @@ public class VisitController extends ActionSupport {
     }
 
     public String update() {
+        if (!validate(getVisit())) return Action.ERROR;
         VisitDao.addOrUpdateVisit(getVisit());
         return Action.SUCCESS;
     }
@@ -54,8 +57,28 @@ public class VisitController extends ActionSupport {
     }
 
     public String add() {
+        if (!validate(getVisit())) return Action.ERROR;
         VisitDao.addOrUpdateVisit(getVisit());
         return Action.SUCCESS;
+    }
+
+    public String errorString;
+
+    private boolean validate(Visit visit)
+    {
+        if (MedicalHistoryDao.getMedicalHistoryById(visit.getMedicalHistoryId()) == null) {
+            errorString = "Medical history id is invalid";
+            return false;
+        }
+        if (OrderDao.getOrderById(visit.getOrderId()) == null) {
+            errorString = "Order id is invalid";
+            return false;
+        }
+        if (VisitDao.getVisitByOrderId(OrderDao.getOrderById(visit.getOrderId()).getId()) != null) {
+            errorString = "Visit with this order id is exist";
+            return false;
+        }
+        return true;
     }
     
 }

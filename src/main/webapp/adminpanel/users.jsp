@@ -128,8 +128,7 @@
                                     <tr>
                                         <th>id</th>
                                         <th>nickname</th>
-                                        <th>password</th>
-                                        <th>role id</th>
+                                        <th>role</th>
                                         <th>actions</th>
                                     </tr>
                                     </thead>
@@ -138,8 +137,7 @@
                                         <tr>
                                             <td><s:property value="id"></s:property></td>
                                             <td><s:property value="nickname"></s:property></td>
-                                            <td><s:property value="password"></s:property></td>
-                                            <td><s:property value="roleId"></s:property></td>
+                                            <td><s:property value="role"></s:property></td>
                                             <s:if test="%{nickname == 'admin'}">
                                                 <td>
                                                     This's admin!

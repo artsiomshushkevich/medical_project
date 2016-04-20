@@ -16,7 +16,15 @@
                             <label>Password: <input type="password" required  class="form-control" name="user.password"></label>
                         </div>
                         <div class="form-group">
-                            <label>Role id: <input type="number" class="form-control"  required min="1" max="3" name="user.roleId"></label>
+                            <label>Role:
+                                <select required class="form-control" name="user.roleId">
+                                    <s:iterator value="rolesList" var="role">
+                                        <option value="<s:property value="id"></s:property>">
+                                            <s:property value="name"></s:property>
+                                        </option>
+                                    </s:iterator>
+                                </select>
+                            </label>
                         </div>
                     </div>
                     <div class="modal-footer">

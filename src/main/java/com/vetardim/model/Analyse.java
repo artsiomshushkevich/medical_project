@@ -21,6 +21,15 @@ public class Analyse {
 
     private String doctorFullname;
     private String doctorSpeciality;
+    private String clientFullname;
+
+    public String getClientFullname() {
+        return clientFullname;
+    }
+
+    public void setClientFullname(String clientFullname) {
+        this.clientFullname = clientFullname;
+    }
 
     public String getDoctorSpeciality() {
         return doctorSpeciality;

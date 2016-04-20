@@ -2,8 +2,13 @@ package com.vetardim.controller;
 
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
+import com.vetardim.DAO.DepartmentDao;
+import com.vetardim.DAO.RoleDao;
+import com.vetardim.DAO.UserDao;
+import com.vetardim.model.Department;
 import com.vetardim.model.Doctor;
 import com.vetardim.DAO.DoctorDao;
+import com.vetardim.model.User;
 
 import java.util.List;
 
@@ -44,6 +49,7 @@ public class DoctorController extends ActionSupport {
     }
 
     public String update() {
+        if (!validate(getDoctor())) return Action.ERROR;
         DoctorDao.addOrUpdateDoctor(getDoctor());
         return Action.SUCCESS;
     }
@@ -54,8 +60,29 @@ public class DoctorController extends ActionSupport {
     }
 
     public String add() {
+        if (!validate(getDoctor())) return Action.ERROR;
         DoctorDao.addOrUpdateDoctor(getDoctor());
         return Action.SUCCESS;
+    }
+
+    public String errorString;
+
+    private boolean validate(Doctor doctor)
+    {
+        if (UserDao.getUserById(doctor.getUserId()) == null) {
+            errorString = "User id is invalid";
+            return false;
+        }
+        User user = UserDao.getUserById(doctor.getUserId());
+        if (!RoleDao.getRoleById(user.getRoleId()).getName().equals("Doctor") ) {
+            errorString = "User has not role Doctor";
+            return false;
+        }
+        if (DepartmentDao.getDepartmentById(doctor.getDepartmentId()) == null ) {
+            errorString = "Department id is invalid";
+            return false;
+        }
+        return true;
     }
 
 

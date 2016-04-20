@@ -1,5 +1,3 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib prefix="s" uri="/struts-tags" %>
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -7,7 +5,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Analyses Table</title>
+    <title>Dashboard</title>
     <!-- Bootstrap Styles-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FontAwesome Styles-->
@@ -30,7 +28,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="../index.jsp">Medical</a>
+            <a class="navbar-brand" href="index.jsp">Medical</a>
         </div>
 
         <ul class="nav navbar-top-links navbar-right">
@@ -95,69 +93,20 @@
                     <a href="cures-index.action"><i class="fa fa-plus-square"></i>Cures</a>
                 </li>
                 <li>
-                    <a class="active-menu" href="analyses-index.action"><i class="fa fa-pencil-square-o"></i>Analyses</a>
+                    <a href="analyses-index.action"><i class="fa fa-pencil-square-o"></i>Analyses</a>
                 </li>
-
 
             </ul>
 
         </div>
 
     </nav>
-    <%@include file='analyses-modal-add.jsp'%>
-    <%@include file='analyses-modal-edit.jsp'%>
-    <%@include file='analyses-modal-delete.jsp'%>
     <!-- /. NAV SIDE  -->
     <div id="page-wrapper">
         <div id="page-inner">
-            <div class="row">
-                <div class="col-md-12">
-                    <!-- Table -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Analyses
-                        </div>
-                        <div class="panel-body">
-                            <div class="container">
-                                <button class="btn btn-primary" onclick="showAddModal()">Add new analyse</button>
-                            </div>
-
-                            <div class="table-responsive">
-                                <p>Analyses list:</p>
-                                <table class="table table-striped table-bordered table-hover">
-                                    <thead>
-                                    <tr>
-                                        <th>id</th>
-                                        <th>doctor fullname</th>
-                                        <th>client fullname</th>
-                                        <th>visit id</th>
-                                        <th>name</th>
-                                        <th>result</th>
-                                        <th>actions</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <s:iterator value="analysesList" var="analyse">
-                                        <tr>
-                                            <td><s:property value="id"></s:property></td>
-                                            <td><s:property value="doctorFullname"></s:property></td>
-                                            <td><s:property value="clientFullname"></s:property></td>
-                                            <td><s:property value="visitId"></s:property></td>
-                                            <td><s:property value="name"></s:property></td>
-                                            <td><s:property value="result"></s:property></td>
-                                            <td>
-                                                <button class="btn btn-link" id_instance="<s:property value="id"/>" onclick="showEditModal(this)">update</button>
-                                                &middot;
-                                                <button class="btn btn-link" id_instance="<s:property value="id"/>" onclick="showDeleteModal(this)">delete</button>
-                                            </td>
-                                        </tr>
-                                    </s:iterator>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <h1 class="text-center">Error updating/adding records</h1>
+            <div class="alert">
+                <s:property value="errorString"></s:property>
             </div>
         </div>
         <!-- /. PAGE INNER  -->
@@ -178,26 +127,7 @@
 <!-- Custom Js -->
 <script src="assets/js/custom-scripts.js"></script>
 
-<script>
-    function showAddModal()
-    {
-        $('.analyses_add_modal').modal();
-    }
 
-    function showEditModal(instance)
-    {
-        var id = $(instance).attr('id_instance');
-        $('#analyses_edit_id').val(id);
-        $('.analyses_edit_modal').modal();
-    }
-
-    function showDeleteModal(instance)
-    {
-        var id = $(instance).attr('id_instance');
-        $('#analyses_delete_id').val(id);
-        $('.analyses_delete_modal').modal();
-    }
-</script>
 </body>
 
 </html>

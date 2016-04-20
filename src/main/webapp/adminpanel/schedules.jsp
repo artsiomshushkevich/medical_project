@@ -127,7 +127,7 @@
                                     <thead>
                                     <tr>
                                         <th>id</th>
-                                        <th>doctor id</th>
+                                        <th>doctor fullname</th>
                                         <th>workday</th>
                                         <th>begin workday</th>
                                         <th>end workday</th>
@@ -139,7 +139,7 @@
                                     <s:iterator value="schedulesList" var="schedule">
                                         <tr>
                                             <td><s:property value="id"></s:property></td>
-                                            <td><s:property value="doctorId"></s:property></td>
+                                            <td><s:property value="doctorFullname"></s:property></td>
                                             <td><s:property value="workday"></s:property></td>
                                             <td><s:property value="beginWorkdayInString"></s:property></td>
                                             <td><s:property value="endWorkdayInString"></s:property></td>
