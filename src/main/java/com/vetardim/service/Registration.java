@@ -57,7 +57,7 @@ public class Registration extends ActionSupport {
         return Action.SUCCESS;
     }
 
-    public String singup() throws  Exception {
+    public String signup() throws  Exception {
 
         for (User listElement : UserDao.getUsersList()) {
 

@@ -35,7 +35,7 @@
 
         <default-action-ref name="index"/>
 
-        <action name="singup" class="com.vetardim.service.Registration" method="singup">
+        <action name="signup" class="com.vetardim.service.Registration" method="signup">
             <interceptor-ref name="disroleStackUser"/>
             <result name="success">/view/success-signup.jsp</result>
         </action>

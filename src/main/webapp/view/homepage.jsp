@@ -12,10 +12,12 @@
 <head>
     <title>Home</title>
     <link rel='stylesheet' href="/webjars/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./main-style.css">
     <s:head />
 </head>
 <body>
 <nav class="navbar navbar-default navbar-fixed-top">
+
     <div class="container">
         <ul class="nav navbar-nav navbar-right">
             <c:set var="salary" scope="session" value='<%=session.getAttribute("role")%>'/>
@@ -34,6 +36,12 @@
         </ul>
     </div>
 </nav>
+
+<footer>
+    <span>
+        &copy; Vetardim Systems
+    </span>
+</footer>
 
 
 </body>
