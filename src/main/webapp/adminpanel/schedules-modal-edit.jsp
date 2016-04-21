@@ -11,7 +11,15 @@
                     <div class="form-group">
                         <input id="schedules_edit_id"  name="schedule.id" type="hidden">
                         <div class="form-group">
-                            <label>Doctor id: <input type="number" min="1" required class="form-control" name="schedule.doctorId"></label>
+                            <label>Doctor:
+                                <select required class="form-control" name="schedule.doctorId">
+                                    <s:iterator value="doctorsList" var="doctor">
+                                        <option value="<s:property value="id"></s:property>">
+                                            <s:property value="getFullname()"></s:property>
+                                        </option>
+                                    </s:iterator>
+                                </select>
+                            </label>
                         </div>
                         <div class="form-group">
                             <label>Workday: <input type="text" required class="form-control" name="schedule.workday"></label>

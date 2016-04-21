@@ -4,6 +4,8 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 import com.vetardim.DAO.ClientDao;
 import com.vetardim.DAO.DoctorDao;
+import com.vetardim.model.Client;
+import com.vetardim.model.Doctor;
 import com.vetardim.model.Order;
 import com.vetardim.DAO.OrderDao;
 import com.vetardim.util.UnixTimeConverter;
@@ -61,6 +63,8 @@ public class OrderController extends ActionSupport {
 
     @Override
     public String execute() throws Exception {
+        this.clientsList = ClientDao.getClientsList();
+        this.doctorsList = DoctorDao.getDoctorsList();
         this.ordersList =  OrderDao.getOrdersList();
         for (Order order: ordersList) {
             order.setDateInString(UnixTimeConverter.convertUnixTimeToTime(order.getDate(),"yyyy:MM:dd"));
@@ -92,7 +96,33 @@ public class OrderController extends ActionSupport {
         return Action.SUCCESS;
     }
 
-    public String errorString;
+    private String errorString;
+    private List<Doctor> doctorsList;
+    private List<Client> clientsList;
+
+    public List<Doctor> getDoctorsList() {
+        return doctorsList;
+    }
+
+    public void setDoctorsList(List<Doctor> doctorsList) {
+        this.doctorsList = doctorsList;
+    }
+
+    public List<Client> getClientsList() {
+        return clientsList;
+    }
+
+    public void setClientsList(List<Client> clientsList) {
+        this.clientsList = clientsList;
+    }
+
+    public String getErrorString() {
+        return errorString;
+    }
+
+    public void setErrorString(String errorString) {
+        this.errorString = errorString;
+    }
 
     private boolean validate(Order order)
     {

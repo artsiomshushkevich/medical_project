@@ -44,6 +44,7 @@ public class DoctorController extends ActionSupport {
 
     @Override
     public String execute() throws Exception {
+        this.usersList = UserDao.getUsersList();
         this.doctorsList =  DoctorDao.getDoctorsList();
         return Action.SUCCESS;
     }
@@ -65,7 +66,24 @@ public class DoctorController extends ActionSupport {
         return Action.SUCCESS;
     }
 
-    public String errorString;
+    private String errorString;
+    private List<User> usersList;
+
+    public String getErrorString() {
+        return errorString;
+    }
+
+    public void setErrorString(String errorString) {
+        this.errorString = errorString;
+    }
+
+    public List<User> getUsersList() {
+        return usersList;
+    }
+
+    public void setUsersList(List<User> usersList) {
+        this.usersList = usersList;
+    }
 
     private boolean validate(Doctor doctor)
     {

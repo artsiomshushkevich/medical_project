@@ -3,6 +3,7 @@ package com.vetardim.controller;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 import com.vetardim.DAO.DoctorDao;
+import com.vetardim.model.Doctor;
 import com.vetardim.model.Schedule;
 import com.vetardim.DAO.ScheduleDao;
 import com.vetardim.util.UnixTimeConverter;
@@ -59,6 +60,7 @@ public class ScheduleController extends ActionSupport {
 
     @Override
     public String execute() throws Exception {
+        this.doctorsList = DoctorDao.getDoctorsList();
         this.schedulesList =  ScheduleDao.getSchedulesList();
         for (Schedule schedule: schedulesList) {
             schedule.setBeginWorkdayInString(UnixTimeConverter.convertUnixTimeToTime(
@@ -90,7 +92,24 @@ public class ScheduleController extends ActionSupport {
         return Action.SUCCESS;
     }
 
-    public String errorString;
+    private String errorString;
+    private List<Doctor> doctorsList;
+
+    public String getErrorString() {
+        return errorString;
+    }
+
+    public void setErrorString(String errorString) {
+        this.errorString = errorString;
+    }
+
+    public List<Doctor> getDoctorsList() {
+        return doctorsList;
+    }
+
+    public void setDoctorsList(List<Doctor> doctorsList) {
+        this.doctorsList = doctorsList;
+    }
 
     private boolean validate(Schedule schedule)
     {

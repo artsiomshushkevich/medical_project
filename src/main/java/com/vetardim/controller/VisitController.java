@@ -4,6 +4,8 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 import com.vetardim.DAO.MedicalHistoryDao;
 import com.vetardim.DAO.OrderDao;
+import com.vetardim.model.MedicalHistory;
+import com.vetardim.model.Order;
 import com.vetardim.model.Visit;
 import com.vetardim.DAO.VisitDao;
 
@@ -41,6 +43,8 @@ public class VisitController extends ActionSupport {
 
     @Override
     public String execute() throws Exception {
+        this.medicalHistoriesList = MedicalHistoryDao.getMedicalHistoriesList();
+        this.ordersList = OrderDao.getOrdersList();
         this.visitsList = VisitDao.getVisitsList();
         return Action.SUCCESS;
     }
@@ -62,7 +66,33 @@ public class VisitController extends ActionSupport {
         return Action.SUCCESS;
     }
 
-    public String errorString;
+    private String errorString;
+    private List<MedicalHistory> medicalHistoriesList;
+    private List<Order> ordersList;
+
+    public String getErrorString() {
+        return errorString;
+    }
+
+    public void setErrorString(String errorString) {
+        this.errorString = errorString;
+    }
+
+    public List<MedicalHistory> getMedicalHistoriesList() {
+        return medicalHistoriesList;
+    }
+
+    public void setMedicalHistoriesList(List<MedicalHistory> medicalHistoriesList) {
+        this.medicalHistoriesList = medicalHistoriesList;
+    }
+
+    public List<Order> getOrdersList() {
+        return ordersList;
+    }
+
+    public void setOrdersList(List<Order> ordersList) {
+        this.ordersList = ordersList;
+    }
 
     private boolean validate(Visit visit)
     {

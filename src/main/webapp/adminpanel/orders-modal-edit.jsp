@@ -11,13 +11,29 @@
                     <div class="form-group">
                         <input id="orders_edit_id" name="order.id" type="hidden">
                         <div class="form-group">
-                            <label>Client id: <input type="number" min="1" required class="form-control" name="order.clientId"></label>
+                            <label>Client:
+                                <select required class="form-control" name="order.clientId">
+                                    <s:iterator value="clientsList" var="client">
+                                        <option value="<s:property value="id"></s:property>">
+                                            <s:property value="getFullname()"></s:property>
+                                        </option>
+                                    </s:iterator>
+                                </select>
+                            </label>
                         </div>
                         <div class="form-group">
                             <label>Date: <input type="date" required class="form-control" name="date"></label>
                         </div>
                         <div class="form-group">
-                            <label>Doctor id: <input type="number" min="1" required class="form-control" name="order.doctorId"></label>
+                            <label>Doctor:
+                                <select required class="form-control" name="order.doctorId">
+                                    <s:iterator value="doctorsList" var="doctor">
+                                        <option value="<s:property value="id"></s:property>">
+                                            <s:property value="getFullname()"></s:property>
+                                        </option>
+                                    </s:iterator>
+                                </select>
+                            </label>
                         </div>
                         <div class="form-group">
                             <label>Begin time: <input type="time" required class="form-control" name="time"></label>

@@ -11,7 +11,15 @@
                     <div class="form-group">
                         <input id="clients_edit_id" name="client.id" type="hidden">
                         <div class="form-group">
-                            <label>User id: <input type="number" required min="1" class="form-control" name="client.userId"></label>
+                            <label>User nickname:
+                                <select required class="form-control" name="client.userId">
+                                    <s:iterator value="usersList" var="user">
+                                        <option value="<s:property value="id"></s:property>">
+                                            <s:property value="nickname"></s:property>
+                                        </option>
+                                    </s:iterator>
+                                </select>
+                            </label>
                         </div>
                         <div class="form-group">
                             <label>First name: <input type="text" required  class="form-control" name="client.firstname"></label>

@@ -17,10 +17,26 @@
                             <label>Diagnosys: <input type="text" required class="form-control" name="visit.diagnosys"></label>
                         </div>
                         <div class="form-group">
-                            <label>Medical history id: <input type="number" required min="1" class="form-control" name="visit.idOrder"></label>
+                            <label>Medical history id:
+                                <select required class="form-control" name="visit.medicalHistoryId">
+                                    <s:iterator value="medicalHistoriesList" var="medicalHistory">
+                                        <option value="<s:property value="id"></s:property>">
+                                            <s:property value="id"></s:property>
+                                        </option>
+                                    </s:iterator>
+                                </select>
+                            </label>
                         </div>
                         <div class="form-group">
-                            <label>Order id: <input type="number" min="1" required class="form-control" name="visit.orderId"></label>
+                            <label>Order id:
+                                <select required class="form-control" name="visit.orderId">
+                                    <s:iterator value="ordersList" var="order">
+                                        <option value="<s:property value="id"></s:property>">
+                                            <s:property value="id"></s:property>
+                                        </option>
+                                    </s:iterator>
+                                </select>
+                            </label>
                         </div>
                     </div>
                     <div class="modal-footer">

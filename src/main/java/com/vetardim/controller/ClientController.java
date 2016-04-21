@@ -42,6 +42,7 @@ public class ClientController extends ActionSupport {
 
     @Override
     public String execute() throws Exception {
+        this.usersList = UserDao.getUsersList();
         this.clientsList =  ClientDao.getClientsList();
         return Action.SUCCESS;
     }
@@ -63,7 +64,24 @@ public class ClientController extends ActionSupport {
         return Action.SUCCESS;
     }
 
-    public String errorString;
+    private List<User> usersList;
+    private String errorString;
+
+    public List<User> getUsersList() {
+        return usersList;
+    }
+
+    public void setUsersList(List<User> usersList) {
+        this.usersList = usersList;
+    }
+
+    public String getErrorString() {
+        return errorString;
+    }
+
+    public void setErrorString(String errorString) {
+        this.errorString = errorString;
+    }
 
     private boolean validate(Client client)
     {

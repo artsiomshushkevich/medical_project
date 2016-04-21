@@ -10,13 +10,37 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <div class="form-group">
-                            <label>Doctor id: <input type="number" required min="1" class="form-control" name="analyse.doctorId"></label>
+                            <label>Doctor:
+                                <select required class="form-control" name="analyse.doctorId">
+                                    <s:iterator value="doctorsList" var="doctor">
+                                        <option value="<s:property value="id"></s:property>">
+                                            <s:property value="getFullname()"></s:property>
+                                        </option>
+                                    </s:iterator>
+                                </select>
+                            </label>
                         </div>
                         <div class="form-group">
-                            <label>Client id: <input type="number" required min="1" class="form-control" name="analyse.clientId"></label>
+                            <label>Client:
+                                <select required class="form-control" name="analyse.clientId">
+                                    <s:iterator value="clientsList" var="client">
+                                        <option value="<s:property value="id"></s:property>">
+                                            <s:property value="getFullname()"></s:property>
+                                        </option>
+                                    </s:iterator>
+                                </select>
+                            </label>
                         </div>
                         <div class="form-group">
-                            <label>Visit id: <input type="number" required min="1" class="form-control" name="analyse.visitId"></label>
+                            <label>Visit id:
+                                <select required class="form-control" name="analyse.visitId">
+                                    <s:iterator value="visitsList" var="visit">
+                                        <option value="<s:property value="id"></s:property>">
+                                            <s:property value="id"></s:property>
+                                        </option>
+                                    </s:iterator>
+                                </select>
+                            </label>
                         </div>
                         <div class="form-group">
                             <label>Name: <input type="text" required min="1" class="form-control" name="analyse.name"></label>

@@ -20,10 +20,26 @@
                             <label>Method of using: <input type="text" required  class="form-control" name="treatment.methodOfUsing"></label>
                         </div>
                         <div class="form-group">
-                            <label>Cure id: <input type="number"  required min="1" class="form-control" name="treatment.cureId"></label>
+                            <label>Cure:
+                                <select required class="form-control" name="analyse.visitId">
+                                    <s:iterator value="curesList" var="cure">
+                                        <option value="<s:property value="id"></s:property>">
+                                            <s:property value="name"></s:property>
+                                        </option>
+                                    </s:iterator>
+                                </select>
+                            </label>
                         </div>
                         <div class="form-group">
-                            <label>Visit id: <input type="number" required min="1" class="form-control" name="treatment.visitId"></label>
+                            <label>Visit id:
+                                <select required class="form-control" name="treatment.visitId">
+                                    <s:iterator value="visitsList" var="visit">
+                                        <option value="<s:property value="id"></s:property>">
+                                            <s:property value="id"></s:property>
+                                        </option>
+                                    </s:iterator>
+                                </select>
+                            </label>
                         </div>
                     </div>
                     <div class="modal-footer">

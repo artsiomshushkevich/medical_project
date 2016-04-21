@@ -11,7 +11,15 @@
                     <div class="form-group">
                         <input id="medical_histories_edit_id" name="medicalHistory.id" type="hidden">
                         <div class="form-group">
-                            <label>Client id: <input type="number" min="1" required class="form-control" name="medicalHistory.clientId"></label>
+                            <label>Client:
+                                <select required class="form-control" name="medicalHistory.clientId">
+                                    <s:iterator value="clientsList" var="client">
+                                        <option value="<s:property value="id"></s:property>">
+                                            <s:property value="getFullname()"></s:property>
+                                        </option>
+                                    </s:iterator>
+                                </select>
+                            </label>
                         </div>
                     </div>
                     <div class="modal-footer">

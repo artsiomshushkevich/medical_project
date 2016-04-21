@@ -41,6 +41,7 @@ public class MedicalHistoryController extends ActionSupport {
 
     @Override
     public String execute() throws Exception {
+        this.clientsList = ClientDao.getClientsList();
         this.medicalHistoriesList =  MedicalHistoryDao.getMedicalHistoriesList();
         for (MedicalHistory medicalHistory: medicalHistoriesList) {
             Client client = ClientDao.getClientById(medicalHistory.getClientId());
@@ -66,7 +67,24 @@ public class MedicalHistoryController extends ActionSupport {
         return Action.SUCCESS;
     }
 
-    public String errorString;
+    private String errorString;
+    private List<Client> clientsList;
+
+    public String getErrorString() {
+        return errorString;
+    }
+
+    public void setErrorString(String errorString) {
+        this.errorString = errorString;
+    }
+
+    public List<Client> getClientsList() {
+        return clientsList;
+    }
+
+    public void setClientsList(List<Client> clientsList) {
+        this.clientsList = clientsList;
+    }
 
     private boolean validate(MedicalHistory medicalHistory)
     {
