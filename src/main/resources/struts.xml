@@ -35,7 +35,7 @@
 
         <default-action-ref name="index"/>
 
-        <action name="signup" class="com.vetardim.service.Registration" method="signup">
+        <action name="singup" class="com.vetardim.service.Registration" method="singup">
             <interceptor-ref name="disroleStackUser"/>
             <result name="success">/view/success-signup.jsp</result>
         </action>
@@ -53,7 +53,7 @@
 
         <action name="logout" class="com.vetardim.service.Authorisation" method="logout">
             <interceptor-ref name="roleStackUser"/>
-            <result name="success">/index.jsp</result>
+            <result name="success">/view/homepage.jsp</result>
         </action>
 
         <action name="authorisation" class="com.vetardim.service.Authorisation">
