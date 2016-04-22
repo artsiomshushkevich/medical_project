@@ -56,8 +56,8 @@ public class RoleInterceptor extends AbstractInterceptor {
         boolean result = false;
         boolean accept =false;
         String loginRole = null;
-        if (session.getAttribute("name")!=null) {
-            String Username = (String) session.getAttribute("name");
+        if (session.getAttribute("login")!=null) {
+            String Username = (String) session.getAttribute("login");
             for (User listElement : UserDao.getUsersList()) {
                 if (Username.equals(listElement.getNickname())) {
                     for (Role role : RoleDao.getRolesList()) {
@@ -70,7 +70,10 @@ public class RoleInterceptor extends AbstractInterceptor {
                 }
 
             }
-            if (!accept) session.invalidate();
+            if (!accept) {
+                session.invalidate();
+                return false;
+            }
         }
         if(session!=null){
             loginRole=(String)session.getAttribute("role");
