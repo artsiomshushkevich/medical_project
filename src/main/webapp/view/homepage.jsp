@@ -42,9 +42,7 @@
                             <li><a href="registration.action"><i class="fa fa-plug" aria-hidden="true"></i> Sign Up</a></li>
                             <li><a href="authorisation.action"><i class="fa fa-sign-in" aria-hidden="true"></i> Sign In</a></li>
                         </c:when>
-                        <c:otherwise>
-                            <li><a href="logout.action"><i class="fa fa-sign-out" aria-hidden="true"></i>Sign Out</a></li>
-                        </c:otherwise>
+
                     </c:choose>
 
                 </ul>

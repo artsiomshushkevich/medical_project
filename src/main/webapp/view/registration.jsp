@@ -33,7 +33,7 @@
                         <h3 class="panel-title">Please sign up NoQueues</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form" method="post" action="signup.action">
+                        <form role="form" method="post" action="singup.action">
                             <div class="form-group">
                                 <input type="text" required name="login" id="login" class="form-control input-sm" placeholder="Login">
                             </div>

@@ -3,7 +3,9 @@ package com.vetardim.service;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 import com.vetardim.DAO.ClientDao;
+import com.vetardim.DAO.MedicalHistoryDao;
 import com.vetardim.model.Client;
+import com.vetardim.model.MedicalHistory;
 import com.vetardim.model.User;
 import com.vetardim.DAO.UserDao;
 
@@ -17,6 +19,7 @@ public class Registration extends ActionSupport {
 
     private User user = new User();
     private Client client = new Client();
+    private MedicalHistory medicalHistory = new MedicalHistory();
     private List<User> usersList = new ArrayList<User>();
     public User getUser() {
         return user;
@@ -24,6 +27,14 @@ public class Registration extends ActionSupport {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public MedicalHistory getMedicalHistory() {
+        return medicalHistory;
+    }
+    public void setMedicalHistory(MedicalHistory medicalHistory) {
+        this.medicalHistory = medicalHistory;
+    }
+
 
     public Client getClient() {
         return client;
@@ -57,7 +68,7 @@ public class Registration extends ActionSupport {
         return Action.SUCCESS;
     }
 
-    public String signup() throws  Exception {
+    public String singup() throws  Exception {
 
         for (User listElement : UserDao.getUsersList()) {
 
@@ -79,9 +90,20 @@ public class Registration extends ActionSupport {
             {
                client.setUserId(listElement.getId());
                 ClientDao.addOrUpdateClient(getClient());
+                for (Client Element : ClientDao.getClientsList()) {
+                    if (Element.getUserId()== listElement.getId()) {
+                        medicalHistory.setClientId(Element.getId());
+                        MedicalHistoryDao.addOrUpdateMedicalHistory(getMedicalHistory());
+                    }
+                }
+
             }
 
+
+
         }
+
+
         return Action.SUCCESS;
     }
 
