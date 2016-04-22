@@ -53,7 +53,7 @@
 
         <action name="logout" class="com.vetardim.service.Authorisation" method="logout">
             <interceptor-ref name="roleStackUser"/>
-            <result name="success">/index.jsp</result>
+            <result name="success">/view/homepage.jsp</result>
         </action>
 
         <action name="authorisation" class="com.vetardim.service.Authorisation">
