@@ -65,6 +65,25 @@ public class UserDao {
         return user;
     }
 
+    public static User getUserByNickname(String nickname) {
+        Session session = HibernateUtil.makeSession();
+        session.beginTransaction();
+        User user = null;
+        try {
+            Criteria criteria = session.createCriteria(User.class);
+            criteria.add(Restrictions.eq("nickname", nickname));
+            user = (User)criteria.uniqueResult();
+            session.getTransaction().commit();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            session.getTransaction().rollback();
+        } finally {
+            session.close();
+        }
+
+        return user;
+    }
+
     public static List<User> getUsersList() {
         Session session = HibernateUtil.makeSession();
         session.beginTransaction();
