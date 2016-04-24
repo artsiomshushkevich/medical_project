@@ -38,6 +38,7 @@
         <action name="singup" class="com.vetardim.service.Registration" method="singup">
             <interceptor-ref name="disroleStackUser"/>
             <result name="success">/view/success-signup.jsp</result>
+            <result name="error">/view/registration.jsp</result>
         </action>
 
         <action name="registration" class="com.vetardim.service.Registration">

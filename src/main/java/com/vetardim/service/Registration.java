@@ -8,7 +8,8 @@ import com.vetardim.model.Client;
 import com.vetardim.model.MedicalHistory;
 import com.vetardim.model.User;
 import com.vetardim.DAO.UserDao;
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,6 +71,8 @@ public class Registration extends ActionSupport {
 
     public String singup() throws  Exception {
 
+        if (!validate(getLogin(), getPassword(), getClient())) return Action.ERROR;
+
         for (User listElement : UserDao.getUsersList()) {
 
 
@@ -105,6 +108,73 @@ public class Registration extends ActionSupport {
 
 
         return Action.SUCCESS;
+    }
+
+    private String errorString;
+
+    public String getErrorString() {
+        return errorString;
+    }
+
+    public void setErrorString(String errorString) {
+        this.errorString = errorString;
+    }
+
+    private boolean validate(String login, String password, Client client)
+    {
+        Pattern loginPattern = Pattern.compile("^[A-Za-z0-9_-]{1,30}$");
+        Matcher m = loginPattern.matcher(login);
+        if (!m.matches())
+        {
+            errorString = "The login is invalid";
+            return false;
+        }
+        Pattern passwordPattern = Pattern.compile("^[A-Za-z0-9@#$%*]{8,60}$");
+        m = passwordPattern.matcher(password);
+        if (!m.matches())
+        {
+            errorString = "The password is invalid";
+            return false;
+        }
+        Pattern namePattern = Pattern.compile("^[A-Za-z\\s]{1,60}$");
+        m = namePattern.matcher(client.getFirstname());
+        if (!m.matches())
+        {
+            errorString = "The firstname is invalid";
+            return false;
+        }
+        m = namePattern.matcher(client.getSecondname());
+        if (!m.matches())
+        {
+            errorString = "The secondname is invalid";
+            return false;
+        }
+        m = namePattern.matcher(client.getLastname());
+        if (!m.matches())
+        {
+            errorString = "The lastname is invalid";
+            return false;
+        }
+        Pattern emailPattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+        m = emailPattern.matcher(client.getEmail());
+        if (!m.matches())
+        {
+            errorString = "The email is invalid";
+            return false;
+        }
+        Pattern phonePattern = Pattern.compile("^[0-9+-]{6,14}$");
+        m = phonePattern.matcher(client.getPhoneNumber());
+        if (!m.matches())
+        {
+            errorString = "The phone number is invalid";
+            return false;
+        }
+        if (client.getAddress().trim().equals(""))
+        {
+            errorString = "The address is invalid";
+            return false;
+        }
+        return true;
     }
 
 }

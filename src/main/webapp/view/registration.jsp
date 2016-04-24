@@ -68,7 +68,7 @@
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
-                                        <input type="number" required name="client.phoneNumber" id="number" class="form-control input-sm" placeholder="Phone Number">
+                                        <input type="tel" required name="client.phoneNumber" id="number" class="form-control input-sm" placeholder="Phone Number">
                                     </div>
                                 </div>
 
@@ -78,6 +78,10 @@
                                 <input type="text" required name="client.address" id="address" class="form-control input-sm" placeholder="Home Address">
                             </div>
 
+                            <div style="color: red;">
+                                <s:property value="errorString"></s:property>
+                            </div>
+                            <br>
                             <input type="submit" value="Sign Up" class="btn btn-info btn-block">
                         </form>
                     </div>
