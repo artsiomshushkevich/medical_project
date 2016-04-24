@@ -8,6 +8,8 @@ import com.vetardim.model.MedicalHistory;
 import com.vetardim.DAO.MedicalHistoryDao;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MedicalHistoryController extends ActionSupport {
 
@@ -88,7 +90,9 @@ public class MedicalHistoryController extends ActionSupport {
 
     private boolean validate(MedicalHistory medicalHistory)
     {
-        if (ClientDao.getClientById(medicalHistory.getClientId()) == null) {
+        Pattern idPattern = Pattern.compile("^[0-9]{1,11}$");
+        Matcher m = idPattern.matcher(Integer.toString(medicalHistory.getClientId()));
+        if (!m.matches() || ClientDao.getClientById(medicalHistory.getClientId()) == null) {
             errorString = "Client id is invalid";
             return false;
         }

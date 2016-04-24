@@ -6,6 +6,8 @@ import com.vetardim.model.Cure;
 import com.vetardim.DAO.CureDao;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class CureController extends ActionSupport {
 
@@ -44,6 +46,7 @@ public class CureController extends ActionSupport {
     }
 
     public String update() {
+        if (!validate(getCure())) return Action.ERROR;
         CureDao.addOrUpdateCure(getCure());
         return Action.SUCCESS;
     }
@@ -54,8 +57,31 @@ public class CureController extends ActionSupport {
     }
 
     public String add() {
+        if (!validate(getCure())) return Action.ERROR;
         CureDao.addOrUpdateCure(getCure());
         return Action.SUCCESS;
+    }
+
+    private String errorString;
+
+    public String getErrorString() {
+        return errorString;
+    }
+
+    public void setErrorString(String errorString) {
+        this.errorString = errorString;
+    }
+
+    private boolean validate(Cure cure)
+    {
+        Pattern namePattern = Pattern.compile("^[A-Za-z\\s]{1,100}$");
+        Matcher m = namePattern.matcher(cure.getName());
+        if (!m.matches())
+        {
+            errorString = "The name is invalid";
+            return false;
+        }
+        return true;
     }
 
 

@@ -9,6 +9,8 @@ import com.vetardim.DAO.ClientDao;
 import com.vetardim.model.User;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ClientController extends ActionSupport {
 
@@ -85,13 +87,53 @@ public class ClientController extends ActionSupport {
 
     private boolean validate(Client client)
     {
-        if (UserDao.getUserById(client.getUserId()) == null) {
+        Pattern idPattern = Pattern.compile("^[0-9]{1,11}$");
+        Matcher m = idPattern.matcher(Integer.toString(client.getUserId()));
+        if (!m.matches() || UserDao.getUserById(client.getUserId()) == null) {
             errorString = "User id is invalid";
             return false;
         }
         User user = UserDao.getUserById(client.getUserId());
         if (!RoleDao.getRoleById(user.getRoleId()).getName().equals("Client") ) {
             errorString = "User has not role Client";
+            return false;
+        }
+        Pattern namePattern = Pattern.compile("^[A-Za-z\\s]{1,60}$");
+        m = namePattern.matcher(client.getFirstname());
+        if (!m.matches())
+        {
+            errorString = "The firstname is invalid";
+            return false;
+        }
+        m = namePattern.matcher(client.getSecondname());
+        if (!m.matches())
+        {
+            errorString = "The secondname is invalid";
+            return false;
+        }
+        m = namePattern.matcher(client.getLastname());
+        if (!m.matches())
+        {
+            errorString = "The lastname is invalid";
+            return false;
+        }
+        Pattern emailPattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+        m = emailPattern.matcher(client.getEmail());
+        if (!m.matches())
+        {
+            errorString = "The email is invalid";
+            return false;
+        }
+        Pattern phonePattern = Pattern.compile("^[0-9+-]{6,14}$");
+        m = phonePattern.matcher(client.getPhoneNumber());
+        if (!m.matches())
+        {
+            errorString = "The phone number is invalid";
+            return false;
+        }
+        if (client.getAddress().trim().equals(""))
+        {
+            errorString = "The address is invalid";
             return false;
         }
         return true;

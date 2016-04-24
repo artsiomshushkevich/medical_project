@@ -12,6 +12,8 @@ import com.vetardim.model.Doctor;
 import com.vetardim.model.Visit;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class AnalyseController extends ActionSupport {
 
@@ -115,15 +117,32 @@ public class AnalyseController extends ActionSupport {
 
     private boolean validate(Analyse analyse)
     {
-        if (DoctorDao.getDoctorById(analyse.getDoctorId()) == null) {
+        Pattern namePattern = Pattern.compile("^[A-Za-z\\s]{1,200}$");
+        Matcher m = namePattern.matcher(analyse.getName());
+        if (!m.matches())
+        {
+            errorString = "The name is invalid";
+            return false;
+        }
+        m = namePattern.matcher(analyse.getResult());
+        if (!m.matches())
+        {
+            errorString = "The result is invalid";
+            return false;
+        }
+        Pattern idPattern = Pattern.compile("^[0-9]{1,11}$");
+        m = idPattern.matcher(Integer.toString(analyse.getDoctorId()));
+        if (!m.matches() || DoctorDao.getDoctorById(analyse.getDoctorId()) == null) {
             errorString = "Doctor id is invalid";
             return false;
         }
-        if (ClientDao.getClientById(analyse.getClientId()) == null) {
+        m = idPattern.matcher(Integer.toString(analyse.getClientId()));
+        if (!m.matches() || ClientDao.getClientById(analyse.getClientId()) == null) {
             errorString = "Client id is invalid";
             return false;
         }
-        if (VisitDao.getVisitById(analyse.getVisitId()) == null) {
+        m = idPattern.matcher(Integer.toString(analyse.getVisitId()));
+        if (!m.matches() || VisitDao.getVisitById(analyse.getVisitId()) == null) {
             errorString = "Visit id is invalid";
             return false;
         }

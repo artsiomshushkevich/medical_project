@@ -10,6 +10,8 @@ import com.vetardim.model.Visit;
 import com.vetardim.DAO.VisitDao;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class VisitController extends ActionSupport {
 
@@ -96,11 +98,21 @@ public class VisitController extends ActionSupport {
 
     private boolean validate(Visit visit)
     {
-        if (MedicalHistoryDao.getMedicalHistoryById(visit.getMedicalHistoryId()) == null) {
+        Pattern namePattern = Pattern.compile("^[A-Za-z\\s]{1,100}$");
+        Matcher m = namePattern.matcher(visit.getDiagnosys());
+        if (!m.matches())
+        {
+            errorString = "The diagnosys is invalid";
+            return false;
+        }
+        Pattern idPattern = Pattern.compile("^[0-9]{1,11}$");
+        m = idPattern.matcher(Integer.toString(visit.getMedicalHistoryId()));
+        if (!m.matches() || MedicalHistoryDao.getMedicalHistoryById(visit.getMedicalHistoryId()) == null) {
             errorString = "Medical history id is invalid";
             return false;
         }
-        if (OrderDao.getOrderById(visit.getOrderId()) == null) {
+        m = idPattern.matcher(Integer.toString(visit.getOrderId()));
+        if (!m.matches() || OrderDao.getOrderById(visit.getOrderId()) == null) {
             errorString = "Order id is invalid";
             return false;
         }

@@ -9,6 +9,8 @@ import com.vetardim.DAO.ScheduleDao;
 import com.vetardim.util.UnixTimeConverter;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ScheduleController extends ActionSupport {
 
@@ -113,8 +115,37 @@ public class ScheduleController extends ActionSupport {
 
     private boolean validate(Schedule schedule)
     {
-        if (DoctorDao.getDoctorById(schedule.getDoctorId()) == null) {
+        Pattern timePattern = Pattern.compile("([01]?[0-9]|2[0-3]):[0-5][0-9]");
+        Matcher m = timePattern.matcher(String.valueOf(schedule.getBeginWorkday()));
+        if (!m.matches())
+        {
+            errorString = "The begin workday is invalid";
+            return false;
+        }
+        m = timePattern.matcher(String.valueOf(schedule.getEndWorkday()));
+        if (!m.matches())
+        {
+            errorString = "The end workday is invalid";
+            return false;
+        }
+        Pattern idPattern = Pattern.compile("^[0-9]{1,11}$");
+        m = idPattern.matcher(Integer.toString(schedule.getDoctorId()));
+        if (!m.matches() || DoctorDao.getDoctorById(schedule.getDoctorId()) == null) {
             errorString = "Doctor id is invalid";
+            return false;
+        }
+        Pattern namePattern = Pattern.compile("^[A-Za-z]{1,100}$");
+        m = namePattern.matcher(schedule.getWorkday());
+        if (!m.matches())
+        {
+            errorString = "The workday is invalid";
+            return false;
+        }
+        Pattern roomPattern = Pattern.compile("^[0-9]{1,11}$");
+        m = roomPattern.matcher(String.valueOf(schedule.getRoom()));
+        if (!m.matches())
+        {
+            errorString = "The room is invalid";
             return false;
         }
         return true;

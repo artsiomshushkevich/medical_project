@@ -6,6 +6,8 @@ import com.vetardim.model.Department;
 import com.vetardim.DAO.DepartmentDao;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class DepartmentController extends ActionSupport {
 
@@ -44,6 +46,7 @@ public class DepartmentController extends ActionSupport {
     }
 
     public String update() {
+        if (!validate(getDepartment())) return Action.ERROR;
         DepartmentDao.addOrUpdateDepartment(getDepartment());
         return Action.SUCCESS;
     }
@@ -54,9 +57,37 @@ public class DepartmentController extends ActionSupport {
     }
 
     public String add() {
+        if (!validate(getDepartment())) return Action.ERROR;
         DepartmentDao.addOrUpdateDepartment(getDepartment());
         return Action.SUCCESS;
     }
 
+    private String errorString;
+
+    public String getErrorString() {
+        return errorString;
+    }
+
+    public void setErrorString(String errorString) {
+        this.errorString = errorString;
+    }
+
+    private boolean validate(Department department)
+    {
+        Pattern namePattern = Pattern.compile("^[A-Za-z\\s]{1,45}$");
+        Matcher m = namePattern.matcher(department.getName());
+        if (!m.matches())
+        {
+            errorString = "The name is invalid";
+            return false;
+        }
+        m = namePattern.matcher(department.getAddress());
+        if (!m.matches())
+        {
+            errorString = "The address is invalid";
+            return false;
+        }
+        return true;
+    }
 
 }

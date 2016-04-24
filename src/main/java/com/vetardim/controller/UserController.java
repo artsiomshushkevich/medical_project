@@ -8,6 +8,8 @@ import com.vetardim.DAO.UserDao;
 import com.vetardim.model.Role;
 import com.vetardim.DAO.RoleDao;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class UserController extends ActionSupport {
 
@@ -80,11 +82,27 @@ public class UserController extends ActionSupport {
 
     private boolean validate(User user)
     {
+        Pattern loginPattern = Pattern.compile("^[A-Za-z0-9_-]{1,30}$");
+        Matcher m = loginPattern.matcher(user.getNickname());
+        if (!m.matches())
+        {
+            errorString = "The login is invalid";
+            return false;
+        }
+        Pattern passwordPattern = Pattern.compile("^[A-Za-z0-9@#$%*]{8,60}$");
+        m = passwordPattern.matcher(user.getPassword());
+        if (!m.matches())
+        {
+            errorString = "The password is invalid";
+            return false;
+        }
         if(user.getNickname().equals("admin")) {
             errorString = "Operations with admin are prohibited";
             return false;
         }
-        if (RoleDao.getRoleById(user.getRoleId()) == null) {
+        Pattern idPattern = Pattern.compile("^[0-9]{1,11}$");
+        m = idPattern.matcher(Integer.toString(user.getRoleId()));
+        if (!m.matches() || RoleDao.getRoleById(user.getRoleId()) == null) {
             errorString = "Role id is invalid";
             return false;
         }

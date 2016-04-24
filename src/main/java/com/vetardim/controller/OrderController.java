@@ -11,6 +11,8 @@ import com.vetardim.DAO.OrderDao;
 import com.vetardim.util.UnixTimeConverter;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class OrderController extends ActionSupport {
 
@@ -126,11 +128,28 @@ public class OrderController extends ActionSupport {
 
     private boolean validate(Order order)
     {
-        if (DoctorDao.getDoctorById(order.getDoctorId()) == null) {
+        Pattern datePattern = Pattern.compile("(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((19|20)\\\\d\\\\d)");
+        Matcher m = datePattern.matcher(String.valueOf(order.getDate()));
+        if (!m.matches())
+        {
+            errorString = "The date is invalid";
+            return false;
+        }
+        Pattern timePattern = Pattern.compile("([01]?[0-9]|2[0-3]):[0-5][0-9]");
+        m = timePattern.matcher(String.valueOf(order.getBeginTime()));
+        if (!m.matches())
+        {
+            errorString = "The begin time is invalid";
+            return false;
+        }
+        Pattern idPattern = Pattern.compile("^[0-9]{1,11}$");
+        m = idPattern.matcher(Integer.toString(order.getDoctorId()));
+        if (!m.matches() || DoctorDao.getDoctorById(order.getDoctorId()) == null) {
             errorString = "Doctor id is invalid";
             return false;
         }
-        if (ClientDao.getClientById(order.getClientId()) == null) {
+        m = idPattern.matcher(Integer.toString(order.getClientId()));
+        if (!m.matches() || ClientDao.getClientById(order.getClientId()) == null) {
             errorString = "Client id is invalid";
             return false;
         }
