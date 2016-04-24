@@ -128,7 +128,7 @@ public class OrderController extends ActionSupport {
 
     private boolean validate(Order order)
     {
-        Pattern datePattern = Pattern.compile("(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((19|20)\\\\d\\\\d)");
+        Pattern datePattern = Pattern.compile("((19|20)\\d\\d)-(0?[1-9]|1[012])-(0?[1-9]|[12][0-9]|3[01])");
         Matcher m = datePattern.matcher(String.valueOf(order.getDate()));
         if (!m.matches())
         {

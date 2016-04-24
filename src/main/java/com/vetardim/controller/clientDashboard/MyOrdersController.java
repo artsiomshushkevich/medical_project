@@ -49,7 +49,7 @@ public class MyOrdersController extends ActionSupport {
             client = ClientDao.getClientByUserId(id);
             ordersList = OrderDao.getOrdersListByClientId(client.getId());
             for (Order order: ordersList) {
-                order.setDateInString(UnixTimeConverter.convertUnixTimeToTime(order.getDate(),"yyyy:MM:dd"));
+                order.setDateInString(UnixTimeConverter.convertUnixTimeToTime(order.getDate(),"yyyy-MM-dd"));
                 order.setBeginTimeInString(UnixTimeConverter.convertUnixTimeToTime(order.getBeginTime(),"hh:mm"));
 
                 Doctor doctor = DoctorDao.getDoctorById(order.getDoctorId());

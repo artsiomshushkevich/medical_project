@@ -85,7 +85,8 @@
             <div class="row">
                 <div class="col-md-12">
                     <h1 class="text-center"><s:property value="answer"></s:property></h1>
-                    <%--<a href="client-myorders.action" class="btn btn-primary text-center">Go back to my orders</a>--%>
+                    <br>
+                    <button class="btn btn-primary" onclick="window.history.back();">Go Back</button>
                 </div>
             </div>
         </div>
