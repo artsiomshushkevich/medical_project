@@ -34,8 +34,9 @@
         </div>
 
         <ul class="nav navbar-top-links navbar-right">
-            <li class="dropdown">
-                <!-- if need a top right link write here -->
+            <li style="color: white;" class="dropdown">
+                <c:set var="salary" scope="session" value='<%=session.getAttribute("login")%>'/>
+                <c:out value="${salary}"/>
             </li>
             <!-- /.dropdown -->
             <!-- /.dropdown -->

@@ -1,4 +1,5 @@
-﻿
+﻿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -32,8 +33,9 @@
             </div>
 
             <ul class="nav navbar-top-links navbar-right">
-                <li class="dropdown">
-                    <!-- if need a top right link write here -->
+                <li style="color: white;" class="dropdown">
+                    <c:set var="salary" scope="session" value='<%=session.getAttribute("login")%>'/>
+                    <c:out value="${salary}"/>
                 </li>
                 <!-- /.dropdown -->
                 <!-- /.dropdown -->
