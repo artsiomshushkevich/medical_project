@@ -146,7 +146,14 @@
                                             <td><s:property value="name"></s:property></td>
                                             <td><s:property value="result"></s:property></td>
                                             <td>
-                                                <button class="btn btn-link" id_instance="<s:property value="id"/>" onclick="showEditModal(this)">update</button>
+                                                <button class="btn btn-link"
+                                                        id="<s:property value="id"/>"
+                                                        doctorId="<s:property value="doctorId"/>"
+                                                        clientId="<s:property value="clientId"/>"
+                                                        visitId="<s:property value="visitId"/>"
+                                                        name="<s:property value="name"/>"
+                                                        result="<s:property value="result"/>"
+                                                        onclick="showEditModal(this)">update</button>
                                                 &middot;
                                                 <button class="btn btn-link" id_instance="<s:property value="id"/>" onclick="showDeleteModal(this)">delete</button>
                                             </td>
@@ -186,8 +193,25 @@
 
     function showEditModal(instance)
     {
-        var id = $(instance).attr('id_instance');
+        var id = $(instance).attr('id');
+        var name = $(instance).attr('name');
+        var doctorId = $(instance).attr('doctorId');
+        var visitId = $(instance).attr('visitId');
+        var clientId = $(instance).attr('clientId');
+        var result = $(instance).attr('result');
+
+        $('#analyses_edit_doctorId option').removeAttr('selected');
+        $('#analyses_edit_doctorId option[value=' + doctorId + ']').attr('selected', 'selected');
+
+        $('#analyses_edit_clientId option').removeAttr('selected');
+        $('#analyses_edit_clientId option[value=' + clientId + ']').attr('selected', 'selected');
+
+        $('#analyses_edit_visitId option').removeAttr('selected');
+        $('#analyses_edit_visitId option[value=' + visitId + ']').attr('selected', 'selected');
+
         $('#analyses_edit_id').val(id);
+        $('#analyses_edit_result').val(result);
+        $('#analyses_edit_name').val(name);
         $('.analyses_edit_modal').modal();
     }
 

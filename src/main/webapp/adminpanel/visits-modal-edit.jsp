@@ -11,14 +11,14 @@
                     <div class="form-group">
                         <input id="visits_edit_id" name="visit.id" type="hidden">
                         <div class="form-group">
-                            <label>Complaints: <input type="text" required class="form-control" name="visit.complaints"></label>
+                            <label>Complaints: <input id="visits_edit_complaints" type="text" required class="form-control" name="visit.complaints"></label>
                         </div>
                         <div class="form-group">
-                            <label>Diagnosys: <input type="text" required class="form-control" name="visit.diagnosys"></label>
+                            <label>Diagnosys: <input id="visits_edit_diagnosys" type="text" required class="form-control" name="visit.diagnosys"></label>
                         </div>
                         <div class="form-group">
                             <label>Medical history id:
-                                <select required class="form-control" name="visit.medicalHistoryId">
+                                <select id="visits_edit_medicalHistoryId" required class="form-control" name="visit.medicalHistoryId">
                                     <s:iterator value="medicalHistoriesList" var="medicalHistory">
                                         <option value="<s:property value="id"></s:property>">
                                             <s:property value="id"></s:property>
@@ -29,7 +29,7 @@
                         </div>
                         <div class="form-group">
                             <label>Order id:
-                                <select required class="form-control" name="visit.orderId">
+                                <select id="visits_edit_orderId" required class="form-control" name="visit.orderId">
                                     <s:iterator value="ordersList" var="order">
                                         <option value="<s:property value="id"></s:property>">
                                             <s:property value="id"></s:property>

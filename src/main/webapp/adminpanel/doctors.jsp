@@ -153,7 +153,18 @@
                                             <td><s:property value="phoneNumber"></s:property></td>
                                             <td><s:property value="departmentId"></s:property></td>
                                             <td>
-                                                <button class="btn btn-link" id_instance="<s:property value="id"/>" onclick="showEditModal(this)">update</button>
+                                                <button class="btn btn-link"
+                                                        id="<s:property value="id"/>"
+                                                        userId="<s:property value="userId"/>"
+                                                        firstname="<s:property value="firstname"/>"
+                                                        secondname="<s:property value="secondname"/>"
+                                                        lastname="<s:property value="lastname"/>"
+                                                        qualification="<s:property value="qualification"/>"
+                                                        speciality="<s:property value="speciality"/>"
+                                                        email="<s:property value="email"/>"
+                                                        phoneNumber="<s:property value="phoneNumber"/>"
+                                                        departmentId="<s:property value="departmentId"/>"
+                                                        onclick="showEditModal(this)">update</button>
                                                 &middot;
                                                 <button class="btn btn-link" id_instance="<s:property value="id"/>" onclick="showDeleteModal(this)">delete</button>
                                             </td>
@@ -193,8 +204,18 @@
 
     function showEditModal(instance)
     {
-        var id = $(instance).attr('id_instance');
-        $('#doctors_edit_id').val(id);
+        $('#doctors_edit_userId option').removeAttr('selected');
+        $('#doctors_edit_userId option[value=' + $(instance).attr('userId') + ']').attr('selected', 'selected');
+
+        $('#doctors_edit_id').val($(instance).attr('id'));
+        $('#doctors_edit_firstname').val($(instance).attr('firstname'));
+        $('#doctors_edit_secondname').val($(instance).attr('secondname'));
+        $('#doctors_edit_lastname').val($(instance).attr('lastname'));
+        $('#doctors_edit_qualification').val($(instance).attr('qualification'));
+        $('#doctors_edit_speciality').val($(instance).attr('speciality'));
+        $('#doctors_edit_email').val($(instance).attr('email'));
+        $('#doctors_edit_phoneNumber').val($(instance).attr('phoneNumber'));
+        $('#doctors_edit_departmentId').val($(instance).attr('departmentId'));
         $('.doctors_edit_modal').modal();
     }
 

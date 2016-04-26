@@ -12,7 +12,7 @@
                         <input id="clients_edit_id" name="client.id" type="hidden">
                         <div class="form-group">
                             <label>User nickname:
-                                <select required class="form-control" name="client.userId">
+                                <select id="clients_edit_userId" required class="form-control" name="client.userId">
                                     <s:iterator value="usersList" var="user">
                                         <option value="<s:property value="id"></s:property>">
                                             <s:property value="nickname"></s:property>
@@ -22,22 +22,22 @@
                             </label>
                         </div>
                         <div class="form-group">
-                            <label>First name: <input type="text" required  class="form-control" name="client.firstname"></label>
+                            <label>First name: <input id="clients_edit_firstname" type="text" required  class="form-control" name="client.firstname"></label>
                         </div>
                         <div class="form-group">
-                            <label>Second name: <input type="text" required class="form-control" name="client.secondname"></label>
+                            <label>Second name: <input id="clients_edit_secondname" type="text" required class="form-control" name="client.secondname"></label>
                         </div>
                         <div class="form-group">
-                            <label>Last name: <input type="text" required class="form-control" name="client.lastname"></label>
+                            <label>Last name: <input id="clients_edit_lastname" type="text" required class="form-control" name="client.lastname"></label>
                         </div>
                         <div class="form-group">
-                            <label>Phone number: <input type="text" required class="form-control" name="client.phoneNumber"></label>
+                            <label>Phone number: <input id="clients_edit_phoneNumber" type="text" required class="form-control" name="client.phoneNumber"></label>
                         </div>
                         <div class="form-group">
-                            <label>Address: <input type="text" required class="form-control" name="client.address"></label>
+                            <label>Address: <input id="clients_edit_address" type="text" required class="form-control" name="client.address"></label>
                         </div>
                         <div class="form-group">
-                            <label>Email: <input type="text" required class="form-control" name="client.email"></label>
+                            <label>Email: <input id="clients_edit_email" type="text" required class="form-control" name="client.email"></label>
                         </div>
                     </div>
                     <div class="modal-footer">

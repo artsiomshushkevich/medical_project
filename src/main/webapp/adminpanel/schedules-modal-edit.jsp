@@ -12,7 +12,7 @@
                         <input id="schedules_edit_id"  name="schedule.id" type="hidden">
                         <div class="form-group">
                             <label>Doctor:
-                                <select required class="form-control" name="schedule.doctorId">
+                                <select id="schedules_edit_doctorId" required class="form-control" name="schedule.doctorId">
                                     <s:iterator value="doctorsList" var="doctor">
                                         <option value="<s:property value="id"></s:property>">
                                             <s:property value="getFullname()"></s:property>
@@ -22,16 +22,16 @@
                             </label>
                         </div>
                         <div class="form-group">
-                            <label>Workday: <input type="text" required class="form-control" name="schedule.workday"></label>
+                            <label>Workday: <input id="schedules_edit_workday" type="text" required class="form-control" name="schedule.workday"></label>
                         </div>
                         <div class="form-group">
-                            <label>Begin workday: <input type="time" required class="form-control" name="beginWorkTime"></label>
+                            <label>Begin workday: <input id="schedules_edit_beginWorkdayInString" type="time" required class="form-control" name="beginWorkTime"></label>
                         </div>
                         <div class="form-group">
-                            <label>End workday: <input type="time" required lass="form-control" name="endWorkTime"></label>
+                            <label>End workday: <input id="schedules_edit_endWorkdayInString" type="time" required lass="form-control" name="endWorkTime"></label>
                         </div>
                         <div class="form-group">
-                            <label>Room: <input type="number" required min="0" class="form-control" name="schedule.room"></label>
+                            <label>Room: <input id="schedules_edit_room" type="number" required min="0" class="form-control" name="schedule.room"></label>
                         </div>
                     </div>
                     <div class="modal-footer">

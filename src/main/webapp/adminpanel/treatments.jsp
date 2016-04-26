@@ -142,10 +142,17 @@
                                             <td><s:property value="prescription"></s:property></td>
                                             <td><s:property value="cureCount"></s:property></td>
                                             <td><s:property value="methodOfUsing"></s:property></td>
-                                            <td><s:property value="cure"></s:property></td>
+                                            <td><s:property value="cureId"></s:property></td>
                                             <td><s:property value="visitId"></s:property></td>
                                             <td>
-                                                <button class="btn btn-link" id_instance="<s:property value="id"/>" onclick="showEditModal(this)">update</button>
+                                                <button class="btn btn-link"
+                                                        id="<s:property value="id"/>"
+                                                        prescription="<s:property value="prescription"/>"
+                                                        cureCount="<s:property value="cureCount"/>"
+                                                        methodOfUsing="<s:property value="methodOfUsing"/>"
+                                                        cureId="<s:property value="cureId"/>"
+                                                        visitId="<s:property value="visitId"/>"
+                                                        onclick="showEditModal(this)">update</button>
                                                 &middot;
                                                 <button class="btn btn-link" id_instance="<s:property value="id"/>" onclick="showDeleteModal(this)">delete</button>
                                             </td>
@@ -185,8 +192,16 @@
 
     function showEditModal(instance)
     {
-        var id = $(instance).attr('id_instance');
-        $('#treatments_edit_id').val(id);
+        $('#treatments_edit_cureId option').removeAttr('selected');
+        $('#treatments_edit_cureId option[value=' + $(instance).attr('cureId') + ']').attr('selected', 'selected');
+
+        $('#treatments_edit_visitId option').removeAttr('selected');
+        $('#treatments_edit_visitId option[value=' + $(instance).attr('visitId') + ']').attr('selected', 'selected');
+
+        $('#treatments_edit_id').val($(instance).attr('id'));
+        $('#treatments_edit_prescription').val($(instance).attr('prescription'));
+        $('#treatments_edit_cureCount').val($(instance).attr('cureCount'));
+        $('#treatments_edit_methodOfUsing').val($(instance).attr('methodOfUsing'));
         $('.treatments_edit_modal').modal();
     }
 

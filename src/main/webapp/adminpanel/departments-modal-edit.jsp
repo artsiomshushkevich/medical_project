@@ -11,10 +11,10 @@
                     <div class="form-group">
                         <input id="departments_edit_id" name="department.id" type="hidden">
                         <div class="form-group">
-                            <label>Name: <input type="text" required class="form-control" name="department.name"></label>
+                            <label>Name: <input id="departments_edit_name" type="text" required class="form-control" name="department.name"></label>
                         </div>
                         <div class="form-group">
-                            <label>Address: <input type="text" required class="form-control" name="department.address"></label>
+                            <label>Address: <input id="departments_edit_address" type="text" required class="form-control" name="department.address"></label>
                         </div>
                     </div>
                     <div class="modal-footer">

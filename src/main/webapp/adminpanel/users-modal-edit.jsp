@@ -11,14 +11,14 @@
                     <div class="form-group">
                         <input id="user_edit_id" name="user.id" type="hidden">
                         <div class="form-group">
-                            <label>Nickname: <input type="text" required class="form-control" name="user.nickname"></label>
+                            <label>Nickname: <input id="user_edit_nickname" type="text" required class="form-control" name="user.nickname"></label>
                         </div>
                         <div class="form-group">
                             <label>Password: <input type="password" required class="form-control" name="user.password"></label>
                         </div>
                         <div class="form-group">
                             <label>Role:
-                                <select required class="form-control" name="user.roleId">
+                                <select id="user_edit_roleId" required class="form-control" name="user.roleId">
                                     <s:iterator value="rolesList" var="role">
                                         <option value="<s:property value="id"></s:property>">
                                             <s:property value="name"></s:property>

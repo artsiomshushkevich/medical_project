@@ -145,7 +145,14 @@
                                             <td><s:property value="endWorkdayInString"></s:property></td>
                                             <td><s:property value="room"></s:property></td>
                                             <td>
-                                                <button class="btn btn-link" id_instance="<s:property value="id"/>" onclick="showEditModal(this)">update</button>
+                                                <button class="btn btn-link"
+                                                        id="<s:property value="id"/>"
+                                                        doctorId="<s:property value="doctorId"/>"
+                                                        workday="<s:property value="workday"/>"
+                                                        beginWorkdayInString="<s:property value="beginWorkdayInString"/>"
+                                                        endWorkdayInString="<s:property value="endWorkdayInString"/>"
+                                                        room="<s:property value="room"/>"
+                                                        onclick="showEditModal(this)">update</button>
                                                 &middot;
                                                 <button class="btn btn-link" id_instance="<s:property value="id"/>" onclick="showDeleteModal(this)">delete</button>
                                             </td>
@@ -185,8 +192,14 @@
 
     function showEditModal(instance)
     {
-        var id = $(instance).attr('id_instance');
-        $('#schedules_edit_id').val(id);
+        $('#schedules_edit_doctorId option').removeAttr('selected');
+        $('#schedules_edit_doctorId option[value=' + $(instance).attr('doctorId') + ']').attr('selected', 'selected');
+
+        $('#schedules_edit_id').val($(instance).attr('id'));
+        $('#schedules_edit_workday').val($(instance).attr('workday'));
+        $('#schedules_edit_beginWorkdayInString').val($(instance).attr('beginWorkdayInString'));
+        $('#schedules_edit_endWorkdayInString').val($(instance).attr('endWorkdayInString'));
+        $('#schedules_edit_room').val($(instance).attr('room'));
         $('.schedules_edit_modal').modal();
     }
 
