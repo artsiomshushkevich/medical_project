@@ -5,14 +5,14 @@
             <form method="post" action="analyses-update.action">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Update analyse info</h4>
+                    <h4 class="modal-title">Update analyse info <s:property value="analyse.id"></s:property></h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
                         <input id="analyses_edit_id" name="analyse.id" type="hidden">
                         <div class="form-group">
                             <label>Doctor:
-                                <select required class="form-control" name="analyse.doctorId">
+                                <select id="analyses_edit_doctorId" required class="form-control" name="analyse.doctorId">
                                     <s:iterator value="doctorsList" var="doctor">
                                         <option value="<s:property value="id"></s:property>">
                                             <s:property value="getFullname()"></s:property>
@@ -23,7 +23,7 @@
                         </div>
                         <div class="form-group">
                             <label>Client:
-                                <select required class="form-control" name="analyse.clientId">
+                                <select id="analyses_edit_clientId" required class="form-control" name="analyse.clientId">
                                     <s:iterator value="clientsList" var="client">
                                         <option value="<s:property value="id"></s:property>">
                                             <s:property value="getFullname()"></s:property>
@@ -34,7 +34,7 @@
                         </div>
                         <div class="form-group">
                             <label>Visit id:
-                                <select required class="form-control" name="analyse.visitId">
+                                <select id="analyses_edit_visitId" required class="form-control" name="analyse.visitId">
                                     <s:iterator value="visitsList" var="visit">
                                         <option value="<s:property value="id"></s:property>">
                                             <s:property value="id"></s:property>
@@ -44,10 +44,10 @@
                             </label>
                         </div>
                         <div class="form-group">
-                            <label>Name: <input type="text" required class="form-control" name="analyse.name"></label>
+                            <label>Name: <input id="analyses_edit_name" type="text" required class="form-control" name="analyse.name" value=""></label>
                         </div>
                         <div class="form-group">
-                            <label>Result: <input type="text" required class="form-control" name="analyse.result"></label>
+                            <label>Result: <input id="analyses_edit_result" type="text" required class="form-control" name="analyse.result"></label>
                         </div>
                     </div>
                     <div class="modal-footer">

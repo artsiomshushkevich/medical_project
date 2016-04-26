@@ -143,7 +143,11 @@
                                             </s:if>
                                             <s:else>
                                                 <td>
-                                                    <button class="btn btn-link" id_instance="<s:property value="id"/>" onclick="showEditModal(this)">update</button>
+                                                    <button class="btn btn-link"
+                                                            id="<s:property value="id"/>"
+                                                            nickname="<s:property value="nickname"/>"
+                                                            roleId="<s:property value="roleId"/>"
+                                                            onclick="showEditModal(this)">update</button>
                                                     &middot;
                                                     <button class="btn btn-link" id_instance="<s:property value="id"/>" onclick="showDeleteModal(this)">delete</button>
                                                 </td>
@@ -188,8 +192,11 @@
 
     function showEditModal(instance)
     {
-        var id = $(instance).attr('id_instance');
-        $('#user_edit_id').val(id);
+        $('#user_edit_roleId option').removeAttr('selected');
+        $('#user_edit_roleId option[value=' + $(instance).attr('roleId') + ']').attr('selected', 'selected');
+
+        $('#user_edit_id').val($(instance).attr('id'));
+        $('#user_edit_nickname').val($(instance).attr('nickname'));
         $('.user_edit_modal').modal();
     }
 

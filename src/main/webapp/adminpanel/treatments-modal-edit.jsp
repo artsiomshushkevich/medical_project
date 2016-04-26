@@ -11,17 +11,17 @@
                     <div class="form-group">
                         <input id="treatments_edit_id" name="treatment.id" type="hidden">
                         <div class="form-group">
-                            <label>Prescription: <input type="text" required  class="form-control" name="treatment.prescription"></label>
+                            <label>Prescription: <input id="treatments_edit_prescription" type="text" required  class="form-control" name="treatment.prescription"></label>
                         </div>
                         <div class="form-group">
-                            <label>Cure count: <input type="number" required min="1" class="form-control" name="treatment.cureCount"></label>
+                            <label>Cure count: <input id="treatments_edit_cureCount" type="number" required min="1" class="form-control" name="treatment.cureCount"></label>
                         </div>
                         <div class="form-group">
-                            <label>Method of using: <input type="text" required  class="form-control" name="treatment.methodOfUsing"></label>
+                            <label>Method of using: <input id="treatments_edit_methodOfUsing" type="text" required  class="form-control" name="treatment.methodOfUsing"></label>
                         </div>
                         <div class="form-group">
                             <label>Cure:
-                                <select required class="form-control" name="analyse.visitId">
+                                <select id="treatments_edit_cureId" required class="form-control" name="analyse.visitId">
                                     <s:iterator value="curesList" var="cure">
                                         <option value="<s:property value="id"></s:property>">
                                             <s:property value="name"></s:property>
@@ -32,7 +32,7 @@
                         </div>
                         <div class="form-group">
                             <label>Visit id:
-                                <select required class="form-control" name="treatment.visitId">
+                                <select id="treatments_edit_visitId" required class="form-control" name="treatment.visitId">
                                     <s:iterator value="visitsList" var="visit">
                                         <option value="<s:property value="id"></s:property>">
                                             <s:property value="id"></s:property>

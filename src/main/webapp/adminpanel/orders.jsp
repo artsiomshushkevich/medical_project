@@ -141,7 +141,13 @@
                                             <td><s:property value="doctorFullname"></s:property></td>
                                             <td><s:property value="beginTimeInString"></s:property></td>
                                             <td>
-                                                <button class="btn btn-link" id_instance="<s:property value="id"/>" onclick="showEditModal(this)">update</button>
+                                                <button class="btn btn-link"
+                                                        id="<s:property value="id"/>"
+                                                        clientId="<s:property value="clientId"/>"
+                                                        doctorId="<s:property value="doctorId"/>"
+                                                        dateInString="<s:property value="dateInString"/>"
+                                                        beginTimeInString="<s:property value="beginTimeInString"/>"
+                                                        onclick="showEditModal(this)">update</button>
                                                 &middot;
                                                 <button class="btn btn-link" id_instance="<s:property value="id"/>" onclick="showDeleteModal(this)">delete</button>
                                             </td>
@@ -181,15 +187,21 @@
 
     function showEditModal(instance)
     {
-        var id = $(instance).attr('id_instance');
-        $('#orders_edit_id').val(id);
+        $('#orders_edit_clientId option').removeAttr('selected');
+        $('#orders_edit_clientId option[value=' + $(instance).attr('clientId') + ']').attr('selected', 'selected');
+
+        $('#orders_edit_doctorId option').removeAttr('selected');
+        $('#orders_edit_doctorId option[value=' + $(instance).attr('doctorId') + ']').attr('selected', 'selected');
+
+        $('#orders_edit_id').val($(instance).attr('id'));
+        $('#orders_edit_dateInString').val($(instance).attr('dateInString'));
+        $('#orders_edit_beginTimeInString').val($(instance).attr('beginTimeInString'));
         $('.orders_edit_modal').modal();
     }
 
     function showDeleteModal(instance)
     {
-        var id = $(instance).attr('id_instance');
-        $('#orders_delete_id').val(id);
+        $('#orders_delete_id').val($(instance).attr('id'));
         $('.orders_delete_modal').modal();
     }
 </script>

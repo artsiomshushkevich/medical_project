@@ -137,7 +137,11 @@
                                             <td><s:property value="name"></s:property></td>
                                             <td><s:property value="address"></s:property></td>
                                             <td>
-                                                <button class="btn btn-link" id_instance="<s:property value="id"/>" onclick="showEditModal(this)">update</button>
+                                                <button class="btn btn-link"
+                                                        id="<s:property value="id"/>"
+                                                        name="<s:property value="name"/>"
+                                                        address="<s:property value="address"/>"
+                                                        onclick="showEditModal(this)">update</button>
                                                 &middot;
                                                 <button class="btn btn-link" id_instance="<s:property value="id"/>" onclick="showDeleteModal(this)">delete</button>
                                             </td>
@@ -177,8 +181,9 @@
 
     function showEditModal(instance)
     {
-        var id = $(instance).attr('id_instance');
-        $('#departments_edit_id').val(id);
+        $('#departments_edit_id').val($(instance).attr('id'));
+        $('#departments_edit_name').val($(instance).attr('name'));
+        $('#departments_edit_address').val($(instance).attr('address'));
         $('.departments_edit_modal').modal();
     }
 

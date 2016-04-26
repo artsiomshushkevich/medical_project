@@ -135,7 +135,10 @@
                                             <td><s:property value="id"></s:property></td>
                                             <td><s:property value="clientFullname"></s:property></td>
                                             <td>
-                                                <button class="btn btn-link" id_instance="<s:property value="id"/>" onclick="showEditModal(this)">update</button>
+                                                <button class="btn btn-link"
+                                                        id="<s:property value="id"/>"
+                                                        clientId="<s:property value="clientId"/>"
+                                                        onclick="showEditModal(this)">update</button>
                                                 &middot;
                                                 <button class="btn btn-link" id_instance="<s:property value="id"/>" onclick="showDeleteModal(this)">delete</button>
                                             </td>
@@ -175,8 +178,10 @@
 
     function showEditModal(instance)
     {
-        var id = $(instance).attr('id_instance');
-        $('#medical_histories_edit_id').val(id);
+        $('#medical_histories_edit_clientId option').removeAttr('selected');
+        $('#medical_histories_edit_clientId option[value=' + $(instance).attr('clientId') + ']').attr('selected', 'selected');
+
+        $('#medical_histories_edit_id').val($(instance).attr('id'));
         $('.medical_histories_edit_modal').modal();
     }
 

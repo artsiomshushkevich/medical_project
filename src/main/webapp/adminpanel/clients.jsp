@@ -147,7 +147,16 @@
                                             <td><s:property value="address"></s:property></td>
                                             <td><s:property value="email"></s:property></td>
                                             <td>
-                                                <button class="btn btn-link" id_instance="<s:property value="id"/>" onclick="showEditModal(this)">update</button>
+                                                <button class="btn btn-link"
+                                                        id="<s:property value="id"/>"
+                                                        userId="<s:property value="userId"/>"
+                                                        firstname="<s:property value="firstname"/>"
+                                                        secondname="<s:property value="secondname"/>"
+                                                        lastname="<s:property value="Lastname"/>"
+                                                        phoneNumber="<s:property value="phoneNumber"/>"
+                                                        address="<s:property value="address"/>"
+                                                        email="<s:property value="email"/>"
+                                                        onclick="showEditModal(this)">update</button>
                                                 &middot;
                                                 <button class="btn btn-link" id_instance="<s:property value="id"/>" onclick="showDeleteModal(this)">delete</button>
                                             </td>
@@ -187,8 +196,16 @@
 
     function showEditModal(instance)
     {
-        var id = $(instance).attr('id_instance');
-        $('#clients_edit_id').val(id);
+        $('#clients_edit_userId option').removeAttr('selected');
+        $('#clients_edit_userId option[value=' + $(instance).attr('userId') + ']').attr('selected', 'selected');
+
+        $('#clients_edit_id').val($(instance).attr('id'));
+        $('#clients_edit_firstname').val($(instance).attr('firstname'));
+        $('#clients_edit_secondname').val($(instance).attr('secondname'));
+        $('#clients_edit_lastname').val($(instance).attr('lastname'));
+        $('#clients_edit_phoneNumber').val($(instance).attr('phoneNumber'));
+        $('#clients_edit_address').val($(instance).attr('address'));
+        $('#clients_edit_email').val($(instance).attr('email'));
         $('.clients_edit_modal').modal();
     }
 

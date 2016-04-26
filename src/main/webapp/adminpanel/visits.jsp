@@ -142,7 +142,13 @@
                                             <td><s:property value="medicalHistoryId"></s:property></td>
                                             <td><s:property value="orderId"></s:property></td>
                                             <td>
-                                                <button class="btn btn-link" id_instance="<s:property value="id"/>" onclick="showEditModal(this)">update</button>
+                                                <button class="btn btn-link"
+                                                        id="<s:property value="id"/>"
+                                                        complaints="<s:property value="complaints"/>"
+                                                        diagnosys="<s:property value="diagnosys"/>"
+                                                        medicalHistoryId="<s:property value="medicalHistoryId"/>"
+                                                        orderId="<s:property value="orderId"/>"
+                                                        onclick="showEditModal(this)">update</button>
                                                 &middot;
                                                 <button class="btn btn-link" id_instance="<s:property value="id"/>" onclick="showDeleteModal(this)">delete</button>
                                             </td>
@@ -182,8 +188,15 @@
 
     function showEditModal(instance)
     {
-        var id = $(instance).attr('id_instance');
-        $('#visits_edit_id').val(id);
+        $('#visits_edit_medicalHistoryId option').removeAttr('selected');
+        $('#visits_edit_medicalHistoryId option[value=' + $(instance).attr('medicalHistoryId') + ']').attr('selected', 'selected');
+
+        $('#visits_edit_orderId option').removeAttr('selected');
+        $('#visits_edit_orderId option[value=' + $(instance).attr('orderId') + ']').attr('selected', 'selected');
+
+        $('#visits_edit_id').val($(instance).attr('id'));
+        $('#visits_edit_complaints').val($(instance).attr('complaints'));
+        $('#visits_edit_diagnosys').val($(instance).attr('diagnosys'));
         $('.visits_edit_modal').modal();
     }
 

@@ -12,7 +12,7 @@
                         <input id="medical_histories_edit_id" name="medicalHistory.id" type="hidden">
                         <div class="form-group">
                             <label>Client:
-                                <select required class="form-control" name="medicalHistory.clientId">
+                                <select id="medical_histories_edit_clientId" required class="form-control" name="medicalHistory.clientId">
                                     <s:iterator value="clientsList" var="client">
                                         <option value="<s:property value="id"></s:property>">
                                             <s:property value="getFullname()"></s:property>

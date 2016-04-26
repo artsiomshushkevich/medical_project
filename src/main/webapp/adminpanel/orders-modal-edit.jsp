@@ -12,7 +12,7 @@
                         <input id="orders_edit_id" name="order.id" type="hidden">
                         <div class="form-group">
                             <label>Client:
-                                <select required class="form-control" name="order.clientId">
+                                <select id="orders_edit_clientId" required class="form-control" name="order.clientId">
                                     <s:iterator value="clientsList" var="client">
                                         <option value="<s:property value="id"></s:property>">
                                             <s:property value="getFullname()"></s:property>
@@ -22,11 +22,11 @@
                             </label>
                         </div>
                         <div class="form-group">
-                            <label>Date: <input type="date" required class="form-control" name="date"></label>
+                            <label>Date: <input id="orders_edit_dateInString" type="date" required class="form-control" name="date"></label>
                         </div>
                         <div class="form-group">
                             <label>Doctor:
-                                <select required class="form-control" name="order.doctorId">
+                                <select id="orders_edit_doctorId" required class="form-control" name="order.doctorId">
                                     <s:iterator value="doctorsList" var="doctor">
                                         <option value="<s:property value="id"></s:property>">
                                             <s:property value="getFullname()"></s:property>
@@ -36,7 +36,7 @@
                             </label>
                         </div>
                         <div class="form-group">
-                            <label>Begin time: <input type="time" required class="form-control" name="time"></label>
+                            <label>Begin time: <input id="orders_edit_beginTimeInString" type="time" required class="form-control" name="time"></label>
                         </div>
                     </div>
                     <div class="modal-footer">
