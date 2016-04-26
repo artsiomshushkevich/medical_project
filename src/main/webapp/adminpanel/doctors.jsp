@@ -172,6 +172,10 @@
                                     </s:iterator>
                                     </tbody>
                                 </table>
+                                <script>
+                                    sessionStorage.sess = '<%  %>'
+                                   // sessionStorage.setItem("sess", "1234566");
+                                </script>
                             </div>
                         </div>
                     </div>
@@ -204,10 +208,8 @@
 
     function showEditModal(instance)
     {
-        $('#doctors_edit_userId option').removeAttr('selected');
-        $('#doctors_edit_userId option[value=' + $(instance).attr('userId') + ']').attr('selected', 'selected');
-
         $('#doctors_edit_id').val($(instance).attr('id'));
+        $('#doctors_edit_userId').val($(instance).attr('userId'));
         $('#doctors_edit_firstname').val($(instance).attr('firstname'));
         $('#doctors_edit_secondname').val($(instance).attr('secondname'));
         $('#doctors_edit_lastname').val($(instance).attr('lastname'));
@@ -215,7 +217,8 @@
         $('#doctors_edit_speciality').val($(instance).attr('speciality'));
         $('#doctors_edit_email').val($(instance).attr('email'));
         $('#doctors_edit_phoneNumber').val($(instance).attr('phoneNumber'));
-        $('#doctors_edit_departmentId').val($(instance).attr('departmentId'));
+        $('#doctors_edit_departmentId option').removeAttr('selected');
+        $('#doctors_edit_departmentId option[value=' + $(instance).attr('userId') + ']').attr('selected', 'selected');
         $('.doctors_edit_modal').modal();
     }
 
@@ -226,6 +229,7 @@
         $('.doctors_delete_modal').modal();
     }
 </script>
+
 </body>
 
 </html>

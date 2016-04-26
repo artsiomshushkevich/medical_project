@@ -10,17 +10,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <input id="clients_edit_id" name="client.id" type="hidden">
-                        <div class="form-group">
-                            <label>User nickname:
-                                <select id="clients_edit_userId" required class="form-control" name="client.userId">
-                                    <s:iterator value="usersList" var="user">
-                                        <option value="<s:property value="id"></s:property>">
-                                            <s:property value="nickname"></s:property>
-                                        </option>
-                                    </s:iterator>
-                                </select>
-                            </label>
-                        </div>
+                        <input id="clients_edit_userId" name="client.userId" type="hidden">
                         <div class="form-group">
                             <label>First name: <input id="clients_edit_firstname" type="text" required  class="form-control" name="client.firstname"></label>
                         </div>

@@ -28,7 +28,7 @@
                             <label>Begin workday: <input id="schedules_edit_beginWorkdayInString" type="time" required class="form-control" name="beginWorkTime"></label>
                         </div>
                         <div class="form-group">
-                            <label>End workday: <input id="schedules_edit_endWorkdayInString" type="time" required lass="form-control" name="endWorkTime"></label>
+                            <label>End workday: <input id="schedules_edit_endWorkdayInString" type="time" required class="form-control" name="endWorkTime"></label>
                         </div>
                         <div class="form-group">
                             <label>Room: <input id="schedules_edit_room" type="number" required min="0" class="form-control" name="schedule.room"></label>

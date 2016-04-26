@@ -198,10 +198,8 @@
 
     function showEditModal(instance)
     {
-        $('#clients_edit_userId option').removeAttr('selected');
-        $('#clients_edit_userId option[value=' + $(instance).attr('userId') + ']').attr('selected', 'selected');
-
         $('#clients_edit_id').val($(instance).attr('id'));
+        $('#clients_edit_userId').val($(instance).attr('userId'));
         $('#clients_edit_firstname').val($(instance).attr('firstname'));
         $('#clients_edit_secondname').val($(instance).attr('secondname'));
         $('#clients_edit_lastname').val($(instance).attr('lastname'));

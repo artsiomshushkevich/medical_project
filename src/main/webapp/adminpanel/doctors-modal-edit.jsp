@@ -10,17 +10,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <input id="doctors_edit_id" name="doctor.id" type="hidden">
-                        <div class="form-group">
-                            <label>User nickname:
-                                <select id="doctors_edit_userId" required class="form-control" name="doctor.userId">
-                                    <s:iterator value="usersList" var="user">
-                                        <option value="<s:property value="id"></s:property>">
-                                            <s:property value="nickname"></s:property>
-                                        </option>
-                                    </s:iterator>
-                                </select>
-                            </label>
-                        </div>
+                        <input id="doctors_edit_userId" name="doctor.userId" type="hidden">
                         <div class="form-group">
                             <label>First name: <input id="doctors_edit_firstname" type="text" required class="form-control" name="doctor.firstname"></label>
                         </div>
@@ -43,8 +33,17 @@
                             <label>Email: <input id="doctors_edit_email" type="text" required class="form-control" name="doctor.email"></label>
                         </div>
                         <div class="form-group">
-                            <label>Department id: <input id="doctors_edit_departmentId" type="number" required min="1" class="form-control" name="doctor.departmentId"></label>
+                            <label>Department:
+                                <select required class="form-control" name="doctor.departmentId">
+                                    <s:iterator value="departmentsList" var="department">
+                                        <option value="<s:property value="id"></s:property>">
+                                            <s:property value="name"></s:property>
+                                        </option>
+                                    </s:iterator>
+                                </select>
+                            </label>
                         </div>
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

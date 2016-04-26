@@ -42,9 +42,18 @@
                             <label>Email: <input type="text" required class="form-control" name="doctor.email"></label>
                         </div>
                         <div class="form-group">
-                            <label>Department id: <input type="number" required min="1" class="form-control" name="doctor.departmentId"></label>
+                            <label>Department:
+                                <select required class="form-control" name="doctor.departmentId">
+                                    <s:iterator value="departmentsList" var="department">
+                                        <option value="<s:property value="id"></s:property>">
+                                            <s:property value="name"></s:property>
+                                        </option>
+                                    </s:iterator>
+                                </select>
+                            </label>
                         </div>
                     </div>
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary add-btn">Save</button>

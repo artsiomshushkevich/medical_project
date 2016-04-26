@@ -44,8 +44,19 @@ public class DoctorController extends ActionSupport {
         this.id = id;
     }
 
+    private List<Department> departmentsList;
+
+    public List<Department> getDepartmentsList() {
+        return departmentsList;
+    }
+
+    public void setDepartmentsList(List<Department> departmentList) {
+        this.departmentsList = departmentList;
+    }
+
     @Override
     public String execute() throws Exception {
+        this.departmentsList =  DepartmentDao.getDepartmentsList();
         this.usersList = UserDao.getUsersList();
         this.doctorsList =  DoctorDao.getDoctorsList();
         return Action.SUCCESS;
