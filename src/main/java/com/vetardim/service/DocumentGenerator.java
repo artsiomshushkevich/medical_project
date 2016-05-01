@@ -5,6 +5,7 @@ import com.lowagie.text.*;
 import com.lowagie.text.pdf.ColumnText;
 import com.lowagie.text.pdf.GrayColor;
 import com.lowagie.text.pdf.PdfWriter;
+import com.opencsv.CSVWriter;
 import com.vetardim.DAO.ClientDao;
 import com.vetardim.DAO.DoctorDao;
 import com.vetardim.DAO.OrderDao;
@@ -12,12 +13,15 @@ import com.vetardim.model.Client;
 import com.vetardim.model.Doctor;
 import com.vetardim.model.Order;
 import com.vetardim.util.UnixTimeConverter;
+
+
 import org.apache.poi.hssf.usermodel.*;
 
+import java.io.*;
 
 import java.io.ByteArrayOutputStream;
-
-import java.io.IOException;
+import java.nio.charset.Charset;
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -136,4 +140,36 @@ public class DocumentGenerator {
         workbook.write(stream);
         return  stream;
     }
+
+    public static ByteArrayOutputStream generateOrdersInCSV() throws IOException {
+        String[] FILE_HEADER = {"Order Number", "Date", "Doctor", "Client"};
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+
+        CSVWriter writer = new CSVWriter(new OutputStreamWriter(stream, Charset.forName("UTF-8")), ',');
+        writer.writeNext(FILE_HEADER);
+        List<String[]> ordersInString = new LinkedList<String[]>();
+        List<Order> orderList = OrderDao.getOrdersList();
+        for (int i = 0; i < orderList.size(); i++) {
+            Doctor doctor = DoctorDao.getDoctorById(orderList.get(i).getDoctorId());
+            Client client = ClientDao.getClientById(orderList.get(i).getClientId());
+
+            String[] tempArray = new String[]{String.format("%d", orderList.get(i).getId()),
+                    String.format("%s %s %s ", doctor.getFirstname(),
+                            doctor.getSecondname(),
+                            doctor.getLastname()),
+                    String.format("%s %s %s", client.getFirstname(),
+                            client.getSecondname(),
+                            client.getLastname()),
+                    String.format("%s %s",
+                            UnixTimeConverter.convertUnixTimeToTime(orderList.get(i).getBeginTime(), "hh:mm"),
+                            UnixTimeConverter.convertUnixTimeToTime(orderList.get(i).getDate(), "yyyy-MM-dd"))};
+            ordersInString.add(tempArray);
+        }
+
+        writer.writeAll(ordersInString);
+        writer.close();
+        return stream;
+    }
+
+
 }

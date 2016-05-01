@@ -402,10 +402,13 @@
             <result name="success">/doctor-dashboard/make-treatment-answer.jsp</result>
         </action>
 
-        <action name="generate-doc" class="com.vetardim.controller.DocumentController" method="getOrderPDF">
+        <action name="generateOrderPDF" class="com.vetardim.controller.DocumentController" method="getOrderPDF">
 
         </action>
-        <action name="generate-doc-xls" class="com.vetardim.controller.DocumentController" method="getOrdersXLS">
+        <action name="generateOrdersXLS" class="com.vetardim.controller.DocumentController" method="getOrdersXLS">
+
+        </action>
+        <action name="generateOrdersCSV" class="com.vetardim.controller.DocumentController" method="getOrdersCSV">
 
         </action>
     </package>

@@ -44,6 +44,10 @@ public class DocumentController extends ActionSupport implements ServletResponse
         makeResponse(DocumentGenerator.generateOrdersInXLS(), "application/vnd.ms-excel", "orders.xls");
         return NONE;
     }
+    public String getOrdersCSV() throws IOException {
+        makeResponse(DocumentGenerator.generateOrdersInCSV(), "text/csv", "orders.csv");
+        return NONE;
+    }
 
     public void setServletResponse(HttpServletResponse httpServletResponse) {
         this.response = httpServletResponse;
