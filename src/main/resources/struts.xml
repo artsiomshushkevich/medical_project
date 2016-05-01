@@ -405,6 +405,10 @@
         <action name="generate-doc" class="com.vetardim.controller.DocumentController" method="getOrderPDF">
 
         </action>
+
+        <action name="generate-doc-xls" class="com.vetardim.controller.DocumentController" method="getOrdersXLS">
+
+        </action>
     </package>
 
 
