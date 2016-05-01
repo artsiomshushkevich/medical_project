@@ -30,8 +30,6 @@ public class DocumentController extends ActionSupport implements ServletResponse
     @Override
     public String execute() throws Exception {
 
-        //makeResponse(DocumentGenerator.generatePDF(), "application/pdf", "pdffile.pdf");
-
         return super.execute();
     }
 

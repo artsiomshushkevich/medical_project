@@ -13,8 +13,6 @@ import com.vetardim.model.Client;
 import com.vetardim.model.Doctor;
 import com.vetardim.model.Order;
 import com.vetardim.util.UnixTimeConverter;
-
-
 import org.apache.poi.hssf.usermodel.*;
 
 import java.io.*;
@@ -33,6 +31,26 @@ public class DocumentGenerator {
     private static final Font fontForWaterMark = FontFactory.getFont(FontFactory.HELVETICA, 130,
                                                                     Font.BOLD, new GrayColor(0.85f));
 
+    private  static List<String> setOrdersRow(Order order ){
+        List<String> ordersRow = new LinkedList<String>();
+        Doctor doctor = DoctorDao.getDoctorById(order.getDoctorId());
+        Client client = ClientDao.getClientById(order.getClientId());
+        ordersRow.add(String.format("%d", order.getId()));
+
+        ordersRow.add(String.format("%s %s %s ", doctor.getFirstname(),
+                doctor.getSecondname(),
+                doctor.getLastname()));
+
+        ordersRow.add(String.format("%s %s %s", client.getFirstname(),
+                client.getSecondname(),
+                client.getLastname()));
+
+        ordersRow.add(String.format("%s %s",
+                UnixTimeConverter.convertUnixTimeToTime(order.getBeginTime(), "hh:mm"),
+                UnixTimeConverter.convertUnixTimeToTime(order.getDate(), "yyyy-MM-dd")));
+
+        return ordersRow;
+    }
     public static ByteArrayOutputStream generateOrderInPDFById(int id) {
         Document document = new Document(PageSize.A4, 50, 50, 50, 50);
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
@@ -41,24 +59,12 @@ public class DocumentGenerator {
             pdfWriter = PdfWriter.getInstance(document, stream);
             document.open();
             Order order = OrderDao.getOrderById(id);
-            Doctor doctor = DoctorDao.getDoctorById(order.getDoctorId());
-            Client client = ClientDao.getClientById(order.getClientId());
-
-            String doctorFullName = String.format("Doctor: %s %s %s ", doctor.getFirstname(),
-                    doctor.getSecondname(),
-                    doctor.getLastname());
-            String clientFullName = String.format("Client: %s %s %s", client.getFirstname(),
-                    client.getSecondname(),
-                    client.getLastname());
-            String timeOfVisit = String.format("Date: %s %s",
-                    UnixTimeConverter.convertUnixTimeToTime(order.getBeginTime(), "hh:mm"),
-                    UnixTimeConverter.convertUnixTimeToTime(order.getDate(), "yyyy-MM-dd"));
-            String orderNumber = String.format("Order # %d", order.getId());
-
-            Paragraph orderText = new Paragraph(orderNumber + "\n" + timeOfVisit +
-                                        "\n" + doctorFullName + "\n" +
-                                        clientFullName,
-                                        FontFactory.getFont(FontFactory.HELVETICA, 40, Font.BOLD));
+            List<String> ordersRow = setOrdersRow(order);
+            Paragraph orderText = new Paragraph("Order # " + ordersRow.get(0) + "\n" +
+                                                "Doctor: " + ordersRow.get(1) + "\n" +
+                                                "Client: " + ordersRow.get(2) + "\n" +
+                                                "Date:" + ordersRow.get(3) + "\n",
+                                                FontFactory.getFont(FontFactory.HELVETICA, 40, Font.BOLD));
 
             orderText.setAlignment(Element.ALIGN_CENTER);
             document.add(orderText);
@@ -97,43 +103,24 @@ public class DocumentGenerator {
         cell.setCellValue(new HSSFRichTextString("Order Number"));
         cell = row.createCell(1);
         cell.setCellStyle(headerCellStyle);
-        cell.setCellValue(new HSSFRichTextString("Date"));
+        cell.setCellValue(new HSSFRichTextString("Doctor"));
         cell = row.createCell(2);
         cell.setCellStyle(headerCellStyle);
-        cell.setCellValue(new HSSFRichTextString("Doctor"));
+        cell.setCellValue(new HSSFRichTextString("Client"));
         cell = row.createCell(3);
         cell.setCellStyle(headerCellStyle);
-        cell.setCellValue(new HSSFRichTextString("Client"));
+        cell.setCellValue(new HSSFRichTextString("Date"));
 
         List<Order> orderList = OrderDao.getOrdersList();
-        for (int i = 1; i < orderList.size(); i++ ) {
-            Doctor doctor = DoctorDao.getDoctorById(orderList.get(i).getDoctorId());
-            Client client = ClientDao.getClientById(orderList.get(i).getClientId());
+        for (int i = 0; i < orderList.size(); i++ ) {
+            row = sheet.createRow(i+1);
+            List<String> ordersRow = setOrdersRow(orderList.get(i));
+            for (int j = 0; j < ordersRow.size(); j ++) {
+                cell = row.createCell(j);
+                HSSFRichTextString orderNumberCellValue = new HSSFRichTextString(ordersRow.get(j));
+                cell.setCellValue(orderNumberCellValue);
+            }
 
-            String doctorFullName = String.format("%s %s %s ", doctor.getFirstname(),
-                    doctor.getSecondname(),
-                    doctor.getLastname());
-            String clientFullName = String.format("%s %s %s", client.getFirstname(),
-                    client.getSecondname(),
-                    client.getLastname());
-            String timeOfVisit = String.format("%s %s",
-                    UnixTimeConverter.convertUnixTimeToTime(orderList.get(i).getBeginTime(), "hh:mm"),
-                    UnixTimeConverter.convertUnixTimeToTime(orderList.get(i).getDate(), "yyyy-MM-dd"));
-            String orderNumber = String.format("%d", orderList.get(i).getId());
-            row = sheet.createRow(i);
-            cell = row.createCell(0);
-
-            HSSFRichTextString orderNumberCellValue = new HSSFRichTextString(orderNumber);
-            cell.setCellValue(orderNumberCellValue);
-            cell = row.createCell(1);
-            HSSFRichTextString timeOfVisitCellValue = new HSSFRichTextString(timeOfVisit);
-            cell.setCellValue(timeOfVisitCellValue);
-            cell = row.createCell(2);
-            HSSFRichTextString doctorFullNameCellValue = new HSSFRichTextString(doctorFullName);
-            cell.setCellValue(doctorFullNameCellValue);
-            cell = row.createCell(3);
-            HSSFRichTextString clientFullNameCellValue = new HSSFRichTextString(clientFullName);
-            cell.setCellValue(clientFullNameCellValue);
         }
 
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
@@ -142,27 +129,16 @@ public class DocumentGenerator {
     }
 
     public static ByteArrayOutputStream generateOrdersInCSV() throws IOException {
-        String[] FILE_HEADER = {"Order Number", "Date", "Doctor", "Client"};
+        String[] fileHeader = {"Order Number", "Doctor", "Client", "Date"};
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
         CSVWriter writer = new CSVWriter(new OutputStreamWriter(stream, Charset.forName("UTF-8")), ',');
-        writer.writeNext(FILE_HEADER);
+        writer.writeNext(fileHeader);
         List<String[]> ordersInString = new LinkedList<String[]>();
         List<Order> orderList = OrderDao.getOrdersList();
         for (int i = 0; i < orderList.size(); i++) {
-            Doctor doctor = DoctorDao.getDoctorById(orderList.get(i).getDoctorId());
-            Client client = ClientDao.getClientById(orderList.get(i).getClientId());
-
-            String[] tempArray = new String[]{String.format("%d", orderList.get(i).getId()),
-                    String.format("%s %s %s ", doctor.getFirstname(),
-                            doctor.getSecondname(),
-                            doctor.getLastname()),
-                    String.format("%s %s %s", client.getFirstname(),
-                            client.getSecondname(),
-                            client.getLastname()),
-                    String.format("%s %s",
-                            UnixTimeConverter.convertUnixTimeToTime(orderList.get(i).getBeginTime(), "hh:mm"),
-                            UnixTimeConverter.convertUnixTimeToTime(orderList.get(i).getDate(), "yyyy-MM-dd"))};
+            List<String> ordersRow = setOrdersRow(orderList.get(i));
+            String[] tempArray = {ordersRow.get(0), ordersRow.get(1), ordersRow.get(2), ordersRow.get(3)};
             ordersInString.add(tempArray);
         }
 
