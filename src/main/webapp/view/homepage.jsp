@@ -48,7 +48,6 @@
                 </ul>
             </nav>
         </header>
-        <a  style="font-size: 40px;" href="generate-doc.action">adsdadasdasdasdasdsaadad</a>
         <section class="wrapper">
             <input type="radio" name="point" id="slide1" checked>
             <input type="radio" name="point" id="slide2">

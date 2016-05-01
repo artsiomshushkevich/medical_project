@@ -152,6 +152,7 @@
                                                         onclick="showEditModal(this)">update</button>
                                                 &middot;
                                                 <button class="btn btn-link" id_instance="<s:property value="id"/>" onclick="showDeleteModal(this)">delete</button>
+                                                <a href="/generate-doc.action?id=<s:property value="id"/>">PDF</a>
                                             </td>
                                         </tr>
                                     </s:iterator>

@@ -402,7 +402,7 @@
             <result name="success">/doctor-dashboard/make-treatment-answer.jsp</result>
         </action>
 
-        <action name="generate-doc" class="com.vetardim.controller.DocumentController">
+        <action name="generate-doc" class="com.vetardim.controller.DocumentController" method="getOrderPDF">
 
         </action>
     </package>

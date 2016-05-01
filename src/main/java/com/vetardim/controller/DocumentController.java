@@ -13,6 +13,7 @@ import com.opensymphony.xwork2.ActionSupport;
 public class DocumentController extends ActionSupport implements ServletResponseAware {
 
     private HttpServletResponse response;
+    private int id;
 
     private void makeResponse(ByteArrayOutputStream stream, String contentType, String fileName) throws IOException {
         response.setContentType(contentType);
@@ -29,14 +30,25 @@ public class DocumentController extends ActionSupport implements ServletResponse
     @Override
     public String execute() throws Exception {
 
-        makeResponse(DocumentGenerator.generatePDF(), "application/pdf", "pdffile.pdf");
-        
+        //makeResponse(DocumentGenerator.generatePDF(), "application/pdf", "pdffile.pdf");
+
+        return super.execute();
+    }
+
+    public String getOrderPDF() throws IOException {
+        makeResponse(DocumentGenerator.generateOrderInPDFById(getId()), "application/pdf", "order.pdf");
         return NONE;
     }
 
-
-
     public void setServletResponse(HttpServletResponse httpServletResponse) {
         this.response = httpServletResponse;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
