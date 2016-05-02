@@ -65,6 +65,25 @@ public class AnalyseDao {
         return analysesList;
     }
 
+    public static List<Analyse> getAnalysesListByVisitId(int id) {
+        Session session = HibernateUtil.makeSession();
+        session.beginTransaction();
+        List<Analyse> analysesList = null;
+        try {
+            Criteria criteria = session.createCriteria(Analyse.class);
+            criteria.add(Restrictions.eq("visitId", id));
+            analysesList = (List<Analyse>)criteria.list();
+            session.getTransaction().commit();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            session.getTransaction().rollback();
+        } finally {
+            session.close();
+        }
+
+        return analysesList;
+    }
+
     public static List<Analyse> getAnalysesList() {
         Session session = HibernateUtil.makeSession();
         session.beginTransaction();

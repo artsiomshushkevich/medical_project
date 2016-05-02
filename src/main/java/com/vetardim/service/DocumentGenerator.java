@@ -393,11 +393,17 @@ public class DocumentGenerator {
 
         List<Treatment> treatmentList = TreatmentDao.getTreatmentsListByVisitId(visit.getId());
         List<List<String>> treatmentsRow = new LinkedList<List<String>>();
-        for (Treatment treatment:
-             treatmentList) {
-
+        for (Treatment treatment : treatmentList) {
+            treatmentsRow.add(setTreatmentsRow(treatment));
         }
+        finalRow.add(treatmentsRow);
 
+        List<Analyse> analyseList = AnalyseDao.getAnalysesListByVisitId(visit.getId());
+        List<List<String>> analysesRow = new LinkedList<List<String>>();
+        for (Analyse analyse : analyseList) {
+            analysesRow.add(setAnalysesRow(analyse));
+        }
+        finalRow.add(analysesRow);
         return finalRow;
     }
 }
