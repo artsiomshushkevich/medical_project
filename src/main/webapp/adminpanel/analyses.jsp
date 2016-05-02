@@ -120,6 +120,9 @@
                         <div class="panel-body">
                             <div class="container">
                                 <button class="btn btn-primary" onclick="showAddModal()">Add new analyse</button>
+                                <a href="/generateAnalysesXLS.action">Generate XLS</a>
+                                &middot;
+                                <a href="/generateAnalysesCSV.action">Generate CSV</a>
                             </div>
 
                             <div class="table-responsive">
@@ -156,6 +159,8 @@
                                                         onclick="showEditModal(this)">update</button>
                                                 &middot;
                                                 <button class="btn btn-link" id_instance="<s:property value="id"/>" onclick="showDeleteModal(this)">delete</button>
+                                                &middot;
+                                                <a href="/generateAnalysePDF.action?id=<s:property value="id"/>">PDF</a>
                                             </td>
                                         </tr>
                                     </s:iterator>

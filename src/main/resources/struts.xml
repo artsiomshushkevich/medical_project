@@ -411,6 +411,15 @@
         <action name="generateOrdersCSV" class="com.vetardim.controller.DocumentController" method="getOrdersCSV">
 
         </action>
+        <action name="generateAnalysePDF" class="com.vetardim.controller.DocumentController" method="getAnalysePDF">
+
+        </action>
+        <action name="generateAnalysesXLS" class="com.vetardim.controller.DocumentController" method="getAnalysesXLS">
+
+        </action>
+        <action name="generateAnalysesCSV" class="com.vetardim.controller.DocumentController" method="getAnalysesCSV">
+
+        </action>
     </package>
 
 

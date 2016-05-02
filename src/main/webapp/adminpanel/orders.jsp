@@ -119,6 +119,9 @@
                         <div class="panel-body">
                             <div class="container">
                                 <button class="btn btn-primary" onclick="showAddModal()">Add new order</button>
+                                <a href="/generateOrdersXLS.action">Generate XLS</a>
+                                &middot;
+                                <a href="/generateOrdersCSV.action">Generate CSV</a>
                             </div>
 
                             <div class="table-responsive">
@@ -154,10 +157,8 @@
                                                 <button class="btn btn-link" id_instance="<s:property value="id"/>" onclick="showDeleteModal(this)">delete</button>
                                                 &middot;
                                                 <a href="/generateOrderPDF.action?id=<s:property value="id"/>">PDF</a>
-                                                &middot;
-                                                <a href="/generateOrdersXLS.action">XLS</a>
-                                                &middot;
-                                                <a href="/generateOrdersCSV.action">CSV</a>
+
+
                                             </td>
                                         </tr>
                                     </s:iterator>
@@ -169,6 +170,7 @@
                 </div>
             </div>
         </div>
+
         <!-- /. PAGE INNER  -->
     </div>
     <!-- /. PAGE WRAPPER  -->

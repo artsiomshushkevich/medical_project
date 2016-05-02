@@ -81,4 +81,24 @@ public class AnalyseDao {
 
         return analysesList;
     }
+
+
+    public static Analyse getAnalyseById(int id) {
+        Session session = HibernateUtil.makeSession();
+        session.beginTransaction();
+        Analyse analyse = null;
+        try {
+            Criteria criteria = session.createCriteria(Analyse.class);
+            criteria.add(Restrictions.eq("id", id));
+            analyse = (Analyse)criteria.uniqueResult();
+            session.getTransaction().commit();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            session.getTransaction().rollback();
+        } finally {
+            session.close();
+        }
+
+        return analyse;
+    }
 }
