@@ -6,14 +6,8 @@ import com.lowagie.text.pdf.ColumnText;
 import com.lowagie.text.pdf.GrayColor;
 import com.lowagie.text.pdf.PdfWriter;
 import com.opencsv.CSVWriter;
-import com.vetardim.DAO.AnalyseDao;
-import com.vetardim.DAO.ClientDao;
-import com.vetardim.DAO.DoctorDao;
-import com.vetardim.DAO.OrderDao;
-import com.vetardim.model.Analyse;
-import com.vetardim.model.Client;
-import com.vetardim.model.Doctor;
-import com.vetardim.model.Order;
+import com.vetardim.DAO.*;
+import com.vetardim.model.*;
 import com.vetardim.util.UnixTimeConverter;
 import org.apache.poi.hssf.usermodel.*;
 
@@ -261,7 +255,7 @@ public class DocumentGenerator {
         List<Analyse> analyseList = AnalyseDao.getAnalysesList();
         for (int i = 0; i < analyseList.size(); i++) {
             List<String> analysesRow = setAnalysesRow(analyseList.get(i));
-            String[] tempArray = {analysesRow.get(0), analysesRow.get(1), analysesRow.get(2), analysesRow.get(3), analysesRow.get(3)};
+            String[] tempArray = {analysesRow.get(0), analysesRow.get(1), analysesRow.get(2), analysesRow.get(3), analysesRow.get(4)};
             analysesInString.add(tempArray);
         }
 
@@ -271,5 +265,139 @@ public class DocumentGenerator {
     }
 
 
-    private List<String> set
+    private static List<String> setTreatmentsRow(Treatment treatment) {
+        List<String> treatmentsRow = new LinkedList<String>();
+        Cure cure = CureDao.getCureById(treatment.getCureId());
+
+        treatmentsRow.add(String.format("%d", treatment.getId()));
+
+        treatmentsRow.add(String.format("%s", treatment.getPrescription()));
+        treatmentsRow.add(String.format("%s", cure.getName()));
+        treatmentsRow.add(String.format("%s", treatment.getCureCount()));
+        treatmentsRow.add(String.format("%s", treatment.getMethodOfUsing()));
+        return treatmentsRow;
+    }
+
+    public static ByteArrayOutputStream generateTreatmentInPDFbyId(int id) {
+        Document document = new Document(PageSize.A4, 50, 50, 50, 50);
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        PdfWriter pdfWriter = null;
+        try {
+            pdfWriter = PdfWriter.getInstance(document, stream);
+            document.open();
+            Treatment treatment = TreatmentDao.getTreatmentById(id);
+            List<String> ordersRow = setTreatmentsRow(treatment);
+            Paragraph orderText = new Paragraph("Treatment # " + ordersRow.get(0) + "\n" +
+                    "Prescription: " + ordersRow.get(1) + "\n" +
+                    "Cure: " + ordersRow.get(2) + "\n" +
+                    "Cure count:" + ordersRow.get(3) + "\n" +
+                    "Method of using:" + ordersRow.get(4) + "\n" ,
+                    FontFactory.getFont(FontFactory.HELVETICA, 20, Font.BOLD));
+
+            orderText.setAlignment(Element.ALIGN_CENTER);
+            document.add(orderText);
+            ColumnText.showTextAligned(pdfWriter.getDirectContentUnder(), Element.ALIGN_CENTER,
+                    new Phrase("NoQueues", fontForWaterMark),
+                    297.5f, 421, 45);
+            document.addAuthor("VetArtDim Systems");
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        } finally {
+            if (document != null) {
+                document.close();
+            }
+            if (pdfWriter != null) {
+                document.close();
+            }
+        }
+        return stream;
+    }
+
+    public static ByteArrayOutputStream generateTreatmentsInXLS() throws IOException {
+        HSSFWorkbook workbook = new HSSFWorkbook();
+        HSSFSheet sheet = workbook.createSheet("treatment");
+        HSSFCellStyle headerCellStyle = workbook.createCellStyle();
+        HSSFFont boldFont = workbook.createFont();
+        boldFont.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
+        headerCellStyle.setFont(boldFont);
+
+        HSSFRow row = sheet.createRow(0);
+        HSSFCell cell = row.createCell(0);
+        cell.setCellStyle(headerCellStyle);
+        cell.setCellValue(new HSSFRichTextString("Treatment Number"));
+        cell = row.createCell(1);
+        cell.setCellStyle(headerCellStyle);
+        cell.setCellValue(new HSSFRichTextString("Prescription"));
+        cell = row.createCell(2);
+        cell.setCellStyle(headerCellStyle);
+        cell.setCellValue(new HSSFRichTextString("Cure"));
+        cell = row.createCell(3);
+        cell.setCellStyle(headerCellStyle);
+        cell.setCellValue(new HSSFRichTextString("Cure count"));
+        cell = row.createCell(4);
+        cell.setCellStyle(headerCellStyle);
+        cell.setCellValue(new HSSFRichTextString("Method of using"));
+
+        List<Treatment> treatmentList = TreatmentDao.getTreatmentsList();
+        for (int i = 0; i < treatmentList.size(); i++ ) {
+            row = sheet.createRow(i+1);
+            List<String> ordersRow = setTreatmentsRow(treatmentList.get(i));
+            for (int j = 0; j < ordersRow.size(); j ++) {
+                cell = row.createCell(j);
+                HSSFRichTextString orderNumberCellValue = new HSSFRichTextString(ordersRow.get(j));
+                cell.setCellValue(orderNumberCellValue);
+            }
+
+        }
+
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        workbook.write(stream);
+        return  stream;
+    }
+
+    public static ByteArrayOutputStream generateTreatmentsInCSV() throws IOException {
+        String[] fileHeader = {"Treatment Number", "Prescription", "Cure", "Cure Count", "Method of using"};
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+
+        CSVWriter writer = new CSVWriter(new OutputStreamWriter(stream, Charset.forName("UTF-8")), ',');
+        writer.writeNext(fileHeader);
+        List<String[]> treatmentsInString = new LinkedList<String[]>();
+        List<Treatment> treatmentList = TreatmentDao.getTreatmentsList();
+        for (int i = 0; i < treatmentList.size(); i++) {
+            List<String> treatmentsRow = setTreatmentsRow(treatmentList.get(i));
+            String[] tempArray = {treatmentsRow.get(0), treatmentsRow.get(1), treatmentsRow.get(2),
+                                    treatmentsRow.get(3), treatmentsRow.get(4)};
+            treatmentsInString.add(tempArray);
+        }
+
+        writer.writeAll(treatmentsInString);
+        writer.close();
+        return stream;
+    }
+
+    private static List<List<List<String>>> setVisitsRow(Visit visit) {
+        List<List<List<String>>> finalRow = new LinkedList<List<List<String>>>();
+        List<List<String>> visitsRow = new LinkedList<List<String>>();
+
+        List<String> visits = new LinkedList<String>();
+        visits.add(String.format("%d", visit.getId()));
+        visits.add(String.format("%s", visit.getComplaints()));
+        visits.add(String.format("%s", visit.getDiagnosys()));
+        visitsRow.add(visits);
+        finalRow.add(visitsRow);
+
+        Order order = OrderDao.getOrderById(visit.getOrderId());
+        List<List<String>> ordersRow = new LinkedList<List<String>>();
+        ordersRow.add(setOrdersRow(order));
+        finalRow.add(ordersRow);
+
+        List<Treatment> treatmentList = TreatmentDao.getTreatmentsListByVisitId(visit.getId());
+        List<List<String>> treatmentsRow = new LinkedList<List<String>>();
+        for (Treatment treatment:
+             treatmentList) {
+
+        }
+
+        return finalRow;
+    }
 }
