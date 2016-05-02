@@ -24,8 +24,12 @@ import java.util.List;
  */
 public class DocumentGenerator {
 
-    private static final Font fontForWaterMark = FontFactory.getFont(FontFactory.HELVETICA, 130,
-                                                                    Font.BOLD, new GrayColor(0.85f));
+    private static final Font FONT_FOR_WATERMARK = FontFactory.getFont(FontFactory.HELVETICA, 100,
+                                                                    Font.BOLD, new GrayColor(0.9f));
+    private static final Font FONT_FOR_OBJECT_NAME = FontFactory.getFont(FontFactory.HELVETICA, 20,
+            Font.BOLD);
+
+    private static final Font COMMON_FONT = FontFactory.getFont(FontFactory.HELVETICA, 20);
 
     private  static List<String> setOrdersRow(Order order ){
         List<String> ordersRow = new LinkedList<String>();
@@ -65,7 +69,7 @@ public class DocumentGenerator {
             orderText.setAlignment(Element.ALIGN_CENTER);
             document.add(orderText);
             ColumnText.showTextAligned(pdfWriter.getDirectContentUnder(), Element.ALIGN_CENTER,
-                                        new Phrase("NoQueues", fontForWaterMark),
+                                        new Phrase("NoQueues", FONT_FOR_WATERMARK),
                                         297.5f, 421, 45);
             document.addAuthor("VetArtDim Systems");
         } catch (DocumentException e) {
@@ -84,10 +88,6 @@ public class DocumentGenerator {
     public static ByteArrayOutputStream generateOrdersInXLS() throws IOException {
         HSSFWorkbook workbook = new HSSFWorkbook();
         HSSFSheet sheet = workbook.createSheet("order");
-        sheet.setColumnWidth(0, 3500);
-        sheet.setColumnWidth(1, 5000);
-        sheet.setColumnWidth(2, 7500);
-        sheet.setColumnWidth(3, 7500);
         HSSFCellStyle headerCellStyle = workbook.createCellStyle();
         HSSFFont boldFont = workbook.createFont();
         boldFont.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
@@ -184,7 +184,7 @@ public class DocumentGenerator {
             document.add(orderText);
             document.add(new Paragraph("Result: " + analysesRow.get(4)));
             ColumnText.showTextAligned(pdfWriter.getDirectContentUnder(), Element.ALIGN_CENTER,
-                    new Phrase("NoQueues", fontForWaterMark),
+                    new Phrase("NoQueues", FONT_FOR_WATERMARK),
                     297.5f, 421, 45);
             document.addAuthor("VetArtDim Systems");
         } catch (DocumentException e) {
@@ -297,7 +297,7 @@ public class DocumentGenerator {
             orderText.setAlignment(Element.ALIGN_CENTER);
             document.add(orderText);
             ColumnText.showTextAligned(pdfWriter.getDirectContentUnder(), Element.ALIGN_CENTER,
-                    new Phrase("NoQueues", fontForWaterMark),
+                    new Phrase("NoQueues", FONT_FOR_WATERMARK),
                     297.5f, 421, 45);
             document.addAuthor("VetArtDim Systems");
         } catch (DocumentException e) {
@@ -405,5 +405,86 @@ public class DocumentGenerator {
         }
         finalRow.add(analysesRow);
         return finalRow;
+    }
+
+
+    public ByteArrayOutputStream generateVisitInPDFById(int id) {
+        Document document = new Document(PageSize.A4, 50, 50, 50, 50);
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        PdfWriter pdfWriter = null;
+        try {
+            pdfWriter = PdfWriter.getInstance(document, stream);
+            document.open();
+            Visit visit = VisitDao.getVisitById(id);
+
+            List<List<List<String>>> visitStringInfo = setVisitsRow(visit);
+            List<String> visitInfo = visitStringInfo.get(0).get(0);
+
+            Paragraph visitNumber = new Paragraph();
+            visitNumber.add(new Chunk("Visit # ", FONT_FOR_OBJECT_NAME));
+            visitNumber.add(new Chunk(visitInfo.get(0), COMMON_FONT));
+            visitNumber.setAlignment(Element.ALIGN_CENTER);
+            document.add(visitNumber);
+
+            Paragraph complaints = new Paragraph();
+            complaints.add(new Chunk("Complaints: ", FONT_FOR_OBJECT_NAME));
+            complaints.add(new Chunk(visitInfo.get(1), COMMON_FONT));
+            document.add(complaints);
+
+            Paragraph prescription = new Paragraph();
+            prescription.add(new Chunk("Prescription: ", FONT_FOR_OBJECT_NAME));
+            prescription.add(new Chunk(visitInfo.get(2), COMMON_FONT));
+            document.add(prescription);
+
+
+            List<String> order = visitStringInfo.get(1).get(0);
+
+            Paragraph beginTime = new Paragraph();
+            beginTime.add(new Chunk("Begin time: ", FONT_FOR_OBJECT_NAME));
+            beginTime.add(new Chunk(order.get(3), COMMON_FONT));
+            document.add(beginTime);
+
+            Paragraph doctorsFullName = new Paragraph();
+            doctorsFullName.add(new Chunk("Doctor: ", FONT_FOR_OBJECT_NAME));
+            doctorsFullName.add(new Chunk(order.get(1), COMMON_FONT));
+            document.add(doctorsFullName);
+
+            List<List<String>> analyses = visitStringInfo.get(3);
+            if (!analyses.isEmpty()) {
+
+                for (List<String> analyse : analyses) {
+                    Paragraph analyseNumber = new Paragraph();
+                    analyseNumber.add(new Chunk("Analyse # ", FONT_FOR_OBJECT_NAME));
+                    analyseNumber.add(new Chunk(analyse.get(0), COMMON_FONT));
+                    analyseNumber.setAlignment(Element.ALIGN_CENTER);
+                    document.add(analyseNumber);
+
+                    Paragraph analyseName = new Paragraph();
+                    analyseName.add(new Chunk("Analyse Name: ", FONT_FOR_OBJECT_NAME));
+                    analyseName.add(new Chunk(analyse.get(3), COMMON_FONT));
+                    document.add(analyseName);
+
+                    Paragraph analyseResult = new Paragraph();
+                    analyseResult.add(new Chunk("Result: ", FONT_FOR_OBJECT_NAME));
+                    analyseResult.add(new Chunk(analyse.get(4), COMMON_FONT));
+                    document.add(analyseResult);
+                }
+            }
+
+            ColumnText.showTextAligned(pdfWriter.getDirectContentUnder(), Element.ALIGN_CENTER,
+                    new Phrase("NoQueues", FONT_FOR_WATERMARK),
+                    297.5f, 421, 45);
+            document.addAuthor("VetArtDim Systems");
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        } finally {
+            if (document != null) {
+                document.close();
+            }
+            if (pdfWriter != null) {
+                document.close();
+            }
+        }
+        return stream;
     }
 }
