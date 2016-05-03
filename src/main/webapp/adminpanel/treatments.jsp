@@ -119,6 +119,9 @@
                         <div class="panel-body">
                             <div class="container">
                                 <button class="btn btn-primary" onclick="showAddModal()">Add new treatments</button>
+                                <a href="/generateTreatmentsXLS.action">Generate XLS</a>
+                                &middot;
+                                <a href="/generateTreatmentsCSV.action">Generate CSV</a>
                             </div>
 
                             <div class="table-responsive">
@@ -155,6 +158,7 @@
                                                         onclick="showEditModal(this)">update</button>
                                                 &middot;
                                                 <button class="btn btn-link" id_instance="<s:property value="id"/>" onclick="showDeleteModal(this)">delete</button>
+                                                <a href="/generateTreatmentPDF.action?id=<s:property value="id"/>">PDF</a>
                                             </td>
                                         </tr>
                                     </s:iterator>

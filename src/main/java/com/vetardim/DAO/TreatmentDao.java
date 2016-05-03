@@ -81,5 +81,24 @@ public class TreatmentDao {
 
         return treatmentsList;
     }
+
+    public static Treatment getTreatmentById(int id) {
+        Session session = HibernateUtil.makeSession();
+        session.beginTransaction();
+        Treatment treatment = null;
+        try {
+            Criteria criteria = session.createCriteria(Treatment.class);
+            criteria.add(Restrictions.eq("id", id));
+            treatment = (Treatment) criteria.uniqueResult();
+            session.getTransaction().commit();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            session.getTransaction().rollback();
+        } finally {
+            session.close();
+        }
+
+        return treatment;
+    }
 }
 

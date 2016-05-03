@@ -58,7 +58,7 @@
         <servlet-name>dwr</servlet-name>
         <url-pattern>/dwr/*</url-pattern>
     </servlet-mapping>
-    
+
     
     <!-- Welcome file lists -->
     <welcome-file-list>

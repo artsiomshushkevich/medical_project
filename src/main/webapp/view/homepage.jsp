@@ -48,7 +48,6 @@
                 </ul>
             </nav>
         </header>
-
         <section class="wrapper">
             <input type="radio" name="point" id="slide1" checked>
             <input type="radio" name="point" id="slide2">
