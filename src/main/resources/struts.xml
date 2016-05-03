@@ -441,6 +441,16 @@
         <action name="generateVisitsCSV" class="com.vetardim.controller.DocumentController" method="getVisitsCSV">
 
         </action>
+
+        <action name="generateMedicalHistoryPDF" class="com.vetardim.controller.DocumentController" method="getMedicalHistoryPDF">
+
+        </action>
+        <action name="generateMedicalHistoriesXLS" class="com.vetardim.controller.DocumentController" method="getMedicalHistoryPDF">
+
+        </action>
+        <action name="generateMedicalHistoriesCSV" class="com.vetardim.controller.DocumentController" method="getMedicalHistoryPDF">
+
+        </action>
     </package>
 
 

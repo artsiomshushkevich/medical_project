@@ -85,10 +85,23 @@ public class DocumentController extends ActionSupport implements ServletResponse
         return NONE;
     }
     public String getVisitsXLS() throws IOException {
-       // makeResponse(DocumentGenerator.generateVisitsInCSV(), "text/csv", "visits.csv");
+        makeResponse(DocumentGenerator.generateVisitsInXLS(), "application/vnd.ms-excel", "visits.xls");
         return NONE;
     }
 
+    public String getMedicalHistoryPDF() throws IOException {
+        makeResponse(DocumentGenerator.generateMedicalHistoryInPDFbyId(getId()), "application/pdf", "MedicalHistory.pdf");
+        return NONE;
+    }
+
+    public String getMedicalHistoriesCSV() throws IOException {
+       // makeResponse(DocumentGenerator.generateVisitsInCSV(), "text/csv", "MedicalHistories.csv");
+        return NONE;
+    }
+    public String getMedicalHistoriesXLS() throws IOException {
+        //makeResponse(DocumentGenerator.generateVisitsInXLS(), "application/vnd.ms-excel", "MedicalHistories.xls");
+        return NONE;
+    }
     public void setServletResponse(HttpServletResponse httpServletResponse) {
         this.response = httpServletResponse;
     }

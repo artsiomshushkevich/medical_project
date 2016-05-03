@@ -59,14 +59,27 @@ public class DocumentGenerator {
             document.open();
             Order order = OrderDao.getOrderById(id);
             List<String> ordersRow = setOrdersRow(order);
-            Paragraph orderText = new Paragraph("Order # " + ordersRow.get(0) + "\n" +
-                                                "Doctor: " + ordersRow.get(1) + "\n" +
-                                                "Client: " + ordersRow.get(2) + "\n" +
-                                                "Date:" + ordersRow.get(3) + "\n",
-                                                FontFactory.getFont(FontFactory.HELVETICA, 40, Font.BOLD));
+            Paragraph orderNumber = new Paragraph();
+            orderNumber.add(new Chunk("Order #", FONT_FOR_OBJECT_NAME));
+            orderNumber.add(new Chunk(ordersRow.get(0), COMMON_FONT));
+            orderNumber.setAlignment(Element.ALIGN_CENTER);
+            document.add(orderNumber);
+            document.add(Chunk.NEWLINE);
+            Paragraph doctorName = new Paragraph();
+            doctorName.add(new Chunk("Doctor: ", FONT_FOR_OBJECT_NAME));
+            doctorName.add(new Chunk(ordersRow.get(1), COMMON_FONT));
+            document.add(doctorName);
+            document.add(Chunk.NEWLINE);
+            Paragraph clientName = new Paragraph();
+            clientName.add(new Chunk("Client: ", FONT_FOR_OBJECT_NAME));
+            clientName.add(new Chunk(ordersRow.get(2), COMMON_FONT));
+            document.add(clientName);
+            document.add(Chunk.NEWLINE);
+            Paragraph time = new Paragraph();
+            time.add(new Chunk("Begin time: ", FONT_FOR_OBJECT_NAME));
+            time.add(new Chunk(ordersRow.get(3), COMMON_FONT));
+            document.add(time);
 
-            orderText.setAlignment(Element.ALIGN_CENTER);
-            document.add(orderText);
             document.addAuthor("VetArtDim Systems");
         } catch (DocumentException e) {
             e.printStackTrace();
@@ -170,15 +183,33 @@ public class DocumentGenerator {
             document.open();
             Analyse analyse = AnalyseDao.getAnalyseById(id);
             List<String> analysesRow = setAnalysesRow(analyse);
-            Paragraph orderText = new Paragraph("Analyse # " + analysesRow.get(0) + "\n" +
-                    "Doctor: " + analysesRow.get(1) + "\n" +
-                    "Client: " + analysesRow.get(2) + "\n" +
-                    "Name:" + analysesRow.get(3) + "\n",
-                    FontFactory.getFont(FontFactory.HELVETICA, 20, Font.BOLD));
 
-            orderText.setAlignment(Element.ALIGN_CENTER);
-            document.add(orderText);
-            document.add(new Paragraph("Result: " + analysesRow.get(4)));
+            Paragraph analyseNumber = new Paragraph();
+            analyseNumber.add(new Chunk("Order #", FONT_FOR_OBJECT_NAME));
+            analyseNumber.add(new Chunk(analysesRow.get(0), COMMON_FONT));
+            analyseNumber.setAlignment(Element.ALIGN_CENTER);
+            document.add(analyseNumber);
+            document.add(Chunk.NEWLINE);
+            Paragraph doctorName = new Paragraph();
+            doctorName.add(new Chunk("Doctor: ", FONT_FOR_OBJECT_NAME));
+            doctorName.add(new Chunk(analysesRow.get(1), COMMON_FONT));
+            document.add(doctorName);
+            document.add(Chunk.NEWLINE);
+            Paragraph clientName = new Paragraph();
+            clientName.add(new Chunk("Client: ", FONT_FOR_OBJECT_NAME));
+            clientName.add(new Chunk(analysesRow.get(2), COMMON_FONT));
+            document.add(clientName);
+            document.add(Chunk.NEWLINE);
+            Paragraph name = new Paragraph();
+            name.add(new Chunk("Analyse name: ", FONT_FOR_OBJECT_NAME));
+            name.add(new Chunk(analysesRow.get(3), COMMON_FONT));
+            document.add(name);
+            document.add(Chunk.NEWLINE);
+            Paragraph result = new Paragraph();
+            result.add(new Chunk("Result: ", FONT_FOR_OBJECT_NAME));
+            result.add(new Chunk(analysesRow.get(4), COMMON_FONT));
+            document.add(result);
+            document.add(Chunk.NEWLINE);
             document.addAuthor("VetArtDim Systems");
         } catch (DocumentException e) {
             e.printStackTrace();
@@ -279,17 +310,33 @@ public class DocumentGenerator {
             pdfWriter = PdfWriter.getInstance(document, stream);
             document.open();
             Treatment treatment = TreatmentDao.getTreatmentById(id);
-            List<String> ordersRow = setTreatmentsRow(treatment);
-            Paragraph orderText = new Paragraph("Treatment # " + ordersRow.get(0) + "\n" +
-                    "Prescription: " + ordersRow.get(1) + "\n" +
-                    "Cure: " + ordersRow.get(2) + "\n" +
-                    "Cure count:" + ordersRow.get(3) + "\n" +
-                    "Method of using:" + ordersRow.get(4) + "\n" ,
-                    FontFactory.getFont(FontFactory.HELVETICA, 20, Font.BOLD));
-
-            orderText.setAlignment(Element.ALIGN_CENTER);
-            document.add(orderText);
-
+            List<String> treatmentsRow = setTreatmentsRow(treatment);
+            Paragraph treatmentNumber = new Paragraph();
+            treatmentNumber.add(new Chunk("Treatment #", FONT_FOR_OBJECT_NAME));
+            treatmentNumber.add(new Chunk(treatmentsRow.get(0), COMMON_FONT));
+            treatmentNumber.setAlignment(Element.ALIGN_CENTER);
+            document.add(treatmentNumber);
+            document.add(Chunk.NEWLINE);
+            Paragraph  prescription = new Paragraph();
+            prescription.add(new Chunk("Prescription: ", FONT_FOR_OBJECT_NAME));
+            prescription.add(new Chunk(treatmentsRow.get(1), COMMON_FONT));
+            document.add(prescription);
+            document.add(Chunk.NEWLINE);
+            Paragraph  cure = new Paragraph();
+            cure.add(new Chunk("Cure: ", FONT_FOR_OBJECT_NAME));
+            cure.add(new Chunk(treatmentsRow.get(2), COMMON_FONT));
+            document.add(cure);
+            document.add(Chunk.NEWLINE);
+            Paragraph  count = new Paragraph();
+            count.add(new Chunk("Cure Count: ", FONT_FOR_OBJECT_NAME));
+            count.add(new Chunk(treatmentsRow.get(3), COMMON_FONT));
+            document.add(count);
+            document.add(Chunk.NEWLINE);
+            Paragraph  method = new Paragraph();
+            method.add(new Chunk("Using method: ", FONT_FOR_OBJECT_NAME));
+            method.add(new Chunk(treatmentsRow.get(4), COMMON_FONT));
+            document.add(method);
+            document.add(Chunk.NEWLINE);
             document.addAuthor("VetArtDim Systems");
         } catch (DocumentException e) {
             e.printStackTrace();
@@ -399,6 +446,95 @@ public class DocumentGenerator {
     }
 
 
+    private static void generateVisitDocumentPDF(Visit visit, PdfWriter pdfWriter, Document document) throws DocumentException {
+        List<List<List<String>>> visitStringInfo = setVisitsRow(visit);
+        List<String> visitInfo = visitStringInfo.get(0).get(0);
+
+        Paragraph visitNumber = new Paragraph();
+        visitNumber.add(new Chunk("Visit # ", FONT_FOR_OBJECT_NAME));
+        visitNumber.add(new Chunk(visitInfo.get(0), COMMON_FONT));
+        visitNumber.setAlignment(Element.ALIGN_CENTER);
+        document.add(visitNumber);
+        document.add(Chunk.NEWLINE);
+        Paragraph complaints = new Paragraph();
+        complaints.add(new Chunk("Complaints: ", FONT_FOR_OBJECT_NAME));
+        complaints.add(new Chunk(visitInfo.get(1), COMMON_FONT));
+        document.add(complaints);
+        document.add(Chunk.NEWLINE);
+        Paragraph diagnosis = new Paragraph();
+        diagnosis.add(new Chunk("Diagnosis: ", FONT_FOR_OBJECT_NAME));
+        diagnosis.add(new Chunk(visitInfo.get(2), COMMON_FONT));
+        document.add(diagnosis);
+        document.add(Chunk.NEWLINE);
+
+        List<String> order = visitStringInfo.get(1).get(0);
+
+        Paragraph beginTime = new Paragraph();
+        beginTime.add(new Chunk("Begin time: ", FONT_FOR_OBJECT_NAME));
+        beginTime.add(new Chunk(order.get(3), COMMON_FONT));
+        document.add(beginTime);
+        document.add(Chunk.NEWLINE);
+        Paragraph doctorsFullName = new Paragraph();
+        doctorsFullName.add(new Chunk("Doctor: ", FONT_FOR_OBJECT_NAME));
+        doctorsFullName.add(new Chunk(order.get(1), COMMON_FONT));
+        document.add(doctorsFullName);
+        document.add(Chunk.NEWLINE);
+        List<List<String>> analyses = visitStringInfo.get(3);
+        if (!analyses.isEmpty()) {
+
+            for (List<String> analyse : analyses) {
+                Paragraph analyseNumber = new Paragraph();
+                analyseNumber.add(new Chunk("Analyse # ", FONT_FOR_OBJECT_NAME));
+                analyseNumber.add(new Chunk(analyse.get(0), COMMON_FONT));
+                analyseNumber.setAlignment(Element.ALIGN_CENTER);
+                document.add(analyseNumber);
+                document.add(Chunk.NEWLINE);
+                Paragraph analyseName = new Paragraph();
+                analyseName.add(new Chunk("Analyse Name: ", FONT_FOR_OBJECT_NAME));
+                analyseName.add(new Chunk(analyse.get(3), COMMON_FONT));
+                document.add(analyseName);
+                document.add(Chunk.NEWLINE);
+                Paragraph analyseResult = new Paragraph();
+                analyseResult.add(new Chunk("Result: ", FONT_FOR_OBJECT_NAME));
+                analyseResult.add(new Chunk(analyse.get(4), COMMON_FONT));
+                document.add(analyseResult);
+                document.add(Chunk.NEWLINE);
+            }
+        }
+
+        List<List<String>> treatments = visitStringInfo.get(2);
+        if (!treatments.isEmpty()) {
+            for (List<String> treatment : treatments) {
+                Paragraph treatmentNumber = new Paragraph();
+                treatmentNumber.add(new Chunk("Treatment # ", FONT_FOR_OBJECT_NAME));
+                treatmentNumber.add(new Chunk(treatment.get(0), COMMON_FONT));
+                treatmentNumber.setAlignment(Element.ALIGN_CENTER);
+                document.add(treatmentNumber);
+                document.add(Chunk.NEWLINE);
+                Paragraph prescription = new Paragraph();
+                prescription.add(new Chunk("Prescription: ", FONT_FOR_OBJECT_NAME));
+                prescription.add(new Chunk(treatment.get(1), COMMON_FONT));
+                document.add(prescription);
+                document.add(Chunk.NEWLINE);
+                Paragraph cure = new Paragraph();
+                cure.add(new Chunk("Cure name: ", FONT_FOR_OBJECT_NAME));
+                cure.add(new Chunk(treatment.get(2), COMMON_FONT));
+                document.add(cure);
+                document.add(Chunk.NEWLINE);
+                Paragraph cureCount = new Paragraph();
+                cureCount.add(new Chunk("Cure count: ", FONT_FOR_OBJECT_NAME));
+                cureCount.add(new Chunk(treatment.get(3), COMMON_FONT));
+                document.add(cureCount);
+                document.add(Chunk.NEWLINE);
+                Paragraph usingMethod = new Paragraph();
+                usingMethod.add(new Chunk("Using method: ", FONT_FOR_OBJECT_NAME));
+                usingMethod.add(new Chunk(treatment.get(4), COMMON_FONT));
+                document.add(usingMethod);
+                document.add(Chunk.NEWLINE);
+            }
+        }
+        document.addAuthor("VetArtDim Systems");
+    }
     public static ByteArrayOutputStream generateVisitInPDFById(int id) {
         Document document = new Document(PageSize.A4, 50, 50, 50, 50);
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
@@ -408,90 +544,7 @@ public class DocumentGenerator {
             document.open();
             Visit visit = VisitDao.getVisitById(id);
 
-            List<List<List<String>>> visitStringInfo = setVisitsRow(visit);
-            List<String> visitInfo = visitStringInfo.get(0).get(0);
-
-            Paragraph visitNumber = new Paragraph();
-            visitNumber.add(new Chunk("Visit # ", FONT_FOR_OBJECT_NAME));
-            visitNumber.add(new Chunk(visitInfo.get(0), COMMON_FONT));
-            visitNumber.setAlignment(Element.ALIGN_CENTER);
-            document.add(visitNumber);
-
-            Paragraph complaints = new Paragraph();
-            complaints.add(new Chunk("Complaints: ", FONT_FOR_OBJECT_NAME));
-            complaints.add(new Chunk(visitInfo.get(1), COMMON_FONT));
-            document.add(complaints);
-
-            Paragraph diagnosis = new Paragraph();
-            diagnosis.add(new Chunk("Diagnosis: ", FONT_FOR_OBJECT_NAME));
-            diagnosis.add(new Chunk(visitInfo.get(2), COMMON_FONT));
-            document.add(diagnosis);
-
-
-            List<String> order = visitStringInfo.get(1).get(0);
-
-            Paragraph beginTime = new Paragraph();
-            beginTime.add(new Chunk("Begin time: ", FONT_FOR_OBJECT_NAME));
-            beginTime.add(new Chunk(order.get(3), COMMON_FONT));
-            document.add(beginTime);
-
-            Paragraph doctorsFullName = new Paragraph();
-            doctorsFullName.add(new Chunk("Doctor: ", FONT_FOR_OBJECT_NAME));
-            doctorsFullName.add(new Chunk(order.get(1), COMMON_FONT));
-            document.add(doctorsFullName);
-
-            List<List<String>> analyses = visitStringInfo.get(3);
-            if (!analyses.isEmpty()) {
-
-                for (List<String> analyse : analyses) {
-                    Paragraph analyseNumber = new Paragraph();
-                    analyseNumber.add(new Chunk("Analyse # ", FONT_FOR_OBJECT_NAME));
-                    analyseNumber.add(new Chunk(analyse.get(0), COMMON_FONT));
-                    analyseNumber.setAlignment(Element.ALIGN_CENTER);
-                    document.add(analyseNumber);
-
-                    Paragraph analyseName = new Paragraph();
-                    analyseName.add(new Chunk("Analyse Name: ", FONT_FOR_OBJECT_NAME));
-                    analyseName.add(new Chunk(analyse.get(3), COMMON_FONT));
-                    document.add(analyseName);
-
-                    Paragraph analyseResult = new Paragraph();
-                    analyseResult.add(new Chunk("Result: ", FONT_FOR_OBJECT_NAME));
-                    analyseResult.add(new Chunk(analyse.get(4), COMMON_FONT));
-                    document.add(analyseResult);
-                }
-            }
-
-            List<List<String>> treatments = visitStringInfo.get(2);
-            if (!treatments.isEmpty()) {
-                for (List<String> treatment : treatments) {
-                    Paragraph treatmentNumber = new Paragraph();
-                    treatmentNumber.add(new Chunk("Treatment # ", FONT_FOR_OBJECT_NAME));
-                    treatmentNumber.add(new Chunk(treatment.get(0), COMMON_FONT));
-                    treatmentNumber.setAlignment(Element.ALIGN_CENTER);
-                    document.add(treatmentNumber);
-
-                    Paragraph prescription = new Paragraph();
-                    prescription.add(new Chunk("Prescription: ", FONT_FOR_OBJECT_NAME));
-                    prescription.add(new Chunk(treatment.get(1), COMMON_FONT));
-                    document.add(prescription);
-
-                    Paragraph cure = new Paragraph();
-                    cure.add(new Chunk("Cure name: ", FONT_FOR_OBJECT_NAME));
-                    cure.add(new Chunk(treatment.get(2), COMMON_FONT));
-                    document.add(cure);
-
-                    Paragraph cureCount = new Paragraph();
-                    cureCount.add(new Chunk("Cure count: ", FONT_FOR_OBJECT_NAME));
-                    cureCount.add(new Chunk(treatment.get(3), COMMON_FONT));
-                    document.add(cureCount);
-
-                    Paragraph usingMethod = new Paragraph();
-                    usingMethod.add(new Chunk("Using method: ", FONT_FOR_OBJECT_NAME));
-                    usingMethod.add(new Chunk(treatment.get(4), COMMON_FONT));
-                    document.add(usingMethod);
-                }
-            }
+            generateVisitDocumentPDF(visit, pdfWriter, document);
             document.addAuthor("VetArtDim Systems");
         } catch (DocumentException e) {
             e.printStackTrace();
@@ -560,9 +613,168 @@ public class DocumentGenerator {
         writer.close();
         return stream;
     }
-    
+
+    public static ByteArrayOutputStream generateVisitsInXLS() throws IOException {
+        HSSFWorkbook workbook = new HSSFWorkbook();
+
+        HSSFSheet visitsSheet = workbook.createSheet("visits");
+        HSSFSheet ordersSheet = workbook.createSheet("orders");
+        HSSFSheet treatmentsSheet = workbook.createSheet("treatments");
+        HSSFSheet analysesSheet = workbook.createSheet("analyses");
+        HSSFCellStyle headerCellStyle = workbook.createCellStyle();
+        HSSFFont boldFont = workbook.createFont();
+        boldFont.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
+        headerCellStyle.setFont(boldFont);
+
+        HSSFRow visitsRow = visitsSheet.createRow(0);
+        HSSFCell visitsCell = visitsRow.createCell(0);
+        visitsCell.setCellStyle(headerCellStyle);
+        visitsCell.setCellValue(new HSSFRichTextString("Visit number"));
+        visitsCell = visitsRow.createCell(1);
+        visitsCell.setCellStyle(headerCellStyle);
+        visitsCell.setCellValue(new HSSFRichTextString("Complaints"));
+        visitsCell = visitsRow.createCell(2);
+        visitsCell.setCellStyle(headerCellStyle);
+        visitsCell.setCellValue(new HSSFRichTextString("Diagnosis"));
 
 
+        HSSFRow treatmentsRow = treatmentsSheet.createRow(0);
+        HSSFCell treatmentsCell = treatmentsRow.createCell(0);
+        treatmentsCell.setCellStyle(headerCellStyle);
+        treatmentsCell.setCellValue(new HSSFRichTextString("Treatment number"));
+        treatmentsCell = treatmentsRow.createCell(1);
+        treatmentsCell.setCellStyle(headerCellStyle);
+        treatmentsCell.setCellValue(new HSSFRichTextString("Prescription"));
+        treatmentsCell = treatmentsRow.createCell(2);
+        treatmentsCell.setCellStyle(headerCellStyle);
+        treatmentsCell.setCellValue(new HSSFRichTextString("Cure"));
+        treatmentsCell = treatmentsRow.createCell(3);
+        treatmentsCell.setCellStyle(headerCellStyle);
+        treatmentsCell.setCellValue(new HSSFRichTextString("Cure Count"));
+        treatmentsCell = treatmentsRow.createCell(4);
+        treatmentsCell.setCellStyle(headerCellStyle);
+        treatmentsCell.setCellValue(new HSSFRichTextString("Using Method"));
+
+        HSSFRow analysesRow = analysesSheet.createRow(0);
+        HSSFCell analysesCell = analysesRow.createCell(0);
+        analysesCell.setCellStyle(headerCellStyle);
+        analysesCell.setCellValue(new HSSFRichTextString("Analyse number"));
+        analysesCell = analysesRow.createCell(1);
+        analysesCell.setCellStyle(headerCellStyle);
+        analysesCell.setCellValue(new HSSFRichTextString("Doctor"));
+        analysesCell = analysesRow.createCell(2);
+        analysesCell.setCellStyle(headerCellStyle);
+        analysesCell.setCellValue(new HSSFRichTextString("Client"));
+        analysesCell = analysesRow.createCell(3);
+        analysesCell.setCellStyle(headerCellStyle);
+        analysesCell.setCellValue(new HSSFRichTextString("Name"));
+        analysesCell = analysesRow.createCell(4);
+        analysesCell.setCellStyle(headerCellStyle);
+        analysesCell.setCellValue(new HSSFRichTextString("Result"));
+
+        HSSFRow ordersRow = ordersSheet.createRow(0);
+        HSSFCell ordersCell = ordersRow.createCell(0);
+        ordersCell.setCellStyle(headerCellStyle);
+        ordersCell.setCellValue(new HSSFRichTextString("Order number"));
+        ordersCell = ordersRow.createCell(1);
+        ordersCell.setCellStyle(headerCellStyle);
+        ordersCell.setCellValue(new HSSFRichTextString("Doctor"));
+        ordersCell = ordersRow.createCell(2);
+        ordersCell.setCellStyle(headerCellStyle);
+        ordersCell.setCellValue(new HSSFRichTextString("Client"));
+        ordersCell = ordersRow.createCell(3);
+        ordersCell.setCellStyle(headerCellStyle);
+        ordersCell.setCellValue(new HSSFRichTextString("Begin Time"));
+
+        List<Visit> visitList = VisitDao.getVisitsList();
+        int analysesRowsCounter = 1;
+        int treatmentsRowsCounter = 1;
+        for (int i = 0; i< visitList.size(); i++) {
+            List<List<List<String>>> visitStringInfo = setVisitsRow(visitList.get(i));
+            List<String> visitInfo = visitStringInfo.get(0).get(0);
+            List<String> orderInfo = visitStringInfo.get(1).get(0);
+            List<List<String>> treatmentsInfo  = visitStringInfo.get(2);
+            List<List<String>> analysesInfo = visitStringInfo.get(3);
+
+            visitsRow = visitsSheet.createRow(i + 1);
+            for (int j = 0; j < visitInfo.size(); j++) {
+                visitsCell = visitsRow.createCell(j);
+                HSSFRichTextString visitCellValue = new HSSFRichTextString(visitInfo.get(j));
+                visitsCell.setCellValue(visitCellValue);
+            }
+
+            ordersRow = ordersSheet.createRow(i + 1);
+            for (int j = 0; j < orderInfo.size(); j++) {
+                ordersCell = ordersRow.createCell(j);
+                HSSFRichTextString orderCellValue = new HSSFRichTextString(orderInfo.get(j));
+                ordersCell.setCellValue(orderCellValue);
+            }
+
+            for (int j = 0; j < treatmentsInfo.size(); j++) {
+                treatmentsRow = treatmentsSheet.createRow(treatmentsRowsCounter);
+                for (int k = 0; k < treatmentsInfo.get(i).size(); k ++) {
+                    treatmentsCell = treatmentsRow.createCell(k);
+                    HSSFRichTextString treatmentCellValue = new HSSFRichTextString(treatmentsInfo.get(j).get(k));
+                    treatmentsCell.setCellValue(treatmentCellValue);
+                }
+                treatmentsRowsCounter++;
+            }
+
+            for (int j = 0; j < analysesInfo.size(); j++) {
+                analysesRow = analysesSheet.createRow(analysesRowsCounter);
+                for (int k = 0; k < analysesInfo.get(j).size(); k ++) {
+                    analysesCell = analysesRow.createCell(k);
+                    HSSFRichTextString analysesCellValue = new HSSFRichTextString(analysesInfo.get(j).get(k));
+                    analysesCell.setCellValue(analysesCellValue);
+                }
+                analysesRowsCounter++;
+            }
+        }
+
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        workbook.write(stream);
+        return  stream;
+    }
+
+
+    public static ByteArrayOutputStream generateMedicalHistoryInPDFbyId(int id){
+        Document document = new Document(PageSize.A4, 50, 50, 50, 50);
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        PdfWriter pdfWriter = null;
+        try {
+            pdfWriter = PdfWriter.getInstance(document, stream);
+            document.open();
+            MedicalHistory history = MedicalHistoryDao.getMedicalHistoryById(id);
+            Client client = ClientDao.getClientById(history.getClientId());
+            Paragraph  clientName = new Paragraph();
+            clientName.add(new Chunk("MEDICAL HISTORY", FONT_FOR_OBJECT_NAME));
+            clientName.add(Chunk.NEWLINE);
+            clientName.add(new Chunk(client.getFirstname() + " " +
+                                    client.getLastname(), COMMON_FONT));
+            clientName.add(Chunk.NEXTPAGE);
+            clientName.setAlignment(Element.ALIGN_CENTER);
+            document.add(clientName);
+            List<Visit> visitList = VisitDao.getVisitsListByMedicalHistoryId(id);
+            for (Visit visit : visitList ) {
+                generateVisitDocumentPDF(visit, pdfWriter, document);
+                document.add(Chunk.NEXTPAGE);
+            }
+
+            document.addAuthor("VetArtDim Systems");
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        } finally {
+            if (document != null) {
+                document.close();
+            }
+            if (pdfWriter != null) {
+                document.close();
+            }
+        }
+        return stream;
+    }
+
+    public static  Byte
 
 
 
