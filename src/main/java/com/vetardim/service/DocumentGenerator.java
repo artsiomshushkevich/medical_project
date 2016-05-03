@@ -2,15 +2,20 @@ package com.vetardim.service;
 
 import com.lowagie.text.*;
 
+
+import com.lowagie.text.Font;
+import com.lowagie.text.Rectangle;
 import com.lowagie.text.pdf.ColumnText;
-import com.lowagie.text.pdf.GrayColor;
+import com.lowagie.text.pdf.PdfContentByte;
 import com.lowagie.text.pdf.PdfWriter;
 import com.opencsv.CSVWriter;
 import com.vetardim.DAO.*;
 import com.vetardim.model.*;
 import com.vetardim.util.UnixTimeConverter;
 import org.apache.poi.hssf.usermodel.*;
+import sun.font.FontFamily;
 
+import java.awt.*;
 import java.io.*;
 
 import java.io.ByteArrayOutputStream;
@@ -37,7 +42,18 @@ public class DocumentGenerator {
     private static final String[] ANALYSE_HEADER = {"Analyse Number", "Name", "Result"};
     private static final String[] EMPTY_ARRAY = {""};
 
-    private  static List<String> setOrdersRow(Order order ){
+
+    private static void addWaterMark(PdfWriter writer) {
+        Phrase watermark = new Phrase("NoQueues", FontFactory.getFont(FontFactory.HELVETICA, 40,
+                Font.BOLD, Color.GRAY));
+        Rectangle pageSize = writer.getPageSize();
+        float x = (pageSize.getLeft() + pageSize.getRight()) / 2;
+        float y = (pageSize.getTop() + pageSize.getBottom()) / 2;
+        PdfContentByte canvas = writer.getDirectContentUnder();
+        ColumnText.showTextAligned(canvas, Element.ALIGN_CENTER, watermark, x, y, 45);
+
+    }
+    private static List<String> setOrdersRow(Order order ){
         List<String> ordersRow = new LinkedList<String>();
         Doctor doctor = DoctorDao.getDoctorById(order.getDoctorId());
         Client client = ClientDao.getClientById(order.getClientId());
@@ -58,12 +74,13 @@ public class DocumentGenerator {
         return ordersRow;
     }
     public static ByteArrayOutputStream generateOrderInPDFById(int id) {
-        Document document = new Document(PageSize.A4, 50, 50, 50, 50);
+        Document document = new Document(PageSize.A7, 20, 20, 20, 20);
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         PdfWriter pdfWriter = null;
         try {
             pdfWriter = PdfWriter.getInstance(document, stream);
             document.open();
+            addWaterMark(pdfWriter);
             Order order = OrderDao.getOrderById(id);
             List<String> ordersRow = setOrdersRow(order);
             Paragraph orderNumber = new Paragraph();
@@ -182,17 +199,18 @@ public class DocumentGenerator {
 
 
     public static ByteArrayOutputStream generateAnalyseInPDFById(int id) {
-        Document document = new Document(PageSize.A4, 50, 50, 50, 50);
+        Document document = new Document(PageSize.A6, 30, 20, 20, 30);
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         PdfWriter pdfWriter = null;
         try {
             pdfWriter = PdfWriter.getInstance(document, stream);
             document.open();
+            addWaterMark(pdfWriter);
             Analyse analyse = AnalyseDao.getAnalyseById(id);
             List<String> analysesRow = setAnalysesRow(analyse);
 
             Paragraph analyseNumber = new Paragraph();
-            analyseNumber.add(new Chunk("Order #", FONT_FOR_OBJECT_NAME));
+            analyseNumber.add(new Chunk("Analyse #", FONT_FOR_OBJECT_NAME));
             analyseNumber.add(new Chunk(analysesRow.get(0), COMMON_FONT));
             analyseNumber.setAlignment(Element.ALIGN_CENTER);
             document.add(analyseNumber);
@@ -310,12 +328,13 @@ public class DocumentGenerator {
     }
 
     public static ByteArrayOutputStream generateTreatmentInPDFbyId(int id) {
-        Document document = new Document(PageSize.A4, 50, 50, 50, 50);
+        Document document = new Document(PageSize.A5, 40, 40, 40, 40);
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         PdfWriter pdfWriter = null;
         try {
             pdfWriter = PdfWriter.getInstance(document, stream);
             document.open();
+            addWaterMark(pdfWriter);
             Treatment treatment = TreatmentDao.getTreatmentById(id);
             List<String> treatmentsRow = setTreatmentsRow(treatment);
             Paragraph treatmentNumber = new Paragraph();
@@ -456,7 +475,7 @@ public class DocumentGenerator {
     private static void generateVisitDocumentChunkPDF(Visit visit, PdfWriter pdfWriter, Document document) throws DocumentException {
         List<List<List<String>>> visitStringInfo = setVisitsRow(visit);
         List<String> visitInfo = visitStringInfo.get(0).get(0);
-
+        addWaterMark(pdfWriter);
         Paragraph visitNumber = new Paragraph();
         visitNumber.add(new Chunk("Visit # ", FONT_FOR_OBJECT_NAME));
         visitNumber.add(new Chunk(visitInfo.get(0), COMMON_FONT));
@@ -739,7 +758,6 @@ public class DocumentGenerator {
 
         CSVWriter writer = new CSVWriter(new OutputStreamWriter(stream, Charset.forName("UTF-8")), ',');
         writer.writeNext(VISIT_HEADER);
-
         List<Visit> visitList = VisitDao.getVisitsList();
         generateVisitDocumentChunkCSV(visitList, writer);
         return stream;
@@ -755,7 +773,9 @@ public class DocumentGenerator {
         PdfWriter pdfWriter = null;
         try {
             pdfWriter = PdfWriter.getInstance(document, stream);
+
             document.open();
+            addWaterMark(pdfWriter);
             MedicalHistory history = MedicalHistoryDao.getMedicalHistoryById(id);
             Client client = ClientDao.getClientById(history.getClientId());
             Paragraph  clientName = new Paragraph();
@@ -771,6 +791,7 @@ public class DocumentGenerator {
             for (Visit visit : visitList ) {
                 generateVisitDocumentChunkPDF(visit, pdfWriter, document);
                 document.add(Chunk.NEXTPAGE);
+                addWaterMark(pdfWriter);
             }
 
             document.addAuthor("VetArtDim Systems");
