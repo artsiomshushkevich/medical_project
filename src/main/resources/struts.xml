@@ -431,6 +431,16 @@
         <action name="generateTreatmentsCSV" class="com.vetardim.controller.DocumentController" method="getTreatmentsCSV">
 
         </action>
+
+        <action name="generateVisitPDF" class="com.vetardim.controller.DocumentController" method="getVisitPDF">
+
+        </action>
+        <action name="generateVisitsXLS" class="com.vetardim.controller.DocumentController" method="getVisitsXLS">
+
+        </action>
+        <action name="generateVisitsCSV" class="com.vetardim.controller.DocumentController" method="getVisitsCSV">
+
+        </action>
     </package>
 
 

@@ -24,8 +24,7 @@ import java.util.List;
  */
 public class DocumentGenerator {
 
-    private static final Font FONT_FOR_WATERMARK = FontFactory.getFont(FontFactory.HELVETICA, 100,
-                                                                    Font.BOLD, new GrayColor(0.9f));
+
     private static final Font FONT_FOR_OBJECT_NAME = FontFactory.getFont(FontFactory.HELVETICA, 20,
             Font.BOLD);
 
@@ -68,9 +67,6 @@ public class DocumentGenerator {
 
             orderText.setAlignment(Element.ALIGN_CENTER);
             document.add(orderText);
-            ColumnText.showTextAligned(pdfWriter.getDirectContentUnder(), Element.ALIGN_CENTER,
-                                        new Phrase("NoQueues", FONT_FOR_WATERMARK),
-                                        297.5f, 421, 45);
             document.addAuthor("VetArtDim Systems");
         } catch (DocumentException e) {
             e.printStackTrace();
@@ -183,9 +179,6 @@ public class DocumentGenerator {
             orderText.setAlignment(Element.ALIGN_CENTER);
             document.add(orderText);
             document.add(new Paragraph("Result: " + analysesRow.get(4)));
-            ColumnText.showTextAligned(pdfWriter.getDirectContentUnder(), Element.ALIGN_CENTER,
-                    new Phrase("NoQueues", FONT_FOR_WATERMARK),
-                    297.5f, 421, 45);
             document.addAuthor("VetArtDim Systems");
         } catch (DocumentException e) {
             e.printStackTrace();
@@ -296,9 +289,7 @@ public class DocumentGenerator {
 
             orderText.setAlignment(Element.ALIGN_CENTER);
             document.add(orderText);
-            ColumnText.showTextAligned(pdfWriter.getDirectContentUnder(), Element.ALIGN_CENTER,
-                    new Phrase("NoQueues", FONT_FOR_WATERMARK),
-                    297.5f, 421, 45);
+
             document.addAuthor("VetArtDim Systems");
         } catch (DocumentException e) {
             e.printStackTrace();
@@ -408,7 +399,7 @@ public class DocumentGenerator {
     }
 
 
-    public ByteArrayOutputStream generateVisitInPDFById(int id) {
+    public static ByteArrayOutputStream generateVisitInPDFById(int id) {
         Document document = new Document(PageSize.A4, 50, 50, 50, 50);
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         PdfWriter pdfWriter = null;
@@ -431,10 +422,10 @@ public class DocumentGenerator {
             complaints.add(new Chunk(visitInfo.get(1), COMMON_FONT));
             document.add(complaints);
 
-            Paragraph prescription = new Paragraph();
-            prescription.add(new Chunk("Prescription: ", FONT_FOR_OBJECT_NAME));
-            prescription.add(new Chunk(visitInfo.get(2), COMMON_FONT));
-            document.add(prescription);
+            Paragraph diagnosis = new Paragraph();
+            diagnosis.add(new Chunk("Diagnosis: ", FONT_FOR_OBJECT_NAME));
+            diagnosis.add(new Chunk(visitInfo.get(2), COMMON_FONT));
+            document.add(diagnosis);
 
 
             List<String> order = visitStringInfo.get(1).get(0);
@@ -471,9 +462,36 @@ public class DocumentGenerator {
                 }
             }
 
-            ColumnText.showTextAligned(pdfWriter.getDirectContentUnder(), Element.ALIGN_CENTER,
-                    new Phrase("NoQueues", FONT_FOR_WATERMARK),
-                    297.5f, 421, 45);
+            List<List<String>> treatments = visitStringInfo.get(2);
+            if (!treatments.isEmpty()) {
+                for (List<String> treatment : treatments) {
+                    Paragraph treatmentNumber = new Paragraph();
+                    treatmentNumber.add(new Chunk("Treatment # ", FONT_FOR_OBJECT_NAME));
+                    treatmentNumber.add(new Chunk(treatment.get(0), COMMON_FONT));
+                    treatmentNumber.setAlignment(Element.ALIGN_CENTER);
+                    document.add(treatmentNumber);
+
+                    Paragraph prescription = new Paragraph();
+                    prescription.add(new Chunk("Prescription: ", FONT_FOR_OBJECT_NAME));
+                    prescription.add(new Chunk(treatment.get(1), COMMON_FONT));
+                    document.add(prescription);
+
+                    Paragraph cure = new Paragraph();
+                    cure.add(new Chunk("Cure name: ", FONT_FOR_OBJECT_NAME));
+                    cure.add(new Chunk(treatment.get(2), COMMON_FONT));
+                    document.add(cure);
+
+                    Paragraph cureCount = new Paragraph();
+                    cureCount.add(new Chunk("Cure count: ", FONT_FOR_OBJECT_NAME));
+                    cureCount.add(new Chunk(treatment.get(3), COMMON_FONT));
+                    document.add(cureCount);
+
+                    Paragraph usingMethod = new Paragraph();
+                    usingMethod.add(new Chunk("Using method: ", FONT_FOR_OBJECT_NAME));
+                    usingMethod.add(new Chunk(treatment.get(4), COMMON_FONT));
+                    document.add(usingMethod);
+                }
+            }
             document.addAuthor("VetArtDim Systems");
         } catch (DocumentException e) {
             e.printStackTrace();
@@ -487,4 +505,65 @@ public class DocumentGenerator {
         }
         return stream;
     }
+
+    public static ByteArrayOutputStream generateVisitsInCSV() throws IOException {
+        String[] visitHeader = {"Visit Number", "Complaints", "Diagnosys"};
+        String[] orderHeader = {"Doctor", "Begin Time"};
+        String[] treatmentsHeader = {"Treatment Number", "Prescription", "Cure", "Cure Count", "Using Method"};
+        String[] analysesHeader = {"Analyse Number", "Name", "Result"};
+        String[] emptyArray = {""};
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+
+        CSVWriter writer = new CSVWriter(new OutputStreamWriter(stream, Charset.forName("UTF-8")), ',');
+        writer.writeNext(visitHeader);
+        List<String[]> visitInString = new LinkedList<String[]>();
+        List<Visit> visitList = VisitDao.getVisitsList();
+        for (int i = 0; i < visitList.size(); i++) {
+            List<List<List<String>>> visitStringInfo = setVisitsRow(visitList.get(i));
+
+            List<String> visitInfo = visitStringInfo.get(0).get(0);
+            String[] visitInfoArr = {visitInfo.get(0), visitInfo.get(1), visitInfo.get(2) };
+            visitInString.add(visitInfoArr);
+
+            visitInString.add(orderHeader);
+            List<String> orderInfo = visitStringInfo.get(1).get(0);
+            String[] orderInfoArr = {orderInfo.get(1), orderInfo.get(3)};
+            visitInString.add(orderInfoArr);
+
+
+            List<List<String>> treatmentsInfo = visitStringInfo.get(2);
+            if (!treatmentsInfo.isEmpty()) {
+                visitInString.add(emptyArray);
+                visitInString.add(treatmentsHeader);
+                for (List<String> treatment : treatmentsInfo) {
+                    String[] treatmentInfoArr = {treatment.get(0), treatment.get(1), treatment.get(2),
+                                                treatment.get(3), treatment.get(4)};
+                    visitInString.add(treatmentInfoArr);
+                }
+            }
+
+            List<List<String>> analysesInfo = visitStringInfo.get(3);
+            if (!analysesInfo.isEmpty()) {
+                visitInString.add(emptyArray);
+                visitInString.add(analysesHeader);
+                for (List<String> analyse : analysesInfo) {
+                    String[] analyseInfoArr = {analyse.get(0), analyse.get(1), analyse.get(2)};
+                    visitInString.add(analyseInfoArr);
+                }
+            }
+            visitInString.add(emptyArray);
+            visitInString.add(emptyArray);
+
+        }
+
+        writer.writeAll(visitInString);
+        writer.close();
+        return stream;
+    }
+    
+
+
+
+
+
 }

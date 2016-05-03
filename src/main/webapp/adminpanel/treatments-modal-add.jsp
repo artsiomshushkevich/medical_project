@@ -20,7 +20,7 @@
                         </div>
                         <div class="form-group">
                             <label>Cure:
-                                <select required class="form-control" name="analyse.visitId">
+                                <select required class="form-control" name="treatment.cureId">
                                     <s:iterator value="curesList" var="cure">
                                         <option value="<s:property value="id"></s:property>">
                                             <s:property value="name"></s:property>
