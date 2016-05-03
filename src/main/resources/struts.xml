@@ -445,10 +445,10 @@
         <action name="generateMedicalHistoryPDF" class="com.vetardim.controller.DocumentController" method="getMedicalHistoryPDF">
 
         </action>
-        <action name="generateMedicalHistoriesXLS" class="com.vetardim.controller.DocumentController" method="getMedicalHistoryPDF">
+        <action name="generateMedicalHistoryXLS" class="com.vetardim.controller.DocumentController" method="getMedicalHistoryXLS">
 
         </action>
-        <action name="generateMedicalHistoriesCSV" class="com.vetardim.controller.DocumentController" method="getMedicalHistoryPDF">
+        <action name="generateMedicalHistoryCSV" class="com.vetardim.controller.DocumentController" method="getMedicalHistoryCSV">
 
         </action>
     </package>

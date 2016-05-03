@@ -119,9 +119,7 @@
                         <div class="panel-body">
                             <div class="container">
                                 <button class="btn btn-primary" onclick="showAddModal()">Add new medical history</button>
-                                <a href="/generateMedicalHistoriesXLS.action">Generate XLS</a>
-                                &middot;
-                                <a href="/generateMedicalHistoriesCSV.action">Generate CSV</a>
+
                             </div>
 
                             <div class="table-responsive">
@@ -148,6 +146,10 @@
                                                 <button class="btn btn-link" id_instance="<s:property value="id"/>" onclick="showDeleteModal(this)">delete</button>
                                                 &middot;
                                                 <a href="/generateMedicalHistoryPDF.action?id=<s:property value="id"/>">PDF</a>
+                                                &middot;
+                                                <a href="/generateMedicalHistoryXLS.action?id=<s:property value="id"/>">XLS</a>
+                                                &middot;
+                                                <a href="/generateMedicalHistoryCSV.action?id=<s:property value="id"/>">CSV</a>
                                             </td>
                                         </tr>
                                     </s:iterator>

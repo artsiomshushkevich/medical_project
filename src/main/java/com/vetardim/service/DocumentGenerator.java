@@ -30,6 +30,13 @@ public class DocumentGenerator {
 
     private static final Font COMMON_FONT = FontFactory.getFont(FontFactory.HELVETICA, 20);
 
+    private static final String[] VISIT_HEADER = {"Visit Number", "Complaints", "Diagnosys"};
+    private static final String[] ORDER_HEADER = {"Doctor", "Begin Time"};
+    private static final String[] TREATMENTS_HEADER = {"Treatment Number", "Prescription", "Cure", "Cure Count",
+                                                        "Using Method"};
+    private static final String[] ANALYSE_HEADER = {"Analyse Number", "Name", "Result"};
+    private static final String[] EMPTY_ARRAY = {""};
+
     private  static List<String> setOrdersRow(Order order ){
         List<String> ordersRow = new LinkedList<String>();
         Doctor doctor = DoctorDao.getDoctorById(order.getDoctorId());
@@ -446,7 +453,7 @@ public class DocumentGenerator {
     }
 
 
-    private static void generateVisitDocumentPDF(Visit visit, PdfWriter pdfWriter, Document document) throws DocumentException {
+    private static void generateVisitDocumentChunkPDF(Visit visit, PdfWriter pdfWriter, Document document) throws DocumentException {
         List<List<List<String>>> visitStringInfo = setVisitsRow(visit);
         List<String> visitInfo = visitStringInfo.get(0).get(0);
 
@@ -535,42 +542,9 @@ public class DocumentGenerator {
         }
         document.addAuthor("VetArtDim Systems");
     }
-    public static ByteArrayOutputStream generateVisitInPDFById(int id) {
-        Document document = new Document(PageSize.A4, 50, 50, 50, 50);
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        PdfWriter pdfWriter = null;
-        try {
-            pdfWriter = PdfWriter.getInstance(document, stream);
-            document.open();
-            Visit visit = VisitDao.getVisitById(id);
 
-            generateVisitDocumentPDF(visit, pdfWriter, document);
-            document.addAuthor("VetArtDim Systems");
-        } catch (DocumentException e) {
-            e.printStackTrace();
-        } finally {
-            if (document != null) {
-                document.close();
-            }
-            if (pdfWriter != null) {
-                document.close();
-            }
-        }
-        return stream;
-    }
-
-    public static ByteArrayOutputStream generateVisitsInCSV() throws IOException {
-        String[] visitHeader = {"Visit Number", "Complaints", "Diagnosys"};
-        String[] orderHeader = {"Doctor", "Begin Time"};
-        String[] treatmentsHeader = {"Treatment Number", "Prescription", "Cure", "Cure Count", "Using Method"};
-        String[] analysesHeader = {"Analyse Number", "Name", "Result"};
-        String[] emptyArray = {""};
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-
-        CSVWriter writer = new CSVWriter(new OutputStreamWriter(stream, Charset.forName("UTF-8")), ',');
-        writer.writeNext(visitHeader);
+    private static void generateVisitDocumentChunkCSV(List<Visit> visitList, CSVWriter writer) throws IOException {
         List<String[]> visitInString = new LinkedList<String[]>();
-        List<Visit> visitList = VisitDao.getVisitsList();
         for (int i = 0; i < visitList.size(); i++) {
             List<List<List<String>>> visitStringInfo = setVisitsRow(visitList.get(i));
 
@@ -578,7 +552,7 @@ public class DocumentGenerator {
             String[] visitInfoArr = {visitInfo.get(0), visitInfo.get(1), visitInfo.get(2) };
             visitInString.add(visitInfoArr);
 
-            visitInString.add(orderHeader);
+            visitInString.add(ORDER_HEADER);
             List<String> orderInfo = visitStringInfo.get(1).get(0);
             String[] orderInfoArr = {orderInfo.get(1), orderInfo.get(3)};
             visitInString.add(orderInfoArr);
@@ -586,35 +560,34 @@ public class DocumentGenerator {
 
             List<List<String>> treatmentsInfo = visitStringInfo.get(2);
             if (!treatmentsInfo.isEmpty()) {
-                visitInString.add(emptyArray);
-                visitInString.add(treatmentsHeader);
+                visitInString.add(EMPTY_ARRAY);
+                visitInString.add(TREATMENTS_HEADER);
                 for (List<String> treatment : treatmentsInfo) {
                     String[] treatmentInfoArr = {treatment.get(0), treatment.get(1), treatment.get(2),
-                                                treatment.get(3), treatment.get(4)};
+                            treatment.get(3), treatment.get(4)};
                     visitInString.add(treatmentInfoArr);
                 }
             }
 
             List<List<String>> analysesInfo = visitStringInfo.get(3);
             if (!analysesInfo.isEmpty()) {
-                visitInString.add(emptyArray);
-                visitInString.add(analysesHeader);
+                visitInString.add(EMPTY_ARRAY);
+                visitInString.add(ANALYSE_HEADER);
                 for (List<String> analyse : analysesInfo) {
                     String[] analyseInfoArr = {analyse.get(0), analyse.get(1), analyse.get(2)};
                     visitInString.add(analyseInfoArr);
                 }
             }
-            visitInString.add(emptyArray);
-            visitInString.add(emptyArray);
+            visitInString.add(EMPTY_ARRAY);
+            visitInString.add(EMPTY_ARRAY);
 
         }
 
         writer.writeAll(visitInString);
         writer.close();
-        return stream;
     }
 
-    public static ByteArrayOutputStream generateVisitsInXLS() throws IOException {
+    private static ByteArrayOutputStream generateVisitsChunkInXLS(List<Visit> visitList) throws IOException {
         HSSFWorkbook workbook = new HSSFWorkbook();
 
         HSSFSheet visitsSheet = workbook.createSheet("visits");
@@ -686,7 +659,6 @@ public class DocumentGenerator {
         ordersCell.setCellStyle(headerCellStyle);
         ordersCell.setCellValue(new HSSFRichTextString("Begin Time"));
 
-        List<Visit> visitList = VisitDao.getVisitsList();
         int analysesRowsCounter = 1;
         int treatmentsRowsCounter = 1;
         for (int i = 0; i< visitList.size(); i++) {
@@ -737,6 +709,46 @@ public class DocumentGenerator {
     }
 
 
+    public static ByteArrayOutputStream generateVisitInPDFById(int id) {
+        Document document = new Document(PageSize.A4, 50, 50, 50, 50);
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        PdfWriter pdfWriter = null;
+        try {
+            pdfWriter = PdfWriter.getInstance(document, stream);
+            document.open();
+            Visit visit = VisitDao.getVisitById(id);
+
+            generateVisitDocumentChunkPDF(visit, pdfWriter, document);
+            document.addAuthor("VetArtDim Systems");
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        } finally {
+            if (document != null) {
+                document.close();
+            }
+            if (pdfWriter != null) {
+                document.close();
+            }
+        }
+        return stream;
+    }
+
+    public static ByteArrayOutputStream generateVisitsInCSV() throws IOException {
+
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+
+        CSVWriter writer = new CSVWriter(new OutputStreamWriter(stream, Charset.forName("UTF-8")), ',');
+        writer.writeNext(VISIT_HEADER);
+
+        List<Visit> visitList = VisitDao.getVisitsList();
+        generateVisitDocumentChunkCSV(visitList, writer);
+        return stream;
+    }
+
+    public static ByteArrayOutputStream generateVisitsInXLS() throws IOException {
+        return generateVisitsChunkInXLS(VisitDao.getVisitsList());
+    }
+
     public static ByteArrayOutputStream generateMedicalHistoryInPDFbyId(int id){
         Document document = new Document(PageSize.A4, 50, 50, 50, 50);
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
@@ -749,6 +761,7 @@ public class DocumentGenerator {
             Paragraph  clientName = new Paragraph();
             clientName.add(new Chunk("MEDICAL HISTORY", FONT_FOR_OBJECT_NAME));
             clientName.add(Chunk.NEWLINE);
+            clientName.add(Chunk.NEWLINE);
             clientName.add(new Chunk(client.getFirstname() + " " +
                                     client.getLastname(), COMMON_FONT));
             clientName.add(Chunk.NEXTPAGE);
@@ -756,7 +769,7 @@ public class DocumentGenerator {
             document.add(clientName);
             List<Visit> visitList = VisitDao.getVisitsListByMedicalHistoryId(id);
             for (Visit visit : visitList ) {
-                generateVisitDocumentPDF(visit, pdfWriter, document);
+                generateVisitDocumentChunkPDF(visit, pdfWriter, document);
                 document.add(Chunk.NEXTPAGE);
             }
 
@@ -774,7 +787,20 @@ public class DocumentGenerator {
         return stream;
     }
 
-    public static  Byte
+    public static ByteArrayOutputStream generateMedicalHistoryInCSV(int id) throws IOException {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+
+        CSVWriter writer = new CSVWriter(new OutputStreamWriter(stream, Charset.forName("UTF-8")), ',');
+        writer.writeNext(VISIT_HEADER);
+
+        List<Visit> visitList = VisitDao.getVisitsListByMedicalHistoryId(id);
+        generateVisitDocumentChunkCSV(visitList, writer);
+        return stream;
+    }
+
+    public static ByteArrayOutputStream generateMedicalHistoryInXLS(int id) throws IOException {
+        return generateVisitsChunkInXLS(VisitDao.getVisitsListByMedicalHistoryId(id));
+    }
 
 
 
