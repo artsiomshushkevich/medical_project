@@ -122,6 +122,7 @@ public class DocumentGenerator {
         HSSFWorkbook workbook = new HSSFWorkbook();
         HSSFSheet sheet = workbook.createSheet("order");
         HSSFCellStyle headerCellStyle = workbook.createCellStyle();
+        HSSFCellStyle style = workbook.createCellStyle();
         HSSFFont boldFont = workbook.createFont();
         boldFont.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
         headerCellStyle.setFont(boldFont);
@@ -140,14 +141,28 @@ public class DocumentGenerator {
         cell.setCellStyle(headerCellStyle);
         cell.setCellValue(new HSSFRichTextString("Date"));
 
+        sheet.autoSizeColumn(0);
+        headerCellStyle.setWrapText(true);
+        style.setWrapText(true);
+        int[] columnWidths = {20, 20, 20, 20};
+        for (int i = 0; i < columnWidths.length; i++) {
+            columnWidths[i] = columnWidths[i] * 256;
+        }
+
         List<Order> orderList = OrderDao.getOrdersList();
         for (int i = 0; i < orderList.size(); i++ ) {
             row = sheet.createRow(i+1);
+            row.setRowStyle(style);
             List<String> ordersRow = setOrdersRow(orderList.get(i));
             for (int j = 0; j < ordersRow.size(); j ++) {
                 cell = row.createCell(j);
+                cell.setCellStyle(style);
                 HSSFRichTextString orderNumberCellValue = new HSSFRichTextString(ordersRow.get(j));
+                sheet.autoSizeColumn(j);
                 cell.setCellValue(orderNumberCellValue);
+                sheet.autoSizeColumn(j);
+
+                sheet.setColumnWidth(j, columnWidths[j]);
             }
 
         }
@@ -254,9 +269,11 @@ public class DocumentGenerator {
         HSSFWorkbook workbook = new HSSFWorkbook();
         HSSFSheet sheet = workbook.createSheet("analyse");
 
-
+        HSSFCellStyle style = workbook.createCellStyle();
         HSSFCellStyle headerCellStyle = workbook.createCellStyle();
+
         HSSFFont boldFont = workbook.createFont();
+
         boldFont.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
         headerCellStyle.setFont(boldFont);
 
@@ -276,15 +293,28 @@ public class DocumentGenerator {
         cell = row.createCell(4);
         cell.setCellStyle(headerCellStyle);
         cell.setCellValue(new HSSFRichTextString("Result"));
-
+        sheet.autoSizeColumn(0);
+        style.setWrapText(true);
+        headerCellStyle.setWrapText(true);
+        int[] columnWidths = {17, 10, 10, 20, 20};
+        for (int i = 0; i < columnWidths.length; i++) {
+            columnWidths[i] = columnWidths[i] * 256;
+        }
         List<Analyse> analyseList = AnalyseDao.getAnalysesList();
         for (int i = 0; i < analyseList.size(); i++ ) {
             row = sheet.createRow(i+1);
+            row.setRowStyle(style);
             List<String> ordersRow = setAnalysesRow(analyseList.get(i));
             for (int j = 0; j < ordersRow.size(); j ++) {
                 cell = row.createCell(j);
+                cell.setCellStyle(style);
                 HSSFRichTextString orderNumberCellValue = new HSSFRichTextString(ordersRow.get(j));
+
                 cell.setCellValue(orderNumberCellValue);
+                sheet.autoSizeColumn(j);
+
+                sheet.setColumnWidth(j, columnWidths[j]);
+
             }
 
         }
@@ -381,6 +411,7 @@ public class DocumentGenerator {
         HSSFWorkbook workbook = new HSSFWorkbook();
         HSSFSheet sheet = workbook.createSheet("treatment");
         HSSFCellStyle headerCellStyle = workbook.createCellStyle();
+        HSSFCellStyle style = workbook.createCellStyle();
         HSSFFont boldFont = workbook.createFont();
         boldFont.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
         headerCellStyle.setFont(boldFont);
@@ -402,14 +433,27 @@ public class DocumentGenerator {
         cell.setCellStyle(headerCellStyle);
         cell.setCellValue(new HSSFRichTextString("Method of using"));
 
+        sheet.autoSizeColumn(0);
+        style.setWrapText(true);
+        headerCellStyle.setWrapText(true);
+        int[] columnWidths = {15, 15, 10, 10, 15};
+        for (int i = 0; i < columnWidths.length; i++) {
+            columnWidths[i] = columnWidths[i] * 256;
+        }
+
         List<Treatment> treatmentList = TreatmentDao.getTreatmentsList();
         for (int i = 0; i < treatmentList.size(); i++ ) {
             row = sheet.createRow(i+1);
+            row.setRowStyle(style);
             List<String> ordersRow = setTreatmentsRow(treatmentList.get(i));
             for (int j = 0; j < ordersRow.size(); j ++) {
                 cell = row.createCell(j);
+                cell.setCellStyle(style);
                 HSSFRichTextString orderNumberCellValue = new HSSFRichTextString(ordersRow.get(j));
                 cell.setCellValue(orderNumberCellValue);
+
+                sheet.autoSizeColumn(j);
+                sheet.setColumnWidth(j, columnWidths[j]);
             }
 
         }
@@ -614,6 +658,7 @@ public class DocumentGenerator {
         HSSFSheet treatmentsSheet = workbook.createSheet("treatments");
         HSSFSheet analysesSheet = workbook.createSheet("analyses");
         HSSFCellStyle headerCellStyle = workbook.createCellStyle();
+        HSSFCellStyle style = workbook.createCellStyle();
         HSSFFont boldFont = workbook.createFont();
         boldFont.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
         headerCellStyle.setFont(boldFont);
@@ -680,6 +725,17 @@ public class DocumentGenerator {
 
         int analysesRowsCounter = 1;
         int treatmentsRowsCounter = 1;
+        visitsSheet.autoSizeColumn(0);
+        ordersSheet.autoSizeColumn(0);
+        treatmentsSheet.autoSizeColumn(0);
+        analysesSheet.autoSizeColumn(0);
+        headerCellStyle.setWrapText(true);
+        style.setWrapText(true);
+        int[] columnWidths = {15, 15, 10, 10, 15};
+        for (int k = 0; k < columnWidths.length; k++) {
+            columnWidths[k] = columnWidths[k] * 256;
+        }
+
         for (int i = 0; i< visitList.size(); i++) {
             List<List<List<String>>> visitStringInfo = setVisitsRow(visitList.get(i));
             List<String> visitInfo = visitStringInfo.get(0).get(0);
@@ -687,36 +743,54 @@ public class DocumentGenerator {
             List<List<String>> treatmentsInfo  = visitStringInfo.get(2);
             List<List<String>> analysesInfo = visitStringInfo.get(3);
 
+
             visitsRow = visitsSheet.createRow(i + 1);
+            visitsRow.setRowStyle(style);
             for (int j = 0; j < visitInfo.size(); j++) {
                 visitsCell = visitsRow.createCell(j);
+                visitsCell.setCellStyle(style);
                 HSSFRichTextString visitCellValue = new HSSFRichTextString(visitInfo.get(j));
                 visitsCell.setCellValue(visitCellValue);
+
+                visitsSheet.autoSizeColumn(j);
+                visitsSheet.setColumnWidth(j, columnWidths[j]);
             }
 
             ordersRow = ordersSheet.createRow(i + 1);
+            ordersRow.setRowStyle(style);
             for (int j = 0; j < orderInfo.size(); j++) {
                 ordersCell = ordersRow.createCell(j);
+                ordersCell.setCellStyle(style);
                 HSSFRichTextString orderCellValue = new HSSFRichTextString(orderInfo.get(j));
                 ordersCell.setCellValue(orderCellValue);
+                ordersSheet.autoSizeColumn(j);
+                ordersSheet.setColumnWidth(j, columnWidths[j]);
             }
 
             for (int j = 0; j < treatmentsInfo.size(); j++) {
                 treatmentsRow = treatmentsSheet.createRow(treatmentsRowsCounter);
+                treatmentsRow.setRowStyle(style);
                 for (int k = 0; k < treatmentsInfo.get(i).size(); k ++) {
                     treatmentsCell = treatmentsRow.createCell(k);
+                    treatmentsCell.setCellStyle(style);
                     HSSFRichTextString treatmentCellValue = new HSSFRichTextString(treatmentsInfo.get(j).get(k));
                     treatmentsCell.setCellValue(treatmentCellValue);
+                    treatmentsSheet.autoSizeColumn(k);
+                    treatmentsSheet.setColumnWidth(k, columnWidths[k]);
                 }
                 treatmentsRowsCounter++;
             }
 
             for (int j = 0; j < analysesInfo.size(); j++) {
                 analysesRow = analysesSheet.createRow(analysesRowsCounter);
+                analysesRow.setRowStyle(style);
                 for (int k = 0; k < analysesInfo.get(j).size(); k ++) {
                     analysesCell = analysesRow.createCell(k);
+                    analysesCell.setCellStyle(style);
                     HSSFRichTextString analysesCellValue = new HSSFRichTextString(analysesInfo.get(j).get(k));
                     analysesCell.setCellValue(analysesCellValue);
+                    analysesSheet.autoSizeColumn(k);
+                    analysesSheet.setColumnWidth(k, columnWidths[k]);
                 }
                 analysesRowsCounter++;
             }
