@@ -42,7 +42,7 @@ public class RoleInterceptor extends AbstractInterceptor {
         return result;
     }
 
-    protected List<String> stringToList(String val) {
+    public List<String> stringToList(String val) {
         if (val != null) {
             String[] list = val.split("[ ]*,[ ]*");
             return Arrays.asList(list);
@@ -51,7 +51,7 @@ public class RoleInterceptor extends AbstractInterceptor {
         }
     }
 
-    protected boolean isAllowed(HttpServletRequest request, Object action) throws Exception {
+    public boolean isAllowed(HttpServletRequest request, Object action) throws Exception {
         HttpSession session=request.getSession(false);
         boolean result = false;
         boolean accept =false;
@@ -101,9 +101,9 @@ public class RoleInterceptor extends AbstractInterceptor {
         return true;
     }
 
-    protected String handleRejection(ActionInvocation invocation,
+    public String handleRejection(ActionInvocation invocation,
                                      HttpServletResponse response) throws Exception {
-        response.sendRedirect("/");
+       // response.sendRedirect("/");
         return "invalidAdminAccess";
     }
 

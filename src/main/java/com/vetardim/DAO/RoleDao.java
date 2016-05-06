@@ -12,6 +12,40 @@ import java.util.List;
 
 public class RoleDao {
 
+    public static void addOrUpdateRole(Role role) {
+        Session session = HibernateUtil.makeSession();
+        try {
+            session.beginTransaction();
+            session.saveOrUpdate(role);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            session.getTransaction().rollback();
+        } finally {
+            session.close();
+        }
+    }
+
+    public static void deleteRole(int id) {
+
+        Session session = HibernateUtil.makeSession();
+        try {
+            session.beginTransaction();
+            Role role = session.get(Role.class, id);
+
+            if (role != null) {
+                session.delete(role);
+            }
+            session.getTransaction().commit();
+        } catch (Exception e){
+            e.printStackTrace();
+            session.getTransaction().rollback();
+        } finally {
+            session.close();
+        }
+
+    }
+
     public static List<Role> getRolesList() {
         Session session = HibernateUtil.makeSession();
         session.beginTransaction();
